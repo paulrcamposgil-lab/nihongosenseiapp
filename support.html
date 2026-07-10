@@ -3,28 +3,150 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nihongo Sensei — Support</title>
+<title>Support — Nihongo Sensei</title>
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; max-width: 640px; margin: 0 auto; padding: 40px 20px; line-height: 1.6; color: #1a1a2e; }
-  h1 { font-size: 1.6rem; }
-  h2 { font-size: 1.1rem; margin-top: 2em; }
-  a { color: #1a1a2e; }
-  footer { margin-top: 3em; font-size: 0.85rem; color: #666; }
+  :root {
+    --bg: #ffffff; --bg2: #f5f5f7; --text: #1d1d1f; --text2: #6e6e73;
+    --accent: #c0527a; --border: #d2d2d7; --card: #f5f5f7; --radius: 12px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #000000; --bg2: #1c1c1e; --text: #f5f5f7; --text2: #98989d; --accent: #d97ba8; --border: #38383a; --card: #1c1c1e; }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg); color: var(--text);
+    max-width: 680px; margin: 0 auto; padding: 60px 24px 80px;
+    line-height: 1.7; font-size: 1rem;
+  }
+  nav { margin-bottom: 48px; }
+  nav a { color: var(--accent); font-size: 0.9rem; text-decoration: none; }
+  nav a:hover { text-decoration: underline; }
+  h1 { font-size: clamp(1.6rem, 4vw, 2rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+  .meta { font-size: 1rem; color: var(--text2); margin-top: 12px; margin-bottom: 48px; line-height: 1.6; }
+  h2 { font-size: 1.15rem; font-weight: 700; margin-top: 56px; margin-bottom: 20px; letter-spacing: -0.01em; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+  /* FAQ */
+  .faq { display: flex; flex-direction: column; gap: 2px; }
+  .faq-item {
+    background: var(--card);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .faq-item:first-child { border-radius: var(--radius) var(--radius) 4px 4px; }
+  .faq-item:last-child  { border-radius: 4px 4px var(--radius) var(--radius); }
+  .faq-item:only-child  { border-radius: var(--radius); }
+  .faq-q {
+    padding: 16px 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+  .faq-a {
+    padding: 0 20px 16px;
+    font-size: 0.925rem;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+  .faq-a a { color: var(--accent); }
+
+  /* Contact card */
+  .contact-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    margin-top: 16px;
+  }
+  .contact-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
+  .contact-card p { font-size: 0.9rem; color: var(--text2); margin-bottom: 14px; }
+  .contact-card p:last-child { margin-bottom: 0; }
+  .contact-email {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--accent);
+  }
+  .response-time {
+    margin-top: 12px;
+    font-size: 0.8rem;
+    color: var(--text2);
+  }
+
+  footer { font-size: 0.8rem; color: var(--text2); margin-top: 64px; }
+  footer a { color: var(--text2); }
+  footer a:hover { color: var(--accent); text-decoration: none; }
+  .footer-links { margin-top: 8px; display: flex; gap: 20px; flex-wrap: wrap; }
 </style>
 </head>
 <body>
-  <h1>Nihongo Sensei — Support</h1>
 
-  <p>Need help with the app, found a bug, or have a suggestion? Reach us at <a href="mailto:support@nihongosenseiapp.com">support@nihongosenseiapp.com</a> — we read every message.</p>
+<nav><a href="index.html">← Nihongo Sensei</a></nav>
 
-  <h2>Common questions</h2>
-  <p><strong>How do I switch between Spanish and English?</strong><br>Open the menu (··· in the top right) → Language.</p>
-  <p><strong>How do I unlock Lessons 3–25?</strong><br>These are part of Nihongo Sensei Premium, an annual subscription. You can subscribe from any locked lesson, and manage or cancel your subscription anytime in your device's Settings → [Your Name] → Subscriptions.</p>
-  <p><strong>I bought Premium but it's not showing up.</strong><br>Open the menu → and use "Restore Purchases" (or reach out to us directly if you don't see that option yet — it may not be available in your current app version).</p>
-  <p><strong>Is my study progress backed up anywhere?</strong><br>Your progress is stored on your device. See our <a href="index.html">Privacy Policy</a> for details.</p>
+<h1>Support</h1>
+<p class="meta">Need help with the app, found a bug, or have a suggestion? We read every message.</p>
 
-  <p style="margin-top:2em"><a href="index.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms-of-use.html">Terms of Use</a></p>
+<h2>Frequently Asked Questions</h2>
+<div class="faq">
+  <div class="faq-item">
+    <div class="faq-q">How do I switch between Spanish and English?</div>
+    <div class="faq-a">Open the menu (··· in the top right corner) and tap <strong>Language</strong>. The app restarts in the selected language immediately.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How do I unlock Lessons 3–25?</div>
+    <div class="faq-a">These lessons are part of Nihongo Sensei Premium, available as an annual subscription. You can subscribe from any locked lesson screen. Manage or cancel your subscription anytime in <strong>Settings → [Your Name] → Subscriptions</strong>.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">I purchased Premium but it is not showing up.</div>
+    <div class="faq-a">Open the menu (···) and tap <strong>Restore Purchases</strong>. If the issue persists, contact us at <a href="mailto:support@nihongosenseiapp.com">support@nihongosenseiapp.com</a> and we will sort it out.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Is my study progress backed up?</div>
+    <div class="faq-a">Your progress is stored on your device. It is not synced to a server or iCloud. If you delete the app or switch devices, your progress is reset. See our <a href="privacy.html">Privacy Policy</a> for full details.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">What is the first 100 users promotion?</div>
+    <div class="faq-a">The first 100 unique users who download and open Nihongo Sensei receive Premium access for free, for life. Eligibility is determined automatically at first launch — no code or coupon required.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Which textbook does this app cover?</div>
+    <div class="faq-a">Nihongo Sensei is built around <strong>Minna no Nihongo Book 1</strong>, Lessons 1–25, covering approximately JLPT N5 level. The app is an independent study tool and is not affiliated with the publishers of Minna no Nihongo.</div>
+  </div>
+</div>
 
-  <footer>Nihongo Sensei</footer>
+<h2>Get in Touch</h2>
+<div class="contact-card">
+  <h3>Report a bug</h3>
+  <p>Found something that does not work as expected? Tell us what happened, what you expected, and what device and iOS version you are using.</p>
+  <a class="contact-email" href="mailto:support@nihongosenseiapp.com?subject=Bug Report — Nihongo Sensei">support@nihongosenseiapp.com</a>
+</div>
+
+<div class="contact-card" style="margin-top: 12px;">
+  <h3>Request a feature</h3>
+  <p>Have an idea that would make Nihongo Sensei better? Every suggestion is read. The best ones make it into the app.</p>
+  <a class="contact-email" href="mailto:support@nihongosenseiapp.com?subject=Feature Request — Nihongo Sensei">support@nihongosenseiapp.com</a>
+</div>
+
+<div class="contact-card" style="margin-top: 12px;">
+  <h3>General enquiries</h3>
+  <p>For anything else — subscriptions, the launch promotion, or just to say hello.</p>
+  <a class="contact-email" href="mailto:support@nihongosenseiapp.com">support@nihongosenseiapp.com</a>
+  <p class="response-time">We aim to respond within 2 business days.</p>
+</div>
+
+<hr>
+
+<footer>
+  <div>© 2026 Paul Campos Gil</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Use</a>
+  </div>
+</footer>
+
 </body>
 </html>

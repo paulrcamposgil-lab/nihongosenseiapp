@@ -3,39 +3,214 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nihongo Sensei — Privacy Policy</title>
+<title>Nihongo Sensei — Learn Japanese. Together.</title>
+<meta name="description" content="An independent Japanese study companion built around Minna no Nihongo. Vocabulary, kanji, grammar and quiz tools for JLPT N5.">
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; max-width: 640px; margin: 0 auto; padding: 40px 20px; line-height: 1.6; color: #1a1a2e; }
-  h1 { font-size: 1.6rem; }
-  h2 { font-size: 1.1rem; margin-top: 2em; }
-  a { color: #1a1a2e; }
-  footer { margin-top: 3em; font-size: 0.85rem; color: #666; }
+  :root {
+    --bg: #ffffff;
+    --bg2: #f5f5f7;
+    --text: #1d1d1f;
+    --text2: #6e6e73;
+    --accent: #c0527a;
+    --border: #d2d2d7;
+    --card: #f5f5f7;
+    --radius: 16px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #000000;
+      --bg2: #1c1c1e;
+      --text: #f5f5f7;
+      --text2: #98989d;
+      --accent: #d97ba8;
+      --border: #38383a;
+      --card: #1c1c1e;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── Hero ─────────────────────────────────────────────────────── */
+  .hero {
+    text-align: center;
+    padding: 96px 24px 72px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .hero-icon {
+    width: 96px; height: 96px;
+    border-radius: 22px;
+    margin: 0 auto 28px;
+    display: block;
+    background: linear-gradient(145deg, #f8d7e5, #d97ba8);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 52px;
+    line-height: 1;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.15;
+  }
+  .hero .tagline {
+    font-size: clamp(1.1rem, 3vw, 1.35rem);
+    font-weight: 400;
+    color: var(--text2);
+    margin-top: 12px;
+    letter-spacing: -0.01em;
+  }
+  .hero .description {
+    font-size: 1rem;
+    color: var(--text2);
+    margin-top: 28px;
+    line-height: 1.7;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── App Store badge ─────────────────────────────────────────── */
+  .badge-wrap { margin-top: 36px; }
+  .badge-coming-soon {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    color: var(--text2);
+    cursor: default;
+    user-select: none;
+  }
+  .badge-coming-soon svg { opacity: 0.5; }
+
+  /* ── Cards ───────────────────────────────────────────────────── */
+  .cards {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 480px) { .cards { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    display: block;
+    color: var(--text);
+    transition: opacity 0.15s;
+  }
+  .card:hover { opacity: 0.75; text-decoration: none; }
+  .card-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text2);
+    margin-bottom: 6px;
+  }
+  .card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .card-sub {
+    font-size: 0.85rem;
+    color: var(--text2);
+    margin-top: 4px;
+    line-height: 1.45;
+  }
+
+  /* ── Divider ─────────────────────────────────────────────────── */
+  .divider {
+    max-width: 640px;
+    margin: 0 auto;
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── Footer ──────────────────────────────────────────────────── */
+  footer {
+    text-align: center;
+    padding: 32px 24px 48px;
+    font-size: 0.8rem;
+    color: var(--text2);
+  }
+  footer a { color: var(--text2); }
+  footer a:hover { color: var(--accent); text-decoration: none; }
+  .footer-links { margin-top: 8px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 </style>
 </head>
 <body>
-  <h1>Nihongo Sensei — Privacy Policy</h1>
-  <p><em>Last updated: July 2026</em></p>
 
-  <p>Nihongo Sensei is designed to collect as little data as possible. This policy explains exactly what the app does and does not do.</p>
+<main>
+  <section class="hero">
+    <div class="hero-icon" aria-hidden="true">🌸</div>
+    <h1>Nihongo Sensei</h1>
+    <p class="tagline">Learn Japanese. Together.</p>
+    <p class="description">
+      An independent Japanese study companion built around Minna no Nihongo Book 1.
+      Vocabulary, kanji, grammar, and quiz tools for JLPT N5 — built by a student, still learning.
+    </p>
+    <div class="badge-wrap">
+      <span class="badge-coming-soon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12.5 2H5.5C3.57 2 2 3.57 2 5.5v7c0 1.93 1.57 3.5 3.5 3.5h7c1.93 0 3.5-1.57 3.5-3.5v-7C16 3.57 14.43 2 12.5 2zm-1.3 9.47L9.53 13.1a.75.75 0 01-1.06 0L6.8 11.47a.75.75 0 011.06-1.06l.64.64V6.75a.75.75 0 011.5 0v4.3l.64-.64a.75.75 0 011.06 1.06z"/>
+        </svg>
+        Coming Soon to the App Store
+      </span>
+    </div>
+  </section>
 
-  <h2>Your study data stays on your device</h2>
-  <p>Your progress, preferences, mastery levels, and quiz statistics are stored locally on your device and are never transmitted to us for any study or personalization purpose.</p>
+  <hr class="divider">
 
-  <h2>No tracking, no ads</h2>
-  <p>We do not use analytics, advertising, or third-party tracking SDKs of any kind.</p>
+  <section class="cards" style="margin-top: 40px;">
+    <a class="card" href="support.html">
+      <div class="card-label">Help</div>
+      <div class="card-title">Support</div>
+      <div class="card-sub">FAQ, contact, and how to report a bug</div>
+    </a>
+    <a class="card" href="privacy.html">
+      <div class="card-label">Legal</div>
+      <div class="card-title">Privacy Policy</div>
+      <div class="card-sub">What data we collect (almost none)</div>
+    </a>
+    <a class="card" href="terms.html">
+      <div class="card-label">Legal</div>
+      <div class="card-title">Terms of Use</div>
+      <div class="card-sub">Usage rules and subscription terms</div>
+    </a>
+    <a class="card" href="mailto:support@nihongosenseiapp.com">
+      <div class="card-label">Contact</div>
+      <div class="card-title">Get in Touch</div>
+      <div class="card-sub">support@nihongosenseiapp.com</div>
+    </a>
+  </section>
+</main>
 
-  <h2>No accounts</h2>
-  <p>The app does not require account creation, login, or any personal information to use the free or Premium content.</p>
+<footer>
+  <div>© 2026 Paul Campos Gil</div>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Use</a>
+    <a href="support.html">Support</a>
+  </div>
+</footer>
 
-  <h2>Subscriptions and payments</h2>
-  <p>Premium is offered as an auto-renewing annual subscription. All payment is processed entirely by Apple through the App Store — we never receive or store your payment card details.</p>
-  <p>To verify your subscription status and, where applicable, eligibility for limited-time promotions (such as our launch offer for the first 100 users), the app sends Apple's App Store transaction identifier for your purchase to our verification service, hosted on Supabase. This identifier is a technical token tied to your App Store account — it is not your name, email, or payment information, and we do not use it for advertising or profiling. It is used solely to confirm subscription status and prevent the same promotional offer from being claimed more than once.</p>
-
-  <h2>Contact</h2>
-  <p>If you have questions about this policy, contact us at <a href="mailto:privacy@nihongosenseiapp.com">privacy@nihongosenseiapp.com</a>.</p>
-
-  <p style="margin-top:2em"><a href="terms-of-use.html">Terms of Use →</a></p>
-
-  <footer>Nihongo Sensei</footer>
 </body>
 </html>
