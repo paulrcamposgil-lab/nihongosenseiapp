@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nihongo Sensei — Practice for Minna no Nihongo</title>
 <meta name="description" content="Free practice app for anyone studying Japanese with Minna no Nihongo, lesson by lesson. Vocabulary, kanji, kana and grammar notes. No ads, works offline.">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+<link rel="icon" href="img/icon-192.png">
 <link rel="canonical" href="https://nihongosenseiapp.com/en.html">
 <link rel="alternate" hreflang="es" href="https://nihongosenseiapp.com/">
 <link rel="alternate" hreflang="en" href="https://nihongosenseiapp.com/en.html">
@@ -17,7 +19,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="es_ES">
 
+<meta property="og:image" content="https://nihongosenseiapp.com/img/icon-384.png">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://nihongosenseiapp.com/img/icon-384.png">
 <meta name="twitter:title" content="Nihongo Sensei — Practice for Minna no Nihongo">
 <meta name="twitter:description" content="Vocabulary, kanji and quizzes lesson by lesson. Free, no ads, works offline.">
 
@@ -37,6 +41,8 @@
     "https://apps.apple.com/app/id6789333985",
     "https://play.google.com/store/apps/details?id=com.nihongonosensei.app"
   ],
+  "screenshot": "https://nihongosenseiapp.com/img/shot-es-01.jpg",
+  "image": "https://nihongosenseiapp.com/img/icon-384.png",
   "author": { "@type": "Person", "name": "Paul Campos Gil" }
 }
 </script>
@@ -82,7 +88,8 @@
     font-size: 52px; line-height: 1;
   }
   .hero h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
-  .hero .tagline { font-size: clamp(1.1rem, 3vw, 1.35rem); color: var(--text2); margin-top: 12px; letter-spacing: -0.01em; }
+  .hero .tagline { font-size: clamp(1.15rem, 3.2vw, 1.45rem); color: var(--text); font-weight: 500; margin-top: 10px; letter-spacing: -0.015em; }
+  .hero .tagline strong { font-weight: 700; }
   .hero .lede { font-size: 1.05rem; margin-top: 26px; line-height: 1.7; max-width: 540px; margin-left: auto; margin-right: auto; }
   .hero .lede strong { font-weight: 600; }
   .hero .description { font-size: .95rem; color: var(--text2); margin-top: 16px; line-height: 1.7; max-width: 540px; margin-left: auto; margin-right: auto; }
@@ -128,6 +135,25 @@
   .langbar { max-width: 660px; margin: 0 auto; padding: 14px 24px 0; text-align: right; font-size: .82rem; }
   .langbar a { color: var(--text2); font-weight: 600; }
   .langbar a[aria-current] { color: var(--text); text-decoration: underline; }
+  /* icono real */
+  .hero-icon { padding: 0; overflow: hidden; box-shadow: 0 8px 28px rgba(0,0,0,.12); }
+  .hero-icon img { width: 100%; height: 100%; display: block; object-fit: cover; }
+  @media (prefers-color-scheme: dark) { .hero-icon { box-shadow: 0 8px 28px rgba(0,0,0,.5); } }
+
+  /* tira de capturas */
+  .shots { padding: 8px 0 44px; }
+  .shots-inner {
+    display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: 6px 24px 18px; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  }
+  .shots-inner::-webkit-scrollbar { display: none; }
+  @media (min-width: 780px) { .shots-inner { justify-content: center; } }
+  .shot { flex: none; width: 220px; scroll-snap-align: center; }
+  .shot img {
+    width: 100%; height: auto; display: block; border-radius: 22px;
+    border: 1px solid var(--border); background: var(--card);
+  }
+  .shot figcaption { margin-top: 10px; font-size: .82rem; color: var(--text2); text-align: center; line-height: 1.4; }
 </style>
 </head>
 <body>
@@ -136,14 +162,13 @@
 
 <main>
   <section class="hero">
-    <div class="hero-icon" aria-hidden="true">🌸</div>
+    <div class="hero-icon"><img src="img/icon-384.png" width="96" height="96" alt="Icono de Nihongo Sensei"></div>
     <h1>Nihongo Sensei</h1>
-    <p class="tagline">Learn Japanese. Together.</p>
+    <p class="tagline">Practice for <strong>Minna no Nihongo</strong></p>
 
     <p class="lede">
-      Practice for anyone studying Japanese with <strong>Minna no Nihongo</strong>,
-      lesson by lesson. Vocabulary, kanji, kana and grammar notes — and a review
-      engine that brings back exactly what you get wrong.
+      Vocabulary, kanji, kana and grammar notes, lesson by lesson. Plus a review
+      engine that brings back what you get wrong, not what you already know.
     </p>
     <p class="description">
       Available in English and Spanish. Free, no ads, no accounts, works offline.
@@ -170,6 +195,15 @@
   </section>
 
   <hr class="divider">
+
+  <section class="shots" aria-label="App screenshots">
+    <div class="shots-inner">
+      <figure class="shot"><img src="img/shot-en-01.jpg" width="520" height="1130" loading="lazy" alt="Nihongo Sensei Today screen with the daily review"><figcaption>Today, and nothing else</figcaption></figure>
+      <figure class="shot"><img src="img/shot-en-02.jpg" width="520" height="1130" loading="lazy" alt="Vocabulary quiz showing the correct answer and an example sentence"><figcaption>Quiz with reading and example</figcaption></figure>
+      <figure class="shot"><img src="img/shot-en-03.jpg" width="520" height="1130" loading="lazy" alt="Progress screen with words split by mastery level"><figcaption>Your progress, word by word</figcaption></figure>
+      <figure class="shot"><img src="img/shot-en-04.jpg" width="520" height="1130" loading="lazy" alt="A lesson’s vocabulary with reading, example and translation"><figcaption>Every lesson, with its vocabulary</figcaption></figure>
+    </div>
+  </section>
 
   <section class="prose">
     <h2>Who is Nihongo Sensei for?</h2>
