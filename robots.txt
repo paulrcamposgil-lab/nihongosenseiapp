@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nihongosenseiapp.com/sitemap.xml
