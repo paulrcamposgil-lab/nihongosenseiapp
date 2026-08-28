@@ -200,6 +200,7 @@ header{
 .drill{
   background:var(--card);border:1px solid var(--b);border-radius:20px;
   box-shadow:var(--sh-lg);padding:clamp(20px,4vw,30px);max-width:530px;
+  min-width:0;width:100%;
   transition:background-color .5s ease,border-color .5s ease
 }
 .drill-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.35em;gap:12px}
@@ -260,6 +261,13 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 @media(max-width:829px){.swm{opacity:.035}}
 .two{display:grid;grid-template-columns:1fr;gap:clamp(28px,5vw,54px);align-items:center}
 @media(min-width:830px){.two{grid-template-columns:1fr 1fr}.two.rev>div:first-child{order:2}}
+/* BUG del móvil: los hijos de un grid llevan min-width:auto y no encogen por
+   debajo de su contenido; el input arrastraba la columna y desbordaba a 390px.
+   min-width:0 les deja encoger; overflow-wrap parte las palabras largas. */
+.two>*{min-width:0}
+.drill,.rules,.nums,.rooms,.skinbig,.cycle{min-width:0;max-width:100%}
+.drill-form{min-width:0}
+.fb,.fb-head,.fb .rule,.fb .sib{overflow-wrap:anywhere}
 
 /* ---------- mis reglas ---------- */
 .rules{list-style:none;margin:0;padding:0;background:var(--card);border:1px solid var(--b);border-radius:18px;overflow:hidden;transition:background-color .5s ease,border-color .5s ease}
