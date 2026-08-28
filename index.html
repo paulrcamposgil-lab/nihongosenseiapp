@@ -24,148 +24,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<script>/* anti-parpadeo: estampa la apariencia (y el idioma) antes de pintar */
+try{var s=localStorage.getItem("ns-skin");if(s)document.documentElement.setAttribute("data-appearance",s);
+var l=localStorage.getItem("ns-lang");if(l)document.documentElement.setAttribute("lang",l);}catch(e){}</script>
+<link rel="stylesheet" href="css/site.css">
 <style>
-
-/* ============================================================
-   Las paletas son las de la app, token a token, COPIADAS de
-   quiz_app.html. NO SON INDEPENDIENTES: si un color cambia allí,
-   hay que cambiarlo aquí a mano (no hay build que las una). Esta
-   web y la app tienen que enseñar el MISMO sakura, kaiju y fuyu.
-   :root = sakura claro. Las demás se estampan con [data-appearance]
-   en <html>. Sin elección, mandan el data-theme del visor y
-   prefers-color-scheme.
-   ============================================================ */
-:root{
-  --bg:#FAFAFA; --card:#FFFFFF; --card2:#FDF0F5; --b:#EAEAEA;
-  --p:#EFA3C8; --pl:#B84A70; --ps:rgba(239,163,200,0.15);
-  --t1:#2B2B2B; --t2:#666666; --t3:#999999;
-  --green:#10B981; --red:#e05555; --warn:#C9622A;
-  --m1:#F6C9DD; --m2:#EFA3C8; --m3:#DE7CAC; --m4:#C85991; --m5:#9C3E6E;
-  --sh:0 2px 10px rgba(0,0,0,.07); --sh-lg:0 18px 50px rgba(0,0,0,.10);
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-appearance]):not([data-theme="light"]){
-    --bg:#1E161C; --card:#2A1E27; --card2:#331E2E; --b:#3d2a36;
-    --p:#EFA3C8; --pl:#D97BA8; --ps:rgba(239,163,200,0.13);
-    --t1:#FFFFFF; --t2:#D9D2D7; --t3:#A79AA5;
-    --green:#34D399; --red:#f87171; --warn:#E8834A;
-    --sh:0 2px 14px rgba(0,0,0,.48); --sh-lg:0 24px 60px rgba(0,0,0,.55);
-  }
-}
-:root[data-theme="dark"]:not([data-appearance]){
-  --bg:#1E161C; --card:#2A1E27; --card2:#331E2E; --b:#3d2a36;
-  --p:#EFA3C8; --pl:#D97BA8; --ps:rgba(239,163,200,0.13);
-  --t1:#FFFFFF; --t2:#D9D2D7; --t3:#A79AA5;
-  --green:#34D399; --red:#f87171; --warn:#E8834A;
-  --sh:0 2px 14px rgba(0,0,0,.48); --sh-lg:0 24px 60px rgba(0,0,0,.55);
-}
-
-:root[data-appearance="sakura-dark"]{
-  --bg:#1E161C; --card:#2A1E27; --card2:#331E2E; --b:#3d2a36;
-  --p:#EFA3C8; --pl:#D97BA8; --ps:rgba(239,163,200,0.13);
-  --t1:#FFFFFF; --t2:#D9D2D7; --t3:#A79AA5;
-  --green:#34D399; --red:#f87171; --warn:#E8834A;
-  --m1:#F6C9DD; --m2:#EFA3C8; --m3:#DE7CAC; --m4:#C85991; --m5:#9C3E6E;
-  --sh:0 2px 14px rgba(0,0,0,.48); --sh-lg:0 24px 60px rgba(0,0,0,.55);
-}
-:root[data-appearance="sakura-light"]{
-  --bg:#FAFAFA; --card:#FFFFFF; --card2:#FDF0F5; --b:#EAEAEA;
-  --p:#EFA3C8; --pl:#B84A70; --ps:rgba(239,163,200,0.15);
-  --t1:#2B2B2B; --t2:#666666; --t3:#999999;
-  --green:#10B981; --red:#e05555; --warn:#C9622A;
-  --m1:#F6C9DD; --m2:#EFA3C8; --m3:#DE7CAC; --m4:#C85991; --m5:#9C3E6E;
-  --sh:0 2px 10px rgba(0,0,0,.07); --sh-lg:0 18px 50px rgba(0,0,0,.10);
-}
-:root[data-appearance="kaiju"]{
-  --bg:#0A0E1A; --card:#12182B; --card2:#1A2138; --b:#2A3350;
-  --p:#FF3D9A; --pl:#FF5CAB; --ps:rgba(255,61,154,0.15);
-  --t1:#F5F7FF; --t2:#A8B0D0; --t3:#6B7299;
-  --green:#39FF88; --red:#FF3860; --warn:#E8834A;
-  --m1:#FFC2DF; --m2:#FF8FC2; --m3:#FF5CAB; --m4:#FF3D9A; --m5:#C7176F;
-  --sh:0 2px 16px rgba(0,0,0,.6); --sh-lg:0 24px 70px rgba(0,0,0,.7);
-}
-:root[data-appearance="fuyu-dark"]{
-  --bg:#0E1420; --card:#161F30; --card2:#1E2A42; --b:#2C3A57;
-  --p:#7FB0D8; --pl:#A7D4EC; --ps:rgba(127,176,216,0.14);
-  --t1:#F1F6FC; --t2:#C2CEE0; --t3:#899ABA;
-  --green:#3FDCA6; --red:#F98C8C; --warn:#E8834A;
-  --m1:#CBE4F2; --m2:#9BC7E6; --m3:#6FA6D3; --m4:#4C82BC; --m5:#2E5A93;
-  --sh:0 2px 18px rgba(0,0,0,.55); --sh-lg:0 24px 64px rgba(0,0,0,.6);
-}
-:root[data-appearance="fuyu-light"]{
-  --bg:#EEF3F8; --card:#FFFFFF; --card2:#E4EDF5; --b:#D6E1EC;
-  --p:#5E93C4; --pl:#33608F; --ps:rgba(94,147,196,0.16);
-  --t1:#16233A; --t2:#4A5A73; --t3:#8493A8;
-  --green:#0E9E6E; --red:#D65656; --warn:#C9622A;
-  --m1:#CFE6F4; --m2:#9DC6E4; --m3:#6BA0CE; --m4:#3E6FA0; --m5:#284F7E;
-  --sh:0 2px 12px rgba(30,50,80,.09); --sh-lg:0 18px 50px rgba(30,50,80,.14);
-}
-
-*{box-sizing:border-box}
-body{
-  margin:0; background:var(--bg); color:var(--t1);
-  font-family:'Zen Kaku Gothic New','Hiragino Kaku Gothic ProN','Helvetica Neue',Arial,sans-serif;
-  line-height:1.65; -webkit-font-smoothing:antialiased;
-  transition:background-color .5s ease, color .5s ease;
-  overflow-x:hidden;
-}
-.wrap{max-width:980px;margin:0 auto;padding:0 24px}
-.narrow{max-width:640px}
-
-h1,h2,h3,.disp{font-family:'Shippori Mincho B1','Hiragino Mincho ProN',Georgia,serif;font-weight:500;text-wrap:balance;letter-spacing:-.012em}
-h1{font-size:clamp(2.4rem,6.6vw,4.2rem);line-height:1.1;margin:0 0 .48em}
-h2{font-size:clamp(1.7rem,3.7vw,2.55rem);line-height:1.18;margin:0 0 .58em}
-h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:1.02rem;font-weight:700;margin:0 0 .3em;letter-spacing:0}
-p{margin:0 0 1.1em;color:var(--t2)}
-.lead{font-size:clamp(1.05rem,2.1vw,1.3rem);color:var(--t2);max-width:34em}
-.eyebrow{font-size:.71rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--pl);margin:0 0 1.1em;display:block}
-strong{color:var(--t1);font-weight:700}
-.jp{font-family:'Zen Kaku Gothic New','Hiragino Kaku Gothic ProN',sans-serif}
-
-header{
-  position:sticky;top:0;z-index:40;
-  background:color-mix(in srgb, var(--bg) 84%, transparent);
-  backdrop-filter:saturate(1.5) blur(16px);
-  border-bottom:1px solid var(--b);
-  transition:background-color .5s ease, border-color .5s ease;
-}
-.hrow{display:flex;align-items:center;justify-content:space-between;gap:14px;height:60px}
-.mark{display:flex;align-items:baseline;gap:.5em;text-decoration:none;color:var(--t1);flex-shrink:0}
-.mark .name{font-size:.9rem;font-weight:700}
-.tree{width:26px;height:26px;flex-shrink:0;transition:transform .5s cubic-bezier(.2,.8,.3,1)}
-.tree .canopy circle{fill:var(--pl);transition:fill .5s ease}
-.tree .canopy circle:nth-child(1){opacity:1}
-.tree .canopy circle:nth-child(2),.tree .canopy circle:nth-child(3){opacity:.72}
-.tree .canopy circle:nth-child(4){opacity:.55}
-.tree .trunk{stroke:var(--t1);transition:stroke .5s ease}
-.mark:hover .tree{transform:rotate(-4deg) scale(1.06)}
-@media(max-width:520px){.mark .name{display:none}}
-.tools{display:flex;align-items:center;gap:14px}
-
-.lang{display:flex;border:1px solid var(--b);border-radius:999px;overflow:hidden}
-.lang button{
-  font-family:inherit;font-size:.72rem;font-weight:700;letter-spacing:.06em;
-  padding:.42em .78em;border:none;cursor:pointer;background:transparent;color:var(--t3);
-  transition:background-color .2s ease,color .2s ease
-}
-.lang button[aria-pressed="true"]{background:var(--pl);color:var(--bg)}
-.lang button:focus-visible{outline:2px solid var(--pl);outline-offset:2px}
-
-.skins{display:flex;gap:6px;align-items:center}
-.skin{
-  width:24px;height:24px;border-radius:50%;border:1px solid var(--b);
-  padding:0;cursor:pointer;position:relative;overflow:hidden;
-  transition:transform .18s cubic-bezier(.2,.8,.3,1), box-shadow .18s ease;
-}
-.skin::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,var(--sw-bg) 0 50%,var(--sw-p) 50% 100%)}
-.skin:hover{transform:scale(1.16)}
-.skin[aria-pressed="true"]{box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--pl)}
-.skin:focus-visible{outline:2px solid var(--pl);outline-offset:3px}
-.s-sd{--sw-bg:#1E161C;--sw-p:#EFA3C8}
-.s-sl{--sw-bg:#FAFAFA;--sw-p:#EFA3C8}
-.s-kj{--sw-bg:#0A0E1A;--sw-p:#FF3D9A}
-.s-fd{--sw-bg:#0E1420;--sw-p:#7FB0D8}
-.s-fl{--sw-bg:#EEF3F8;--sw-p:#5E93C4}
 
 /* ---------- hero ---------- */
 .hero{position:relative;padding:clamp(52px,9vw,104px) 0 clamp(38px,6vw,66px);overflow:hidden}
@@ -320,17 +183,6 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 .end{text-align:center}
 .end .cta{justify-content:center}
 .end .lead{margin-left:auto;margin-right:auto}
-footer{border-top:1px solid var(--b);padding:34px 0 58px;transition:border-color .5s ease}
-footer p{color:var(--t3);font-size:.81rem;margin:0 0 .5em}
-footer a{color:var(--t2)}
-
-/* entrada escalonada */
-.rev-in{opacity:0;transform:translateY(14px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
-.rev-in.seen{opacity:1;transform:none}
-@media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important}
-  .rev-in{opacity:1;transform:none}
-}
 </style>
 </head>
 <body>
@@ -564,18 +416,6 @@ footer a{color:var(--t2)}
   "use strict";
   var root = document.documentElement;
 
-  /* ================= apariencia ================= */
-  function applySkin(id){
-    root.setAttribute('data-appearance', id);
-    document.querySelectorAll('.skin').forEach(function(b){
-      b.setAttribute('aria-pressed', b.dataset.set === id ? 'true' : 'false');
-    });
-    try{ localStorage.setItem('ns-skin', id); }catch(e){}
-  }
-  document.querySelectorAll('[data-set]').forEach(function(b){
-    b.addEventListener('click', function(){ applySkin(b.dataset.set); });
-  });
-  try{ var sv = localStorage.getItem('ns-skin'); if(sv) applySkin(sv); }catch(e){}
 
   /* ================= idioma ================= */
   var T = {
@@ -836,33 +676,17 @@ footer a{color:var(--t2)}
     paint(); elA.focus();
   });
 
-  /* ================= aplicar idioma ================= */
-  function applyLang(L){
+
+  /* ================= idioma · el motor vive en site.js ================= */
+  /* site.js (compartido con las hijas) aplica el idioma. Aquí solo se le
+     entregan las cadenas de la portada y un gancho para repintar el
+     ejercicio cuando se cambia de idioma. */
+  window.NS_STRINGS = T;
+  window.NS_AFTER_LANG = function(L){
     lang = L;
-    root.setAttribute('lang', L);
-    var d = T[L];
-    document.querySelectorAll('[data-t]').forEach(function(el){
-      var k = el.dataset.t;
-      if(d[k] !== undefined) el.innerHTML = d[k];
-    });
-    document.querySelectorAll('.lang button').forEach(function(b){
-      b.setAttribute('aria-pressed', b.dataset.lang === L ? 'true' : 'false');
-    });
     elA.setAttribute('aria-label', L === 'es' ? 'Tu respuesta' : 'Your answer');
     paint();
-    try{ localStorage.setItem('ns-lang', L); }catch(e){}
-  }
-  document.querySelectorAll('.lang button').forEach(function(b){
-    b.addEventListener('click', function(){ applyLang(b.dataset.lang); });
-  });
-
-  var start = 'es';
-  try{
-    var sl = localStorage.getItem('ns-lang');
-    if(sl) start = sl;
-    else if(!/^es/i.test(navigator.language || '')) start = 'en';
-  }catch(e){}
-  applyLang(start);
+  };
 
   /* ================= entrada ================= */
   var io = window.IntersectionObserver ? new IntersectionObserver(function(es){
@@ -876,5 +700,6 @@ footer a{color:var(--t2)}
   });
 })();
 </script>
+<script src="js/site.js"></script>
 </body>
 </html>
