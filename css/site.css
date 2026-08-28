@@ -120,8 +120,11 @@ header{
         opacity:0;transition:opacity .5s ease}
 .tree .ic-s{background-image:url(../img/icon-sakura.webp);opacity:1}
 .tree .ic-f{background-image:url(../img/icon-fuyu.webp)}
+.tree .ic-k{background-image:url(../img/icon-kaiju.webp)}
 [data-appearance^="fuyu"] .tree .ic-s{opacity:0}
 [data-appearance^="fuyu"] .tree .ic-f{opacity:1}
+[data-appearance="kaiju"] .tree .ic-s{opacity:0}
+[data-appearance="kaiju"] .tree .ic-k{opacity:1}
 .mark:hover .tree{transform:rotate(-4deg) scale(1.06)}
 @media(max-width:520px){.mark .name{display:none}}
 .tools{display:flex;align-items:center;gap:14px}
