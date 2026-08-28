@@ -1,280 +1,872 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nihongo Sensei — Práctica para Minna no Nihongo, en español</title>
-<meta name="description" content="App gratuita de práctica para quien estudia japonés con Minna no Nihongo, lección a lección. Vocabulario, kanji, kana y gramática, en español. Sin anuncios y sin conexión.">
-<link rel="apple-touch-icon" href="img/icon-192.png">
-<link rel="icon" href="img/icon-192.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nihongo Sensei: Minna — la app para estudiar japonés lección a lección</title>
+<meta name="description" content="App gratuita para estudiar japonés siguiendo Minna no Nihongo lección a lección. 994 palabras con audio, 966 frases, ejercicios donde escribes la respuesta. Sin cuenta, sin anuncios, funciona sin conexión.">
 <link rel="canonical" href="https://nihongosenseiapp.com/">
-<link rel="alternate" hreflang="es" href="https://nihongosenseiapp.com/">
-<link rel="alternate" hreflang="en" href="https://nihongosenseiapp.com/en.html">
-<link rel="alternate" hreflang="x-default" href="https://nihongosenseiapp.com/">
 
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Nihongo Sensei: Minna">
+<meta property="og:title" content="Nihongo Sensei: Minna — japonés, lección a lección">
+<meta property="og:description" content="994 palabras con audio, 966 frases y ejercicios donde escribes la respuesta. Gratis, sin cuenta y sin conexión.">
 <meta property="og:url" content="https://nihongosenseiapp.com/">
-<meta property="og:title" content="Nihongo Sensei — Práctica para Minna no Nihongo">
-<meta property="og:description" content="Vocabulario, kanji y quiz lección a lección, en español. Gratis, sin anuncios y sin conexión.">
-<meta property="og:locale" content="es_ES">
-<meta property="og:locale:alternate" content="en_US">
-
-<meta property="og:image" content="https://nihongosenseiapp.com/img/icon-384.png">
+<meta property="og:image" content="https://nihongosenseiapp.com/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://nihongosenseiapp.com/img/icon-384.png">
-<meta name="twitter:title" content="Nihongo Sensei — Práctica para Minna no Nihongo">
-<meta name="twitter:description" content="Vocabulario, kanji y quiz lección a lección, en español. Gratis, sin anuncios y sin conexión.">
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "MobileApplication",
-  "name": "Nihongo Sensei",
-  "alternateName": "Nihongo Sensei: Minna",
-  "applicationCategory": "EducationalApplication",
-  "operatingSystem": "iOS, Android",
-  "inLanguage": ["es", "en"],
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
-  "description": "App de práctica para quien estudia japonés con Minna no Nihongo, lección a lección. Vocabulario, kanji, kana y gramática, en español. Sin anuncios y sin conexión.",
-  "url": "https://nihongosenseiapp.com/",
-  "downloadUrl": [
-    "https://apps.apple.com/app/id6789333985",
-    "https://play.google.com/store/apps/details?id=com.nihongonosensei.app"
-  ],
-  "screenshot": "https://nihongosenseiapp.com/img/shot-es-01.jpg",
-  "image": "https://nihongosenseiapp.com/img/icon-384.png",
-  "author": { "@type": "Person", "name": "Paul Campos Gil" }
-}
-</script>
+<meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1E161C" media="(prefers-color-scheme: dark)">
 
+<link rel="icon" href="img/icon-192.png" sizes="any">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
 <style>
-  :root {
-    --bg: #ffffff;
-    --bg2: #f5f5f7;
-    --text: #1d1d1f;
-    --text2: #6e6e73;
-    --accent: #c0527a;
-    --border: #d2d2d7;
-    --card: #f5f5f7;
-    --radius: 16px;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #000000;
-      --bg2: #1c1c1e;
-      --text: #f5f5f7;
-      --text2: #98989d;
-      --accent: #d97ba8;
-      --border: #38383a;
-      --card: #1c1c1e;
-    }
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { font-size: 16px; -webkit-font-smoothing: antialiased; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
 
-  .hero { text-align: center; padding: 88px 24px 56px; max-width: 660px; margin: 0 auto; }
-  .hero-icon {
-    width: 96px; height: 96px; border-radius: 22px; margin: 0 auto 28px;
-    background: linear-gradient(145deg, #f8d7e5, #d97ba8);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 52px; line-height: 1;
+/* ============================================================
+   Las paletas son las de la app, token a token, COPIADAS de
+   quiz_app.html. NO SON INDEPENDIENTES: si un color cambia allí,
+   hay que cambiarlo aquí a mano (no hay build que las una). Esta
+   web y la app tienen que enseñar el MISMO sakura, kaiju y fuyu.
+   :root = sakura claro. Las demás se estampan con [data-appearance]
+   en <html>. Sin elección, mandan el data-theme del visor y
+   prefers-color-scheme.
+   ============================================================ */
+:root{
+  --bg:#FAFAFA; --card:#FFFFFF; --card2:#FDF0F5; --b:#EAEAEA;
+  --p:#EFA3C8; --pl:#B84A70; --ps:rgba(239,163,200,0.15);
+  --t1:#2B2B2B; --t2:#666666; --t3:#999999;
+  --green:#10B981; --red:#e05555; --warn:#C9622A;
+  --m1:#F6C9DD; --m2:#EFA3C8; --m3:#DE7CAC; --m4:#C85991; --m5:#9C3E6E;
+  --sh:0 2px 10px rgba(0,0,0,.07); --sh-lg:0 18px 50px rgba(0,0,0,.10);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-appearance]):not([data-theme="light"]){
+    --bg:#1E161C; --card:#2A1E27; --card2:#331E2E; --b:#3d2a36;
+    --p:#EFA3C8; --pl:#D97BA8; --ps:rgba(239,163,200,0.13);
+    --t1:#FFFFFF; --t2:#D9D2D7; --t3:#A79AA5;
+    --green:#34D399; --red:#f87171; --warn:#E8834A;
+    --sh:0 2px 14px rgba(0,0,0,.48); --sh-lg:0 24px 60px rgba(0,0,0,.55);
   }
-  .hero h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
-  .hero .tagline { font-size: clamp(1.15rem, 3.2vw, 1.45rem); color: var(--text); font-weight: 500; margin-top: 10px; letter-spacing: -0.015em; }
-  .hero .tagline strong { font-weight: 700; }
-  .hero .lede { font-size: 1.05rem; margin-top: 26px; line-height: 1.7; max-width: 540px; margin-left: auto; margin-right: auto; }
-  .hero .lede strong { font-weight: 600; }
-  .hero .description { font-size: .95rem; color: var(--text2); margin-top: 16px; line-height: 1.7; max-width: 540px; margin-left: auto; margin-right: auto; }
+}
+:root[data-theme="dark"]:not([data-appearance]){
+  --bg:#1E161C; --card:#2A1E27; --card2:#331E2E; --b:#3d2a36;
+  --p:#EFA3C8; --pl:#D97BA8; --ps:rgba(239,163,200,0.13);
+  --t1:#FFFFFF; --t2:#D9D2D7; --t3:#A79AA5;
+  --green:#34D399; --red:#f87171; --warn:#E8834A;
+  --sh:0 2px 14px rgba(0,0,0,.48); --sh-lg:0 24px 60px rgba(0,0,0,.55);
+}
 
-  .badge-wrap { margin-top: 34px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .store-btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--text); color: var(--bg); border-radius: 50px;
-    padding: 13px 26px; font-size: 0.95rem; font-weight: 600; letter-spacing: -0.01em;
-    transition: opacity 0.15s;
-  }
-  .store-btn:hover { opacity: 0.8; text-decoration: none; }
-  .store-btn svg { flex: none; }
-  .store-note { margin-top: 14px; font-size: 0.85rem; color: var(--text2); }
+:root[data-appearance="sakura-dark"]{
+  --bg:#1E161C; --card:#2A1E27; --card2:#331E2E; --b:#3d2a36;
+  --p:#EFA3C8; --pl:#D97BA8; --ps:rgba(239,163,200,0.13);
+  --t1:#FFFFFF; --t2:#D9D2D7; --t3:#A79AA5;
+  --green:#34D399; --red:#f87171; --warn:#E8834A;
+  --m1:#F6C9DD; --m2:#EFA3C8; --m3:#DE7CAC; --m4:#C85991; --m5:#9C3E6E;
+  --sh:0 2px 14px rgba(0,0,0,.48); --sh-lg:0 24px 60px rgba(0,0,0,.55);
+}
+:root[data-appearance="sakura-light"]{
+  --bg:#FAFAFA; --card:#FFFFFF; --card2:#FDF0F5; --b:#EAEAEA;
+  --p:#EFA3C8; --pl:#B84A70; --ps:rgba(239,163,200,0.15);
+  --t1:#2B2B2B; --t2:#666666; --t3:#999999;
+  --green:#10B981; --red:#e05555; --warn:#C9622A;
+  --m1:#F6C9DD; --m2:#EFA3C8; --m3:#DE7CAC; --m4:#C85991; --m5:#9C3E6E;
+  --sh:0 2px 10px rgba(0,0,0,.07); --sh-lg:0 18px 50px rgba(0,0,0,.10);
+}
+:root[data-appearance="kaiju"]{
+  --bg:#0A0E1A; --card:#12182B; --card2:#1A2138; --b:#2A3350;
+  --p:#FF3D9A; --pl:#FF5CAB; --ps:rgba(255,61,154,0.15);
+  --t1:#F5F7FF; --t2:#A8B0D0; --t3:#6B7299;
+  --green:#39FF88; --red:#FF3860; --warn:#E8834A;
+  --m1:#FFC2DF; --m2:#FF8FC2; --m3:#FF5CAB; --m4:#FF3D9A; --m5:#C7176F;
+  --sh:0 2px 16px rgba(0,0,0,.6); --sh-lg:0 24px 70px rgba(0,0,0,.7);
+}
+:root[data-appearance="fuyu-dark"]{
+  --bg:#0E1420; --card:#161F30; --card2:#1E2A42; --b:#2C3A57;
+  --p:#7FB0D8; --pl:#A7D4EC; --ps:rgba(127,176,216,0.14);
+  --t1:#F1F6FC; --t2:#C2CEE0; --t3:#899ABA;
+  --green:#3FDCA6; --red:#F98C8C; --warn:#E8834A;
+  --m1:#CBE4F2; --m2:#9BC7E6; --m3:#6FA6D3; --m4:#4C82BC; --m5:#2E5A93;
+  --sh:0 2px 18px rgba(0,0,0,.55); --sh-lg:0 24px 64px rgba(0,0,0,.6);
+}
+:root[data-appearance="fuyu-light"]{
+  --bg:#EEF3F8; --card:#FFFFFF; --card2:#E4EDF5; --b:#D6E1EC;
+  --p:#5E93C4; --pl:#33608F; --ps:rgba(94,147,196,0.16);
+  --t1:#16233A; --t2:#4A5A73; --t3:#8493A8;
+  --green:#0E9E6E; --red:#D65656; --warn:#C9622A;
+  --m1:#CFE6F4; --m2:#9DC6E4; --m3:#6BA0CE; --m4:#3E6FA0; --m5:#284F7E;
+  --sh:0 2px 12px rgba(30,50,80,.09); --sh-lg:0 18px 50px rgba(30,50,80,.14);
+}
 
-  .prose { max-width: 660px; margin: 0 auto; padding: 8px 24px 8px; }
-  .prose h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 14px; }
-  .prose h3 { font-size: 1.05rem; font-weight: 600; margin-top: 26px; margin-bottom: 6px; }
-  .prose p { margin-bottom: 14px; }
-  .prose p.small { font-size: .9rem; color: var(--text2); }
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--t1);
+  font-family:'Zen Kaku Gothic New','Hiragino Kaku Gothic ProN','Helvetica Neue',Arial,sans-serif;
+  line-height:1.65; -webkit-font-smoothing:antialiased;
+  transition:background-color .5s ease, color .5s ease;
+  overflow-x:hidden;
+}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+.narrow{max-width:640px}
 
-  .cards {
-    max-width: 660px; margin: 0 auto; padding: 0 24px 80px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-  }
-  @media (max-width: 480px) { .cards { grid-template-columns: 1fr; } }
-  .card {
-    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 24px 20px; display: block; color: var(--text); transition: opacity 0.15s;
-  }
-  .card:hover { opacity: 0.75; text-decoration: none; }
-  .card-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2); margin-bottom: 6px; }
-  .card-title { font-size: 1rem; font-weight: 600; }
-  .card-sub { font-size: 0.85rem; color: var(--text2); margin-top: 4px; line-height: 1.45; }
+h1,h2,h3,.disp{font-family:'Shippori Mincho B1','Hiragino Mincho ProN',Georgia,serif;font-weight:500;text-wrap:balance;letter-spacing:-.012em}
+h1{font-size:clamp(2.4rem,6.6vw,4.2rem);line-height:1.1;margin:0 0 .48em}
+h2{font-size:clamp(1.7rem,3.7vw,2.55rem);line-height:1.18;margin:0 0 .58em}
+h3{font-family:'Zen Kaku Gothic New',sans-serif;font-size:1.02rem;font-weight:700;margin:0 0 .3em;letter-spacing:0}
+p{margin:0 0 1.1em;color:var(--t2)}
+.lead{font-size:clamp(1.05rem,2.1vw,1.3rem);color:var(--t2);max-width:34em}
+.eyebrow{font-size:.71rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--pl);margin:0 0 1.1em;display:block}
+strong{color:var(--t1);font-weight:700}
+.jp{font-family:'Zen Kaku Gothic New','Hiragino Kaku Gothic ProN',sans-serif}
 
-  .divider { max-width: 660px; margin: 40px auto; border: none; border-top: 1px solid var(--border); }
+header{
+  position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb, var(--bg) 84%, transparent);
+  backdrop-filter:saturate(1.5) blur(16px);
+  border-bottom:1px solid var(--b);
+  transition:background-color .5s ease, border-color .5s ease;
+}
+.hrow{display:flex;align-items:center;justify-content:space-between;gap:14px;height:60px}
+.mark{display:flex;align-items:baseline;gap:.5em;text-decoration:none;color:var(--t1);flex-shrink:0}
+.mark .name{font-size:.9rem;font-weight:700}
+.tree{width:26px;height:26px;flex-shrink:0;transition:transform .5s cubic-bezier(.2,.8,.3,1)}
+.tree .canopy circle{fill:var(--pl);transition:fill .5s ease}
+.tree .canopy circle:nth-child(1){opacity:1}
+.tree .canopy circle:nth-child(2),.tree .canopy circle:nth-child(3){opacity:.72}
+.tree .canopy circle:nth-child(4){opacity:.55}
+.tree .trunk{stroke:var(--t1);transition:stroke .5s ease}
+.mark:hover .tree{transform:rotate(-4deg) scale(1.06)}
+@media(max-width:520px){.mark .name{display:none}}
+.tools{display:flex;align-items:center;gap:14px}
 
-  footer { text-align: center; padding: 32px 24px 48px; font-size: 0.8rem; color: var(--text2); }
-  footer a { color: var(--text2); }
-  footer a:hover { color: var(--accent); text-decoration: none; }
-  .footer-links { margin-top: 8px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
-  .disclaimer { max-width: 660px; margin: 0 auto 18px; font-size: .78rem; line-height: 1.6; color: var(--text2); }
-  .langbar { max-width: 660px; margin: 0 auto; padding: 14px 24px 0; text-align: right; font-size: .82rem; }
-  .langbar a { color: var(--text2); font-weight: 600; }
-  .langbar a[aria-current] { color: var(--text); text-decoration: underline; }
-  /* icono real */
-  .hero-icon { padding: 0; overflow: hidden; box-shadow: 0 8px 28px rgba(0,0,0,.12); }
-  .hero-icon img { width: 100%; height: 100%; display: block; object-fit: cover; }
-  @media (prefers-color-scheme: dark) { .hero-icon { box-shadow: 0 8px 28px rgba(0,0,0,.5); } }
+.lang{display:flex;border:1px solid var(--b);border-radius:999px;overflow:hidden}
+.lang button{
+  font-family:inherit;font-size:.72rem;font-weight:700;letter-spacing:.06em;
+  padding:.42em .78em;border:none;cursor:pointer;background:transparent;color:var(--t3);
+  transition:background-color .2s ease,color .2s ease
+}
+.lang button[aria-pressed="true"]{background:var(--pl);color:var(--bg)}
+.lang button:focus-visible{outline:2px solid var(--pl);outline-offset:2px}
 
-  /* tira de capturas */
-  .shots { padding: 8px 0 44px; }
-  .shots-inner {
-    display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
-    padding: 6px 24px 18px; -webkit-overflow-scrolling: touch; scrollbar-width: none;
-  }
-  .shots-inner::-webkit-scrollbar { display: none; }
-  @media (min-width: 780px) { .shots-inner { justify-content: center; } }
-  .shot { flex: none; width: 220px; scroll-snap-align: center; }
-  .shot img {
-    width: 100%; height: auto; display: block; border-radius: 22px;
-    border: 1px solid var(--border); background: var(--card);
-  }
-  .shot figcaption { margin-top: 10px; font-size: .82rem; color: var(--text2); text-align: center; line-height: 1.4; }
+.skins{display:flex;gap:6px;align-items:center}
+.skin{
+  width:24px;height:24px;border-radius:50%;border:1px solid var(--b);
+  padding:0;cursor:pointer;position:relative;overflow:hidden;
+  transition:transform .18s cubic-bezier(.2,.8,.3,1), box-shadow .18s ease;
+}
+.skin::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,var(--sw-bg) 0 50%,var(--sw-p) 50% 100%)}
+.skin:hover{transform:scale(1.16)}
+.skin[aria-pressed="true"]{box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--pl)}
+.skin:focus-visible{outline:2px solid var(--pl);outline-offset:3px}
+.s-sd{--sw-bg:#1E161C;--sw-p:#EFA3C8}
+.s-sl{--sw-bg:#FAFAFA;--sw-p:#EFA3C8}
+.s-kj{--sw-bg:#0A0E1A;--sw-p:#FF3D9A}
+.s-fd{--sw-bg:#0E1420;--sw-p:#7FB0D8}
+.s-fl{--sw-bg:#EEF3F8;--sw-p:#5E93C4}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:clamp(52px,9vw,104px) 0 clamp(38px,6vw,66px);overflow:hidden}
+.hero .wm{
+  position:absolute;right:-.16em;top:-.08em;font-family:'Shippori Mincho B1',serif;
+  font-size:clamp(15rem,34vw,30rem);line-height:.8;color:var(--pl);opacity:.055;
+  pointer-events:none;user-select:none;z-index:0;transition:color .5s ease
+}
+.hero>.wrap{position:relative;z-index:1}
+.tag{
+  display:inline-flex;align-items:center;gap:.5em;font-size:.76rem;font-weight:500;
+  color:var(--t2);background:var(--card);border:1px solid var(--b);
+  padding:.4em .9em;border-radius:999px;margin-bottom:1.7em;
+  transition:background-color .5s ease,border-color .5s ease
+}
+.tag b{color:var(--pl);font-weight:700}
+
+.cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:1.9em}
+.btn{
+  display:inline-flex;align-items:center;gap:.55em;text-decoration:none;
+  font-size:.94rem;font-weight:700;padding:.82em 1.5em;border-radius:12px;
+  border:1px solid transparent;cursor:pointer;font-family:inherit;
+  transition:transform .16s ease,box-shadow .16s ease,opacity .16s ease
+}
+.btn-1{background:var(--pl);color:var(--bg);box-shadow:0 6px 22px color-mix(in srgb,var(--pl) 30%,transparent)}
+.btn-2{background:transparent;color:var(--t1);border-color:var(--b)}
+.btn:hover{transform:translateY(-2px)}
+.glyph{width:18px;height:18px;fill:currentColor;flex-shrink:0;margin-top:-1px}
+.btn:focus-visible{outline:2px solid var(--pl);outline-offset:3px}
+
+/* ---------- ejercicio ---------- */
+.drill{
+  background:var(--card);border:1px solid var(--b);border-radius:20px;
+  box-shadow:var(--sh-lg);padding:clamp(20px,4vw,30px);max-width:530px;
+  transition:background-color .5s ease,border-color .5s ease
+}
+.drill-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.35em;gap:12px}
+.drill-lbl{font-size:.69rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--t3);font-variant-numeric:tabular-nums}
+.drill-ask{font-size:.85rem;color:var(--t2);margin:0 0 .28em}
+.drill-word{font-family:'Shippori Mincho B1',serif;font-size:clamp(2rem,5.5vw,2.7rem);line-height:1.2;margin:0 0 .04em;color:var(--t1)}
+.drill-rom{font-size:.81rem;color:var(--t3);margin:0 0 1.15em;letter-spacing:.03em}
+.drill-form{display:flex;gap:9px}
+input[type=text]{
+  flex:1;min-width:0;font-family:inherit;font-size:1.12rem;color:var(--t1);
+  background:var(--card2);border:1px solid var(--b);border-radius:12px;padding:.7em .9em;
+  transition:border-color .2s ease,background-color .5s ease,box-shadow .2s ease
+}
+input[type=text]::placeholder{color:var(--t3)}
+input[type=text]:focus{outline:none;border-color:var(--pl);box-shadow:0 0 0 3px var(--ps)}
+.go{
+  font-family:inherit;font-size:.89rem;font-weight:700;cursor:pointer;
+  background:var(--pl);color:var(--bg);border:none;border-radius:12px;padding:0 1.15em;
+  transition:opacity .16s ease
+}
+.go:hover{opacity:.87}
+.go:focus-visible{outline:2px solid var(--pl);outline-offset:3px}
+.hint{font-size:.75rem;color:var(--t3);margin:.7em 0 0}
+
+.fb{margin-top:1.05em;border-radius:14px;padding:.95em 1.05em;font-size:.91rem;display:none}
+.fb.on{display:block;animation:rise .34s cubic-bezier(.2,.7,.3,1)}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.fb-head{font-weight:700;font-size:.83rem;margin-bottom:.45em;display:flex;gap:.5em;align-items:baseline;flex-wrap:wrap}
+.fb.ok{background:color-mix(in srgb,var(--green) 12%,var(--card2));border:1px solid color-mix(in srgb,var(--green) 32%,transparent)}
+.fb.ok .fb-head{color:var(--green)}
+.fb.no{background:color-mix(in srgb,var(--red) 10%,var(--card2));border:1px solid color-mix(in srgb,var(--red) 26%,transparent)}
+.fb.no .fb-head{color:var(--red)}
+.fb.typo{background:color-mix(in srgb,var(--warn) 11%,var(--card2));border:1px solid color-mix(in srgb,var(--warn) 30%,transparent)}
+.fb.typo .fb-head{color:var(--warn)}
+.fb .rule{color:var(--t1);margin:0 0 .62em;line-height:1.55;font-size:.9rem}
+.fb .rule em{font-style:normal;font-weight:700;letter-spacing:.08em;font-size:.76rem;color:var(--t3);text-transform:uppercase;margin-right:.45em}
+.fb .sib{font-size:.88rem;color:var(--t2);margin:0;letter-spacing:.01em}
+.fb .sib b{color:var(--pl);font-weight:700}
+.strike{color:var(--t3);text-decoration:line-through;text-decoration-thickness:1px;font-weight:400}
+.next{margin-top:.85em;background:none;border:none;padding:0;cursor:pointer;font-family:inherit;font-size:.84rem;font-weight:700;color:var(--pl)}
+.next:focus-visible{outline:2px solid var(--pl);outline-offset:3px}
+
+section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transition:border-color .5s ease;position:relative;overflow:hidden}
+.wrap{position:relative;z-index:1}
+/* Cada sección lleva el kanji de lo que dice. No es adorno: 書 escribir,
+   則 regla, 聴 escuchar, 鍛 forjar, 色 color, 無 nada, 始 empezar. */
+.swm{
+  position:absolute;top:50%;transform:translateY(-50%);
+  font-family:'Shippori Mincho B1','Hiragino Mincho ProN',serif;
+  font-size:clamp(9rem,23vw,17rem);line-height:.78;color:var(--pl);opacity:.045;
+  pointer-events:none;user-select:none;z-index:0;transition:color .5s ease
+}
+.swm.l{left:-.11em}
+.swm.r{right:-.11em}
+.swm.c{left:50%;transform:translate(-50%,-50%)}
+.swm.top{top:0;transform:translateY(-16%)}
+.swm.bot{top:auto;bottom:0;transform:translateY(18%)}
+@media(max-width:829px){.swm{opacity:.035}}
+.two{display:grid;grid-template-columns:1fr;gap:clamp(28px,5vw,54px);align-items:center}
+@media(min-width:830px){.two{grid-template-columns:1fr 1fr}.two.rev>div:first-child{order:2}}
+
+/* ---------- mis reglas ---------- */
+.rules{list-style:none;margin:0;padding:0;background:var(--card);border:1px solid var(--b);border-radius:18px;overflow:hidden;transition:background-color .5s ease,border-color .5s ease}
+.rules li{display:grid;grid-template-columns:1fr 78px;gap:14px;align-items:center;padding:.85em 1.1em}
+.rules li+li{border-top:1px solid var(--b)}
+.rules .rn{font-size:.9rem;color:var(--t1)}
+.rules .rn small{display:block;font-size:.76rem;color:var(--t3);margin-top:.1em}
+.bar{height:7px;border-radius:99px;background:var(--card2);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px}
+
+/* ---------- cifras ---------- */
+.nums{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:18px;overflow:hidden;transition:background-color .5s ease,border-color .5s ease}
+@media(min-width:720px){.nums{grid-template-columns:repeat(4,1fr)}}
+.num{background:var(--card);padding:clamp(18px,3vw,28px);transition:background-color .5s ease}
+.num b{display:block;font-family:'Shippori Mincho B1',serif;font-size:clamp(1.9rem,4.4vw,2.6rem);font-weight:500;color:var(--t1);line-height:1.05;font-variant-numeric:tabular-nums}
+.num span{display:block;font-size:.81rem;color:var(--t3);margin-top:.32em}
+
+/* ---------- ciclo ---------- */
+.cycle{list-style:none;margin:0;padding:0}
+.cycle li{display:grid;grid-template-columns:66px 1fr;gap:15px;align-items:start;padding:.8em 0}
+.cycle li+li{border-top:1px dashed var(--b)}
+.cycle .t{font-size:.75rem;font-weight:700;color:var(--t3);letter-spacing:.05em;font-variant-numeric:tabular-nums;padding-top:.25em}
+.cycle .w{font-size:1rem;color:var(--t1)}
+.cycle .w small{display:block;font-size:.82rem;color:var(--t3);margin-top:.12em;font-weight:400}
+.cycle li.beep .w{color:var(--pl);font-weight:700}
+
+.without{display:flex;flex-wrap:wrap;gap:9px;margin-top:.3em}
+.chip{font-size:.85rem;font-weight:500;color:var(--t2);border:1px solid var(--b);border-radius:999px;padding:.42em 1em;transition:border-color .5s ease}
+.chip b{color:var(--t1);font-weight:700}
+
+.rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:13px}
+.room{background:var(--card);border:1px solid var(--b);border-radius:16px;padding:19px;transition:background-color .5s ease,border-color .5s ease,transform .18s ease}
+.room:hover{transform:translateY(-3px)}
+.room .k{font-family:'Shippori Mincho B1',serif;font-size:1.45rem;color:var(--pl);line-height:1;margin-bottom:.42em;display:block;transition:color .5s ease}
+.room p{margin:0;font-size:.87rem}
+
+.skinbig{display:grid;grid-template-columns:repeat(auto-fit,minmax(146px,1fr));gap:11px;margin-top:1.5em}
+.sb{cursor:pointer;text-align:left;font-family:inherit;border:1px solid var(--b);border-radius:16px;padding:15px;background:var(--sw-bg);color:var(--sw-t);transition:transform .18s ease,box-shadow .18s ease}
+.sb:hover{transform:translateY(-3px);box-shadow:var(--sh-lg)}
+.sb:focus-visible{outline:2px solid var(--pl);outline-offset:3px}
+.sb .dot{width:32px;height:8px;border-radius:99px;background:var(--sw-p);display:block;margin-bottom:.85em}
+.sb .n{font-family:'Shippori Mincho B1',serif;font-size:1.1rem;display:block}
+.sb .d{font-size:.76rem;opacity:.6;display:block;margin-top:.1em}
+.b-sd{--sw-bg:#1E161C;--sw-p:#EFA3C8;--sw-t:#FFFFFF}
+.b-sl{--sw-bg:#FAFAFA;--sw-p:#B84A70;--sw-t:#2B2B2B}
+.b-kj{--sw-bg:#0A0E1A;--sw-p:#FF3D9A;--sw-t:#F5F7FF}
+.b-fd{--sw-bg:#0E1420;--sw-p:#7FB0D8;--sw-t:#F1F6FC}
+.b-fl{--sw-bg:#EEF3F8;--sw-p:#33608F;--sw-t:#16233A}
+
+.end{text-align:center}
+.end .cta{justify-content:center}
+.end .lead{margin-left:auto;margin-right:auto}
+footer{border-top:1px solid var(--b);padding:34px 0 58px;transition:border-color .5s ease}
+footer p{color:var(--t3);font-size:.81rem;margin:0 0 .5em}
+footer a{color:var(--t2)}
+
+/* entrada escalonada */
+.rev-in{opacity:0;transform:translateY(14px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.rev-in.seen{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important}
+  .rev-in{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
-
-<nav class="langbar"><a href="/" aria-current="page" hreflang="es">Español</a> · <a href="/en.html" hreflang="en">English</a></nav>
-
-<main>
-  <section class="hero">
-    <div class="hero-icon"><img src="img/icon-384.png" width="96" height="96" alt="Icono de Nihongo Sensei"></div>
-    <h1>Nihongo Sensei</h1>
-    <p class="tagline">Práctica para <strong>Minna no Nihongo</strong></p>
-
-    <p class="lede">
-      Vocabulario, kanji, kana y notas de gramática, lección a lección. Y un
-      repaso que te devuelve justo lo que fallas, no lo que ya sabes.
-    </p>
-    <p class="description">
-      En español, que es lo que casi ninguna otra app hace. Gratis, sin anuncios,
-      sin cuentas y sin conexión.
-    </p>
-
-    <div class="badge-wrap">
-      <a class="store-btn" href="https://apps.apple.com/app/id6789333985" target="_blank" rel="noopener">
-        <svg width="18" height="21" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-          <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
-        </svg>
-        App Store
-      </a>
-      <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.nihongonosensei.app" target="_blank" rel="noopener">
-        <svg width="18" height="20" viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-          <path fill="#00d3ff" d="M47 19c-8 5-13 14-13 26v422c0 12 5 21 13 26l246-237z"/>
-          <path fill="#ffce00" d="M375 187l-82 46-64 61 64 62 82 47c19-11 32-27 32-46v-124c0-19-13-35-32-46z"/>
-          <path fill="#00f076" d="M47 19c4-3 9-4 15-4 8 0 17 3 26 8l287 164-82 46z"/>
-          <path fill="#f63448" d="M47 493l246-237 82 47-287 164c-9 5-18 8-26 8-6 0-11-1-15-4z"/>
-        </svg>
-        Google Play
-      </a>
+<header>
+  <div class="wrap hrow">
+    <a class="mark" href="#top" aria-label="Nihongo Sensei">
+      <svg class="tree" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <g class="canopy">
+          <circle cx="16" cy="9.4" r="6.4"/>
+          <circle cx="9.8" cy="12.4" r="4.9"/>
+          <circle cx="22.2" cy="12.4" r="4.9"/>
+          <circle cx="16" cy="14.6" r="5.4"/>
+        </g>
+        <g class="trunk" fill="none" stroke-width="1.7" stroke-linecap="round">
+          <path d="M16 29.5V16.2"/>
+          <path d="M16 20.4c-1.5-1.5-2.9-2.4-4.5-3"/>
+          <path d="M16 23.2c1.4-1.3 2.6-2 4.1-2.5"/>
+        </g>
+      </svg>
+      <span class="name">Nihongo Sensei</span>
+    </a>
+    <div class="tools">
+      <div class="lang" role="group" aria-label="Language">
+        <button data-lang="es" aria-pressed="true">ES</button>
+        <button data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <div class="skins" role="group" aria-label="Apariencia">
+        <button class="skin s-sd" data-set="sakura-dark"  aria-label="Sakura · dark"></button>
+        <button class="skin s-sl" data-set="sakura-light" aria-label="Sakura · light"></button>
+        <button class="skin s-kj" data-set="kaiju"        aria-label="Kaiju"></button>
+        <button class="skin s-fd" data-set="fuyu-dark"    aria-label="Fuyu · dark"></button>
+        <button class="skin s-fl" data-set="fuyu-light"   aria-label="Fuyu · light"></button>
+      </div>
     </div>
-    <p class="store-note">Gratis · Sin anuncios · Funciona sin conexión · Español &amp; English</p>
-  </section>
+  </div>
+</header>
 
-  <hr class="divider">
-
-  <section class="shots" aria-label="Capturas de la app">
-    <div class="shots-inner">
-      <figure class="shot"><img src="img/shot-es-01.jpg" width="520" height="1130" loading="lazy" alt="Pantalla Hoy de Nihongo Sensei con el repaso del día"><figcaption>Lo que toca hoy, y nada más</figcaption></figure>
-      <figure class="shot"><img src="img/shot-es-02.jpg" width="520" height="1130" loading="lazy" alt="Quiz de vocabulario con la respuesta correcta y una frase de ejemplo"><figcaption>Quiz con ejemplo y lectura</figcaption></figure>
-      <figure class="shot"><img src="img/shot-es-03.jpg" width="520" height="1130" loading="lazy" alt="Pantalla de progreso con las palabras repartidas por nivel de dominio"><figcaption>Tu progreso, palabra a palabra</figcaption></figure>
-      <figure class="shot"><img src="img/shot-es-04.jpg" width="520" height="1130" loading="lazy" alt="Vocabulario de una lección con lectura, ejemplo y traducción"><figcaption>Cada lección, con su vocabulario</figcaption></figure>
+<div class="hero" id="top">
+  <div class="wm" aria-hidden="true">語</div>
+  <div class="wrap">
+    <span class="tag rev-in" data-t="tag"></span>
+    <h1 class="rev-in" data-t="h1"></h1>
+    <p class="lead rev-in" data-t="lead"></p>
+    <div class="cta rev-in">
+      <a class="btn btn-1" href="https://apps.apple.com/app/id6789333985" data-t="cta1"></a>
+      <a class="btn btn-2" href="#probar" data-t="cta2"></a>
     </div>
-  </section>
+  </div>
+</div>
 
-  <section class="prose">
-    <h2>¿Para quién es Nihongo Sensei?</h2>
+<section id="probar">
+  <span class="swm l top" aria-hidden="true">話</span>
+  <div class="wrap two">
+    <div class="rev-in">
+      <span class="eyebrow" data-t="s1eye"></span>
+      <h2 data-t="s1h"></h2>
+      <p data-t="s1p1"></p>
+      <p data-t="s1p2"></p>
+    </div>
 
-    <p>
-      Para quien va a clase con <strong>Minna no Nihongo</strong> y quiere llegar
-      preparado. Cada lección del libro tiene aquí su vocabulario, con la lectura,
-      una frase de ejemplo y su traducción, más las notas de gramática que
-      corresponden. Entras en la lección 12 y practicas la lección 12: no hay que
-      buscar nada.
-    </p>
+    <div class="drill rev-in">
+      <div class="drill-top">
+        <span class="drill-lbl" data-t="dlbl"></span>
+        <span class="drill-lbl" id="counter">1 / 5</span>
+      </div>
+      <p class="drill-ask" data-t="dask"></p>
+      <p class="drill-word jp" id="word">のみます</p>
+      <p class="drill-rom" id="rom"></p>
 
-    <p>
-      Para quien estudia por su cuenta y necesita que algo le diga qué repasar
-      hoy. La app lleva la cuenta de lo que fallas y te lo devuelve cuando toca,
-      no cuando le apetece: las palabras que te cuestan vuelven antes y las que ya
-      dominas se espacian. Y para quien dejó otra app porque la racha le agobiaba
-      — aquí no hay rachas, no hay ligas y no se pierde nada por saltarse un día.
-    </p>
+      <form class="drill-form" id="form">
+        <input type="text" id="ans" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="respuesta">
+        <button class="go" type="submit" data-t="dgo"></button>
+      </form>
+      <p class="hint" data-t="dhint"></p>
 
-    <p>
-      Está escrita <strong>en español</strong>, no traducida del inglés, y también
-      disponible en inglés. La hizo un estudiante que sigue el mismo libro, para
-      estudiar como quería estudiar él.
-    </p>
+      <div class="fb" id="fb" role="status" aria-live="polite">
+        <div class="fb-head" id="fbhead"></div>
+        <p class="rule" id="fbrule"></p>
+        <p class="sib" id="fbsib"></p>
+        <button class="next" id="next" type="button" data-t="dnext"></button>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <p class="small">
-      Prefer English? <a href="/en.html">Read this page in English</a>.
-    </p>
-  </section>
+<section>
+  <span class="swm r top" aria-hidden="true">則</span>
+  <div class="wrap two rev">
+    <div class="rev-in">
+      <span class="eyebrow" data-t="s2eye"></span>
+      <h2 data-t="s2h"></h2>
+      <p data-t="s2p1"></p>
+      <p data-t="s2p2"></p>
+    </div>
+    <div class="rev-in">
+      <ul class="rules">
+        <li><span class="rn" data-t="r1"></span><span class="bar"><i style="width:88%;background:var(--m5)"></i></span></li>
+        <li><span class="rn" data-t="r2"></span><span class="bar"><i style="width:71%;background:var(--m4)"></i></span></li>
+        <li><span class="rn" data-t="r3"></span><span class="bar"><i style="width:46%;background:var(--m3)"></i></span></li>
+        <li><span class="rn" data-t="r4"></span><span class="bar"><i style="width:22%;background:var(--m2)"></i></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-  <hr class="divider">
+<section>
+  <div class="wrap rev-in">
+    <div class="nums">
+      <div class="num"><b>994</b><span data-t="n1"></span></div>
+      <div class="num"><b>966</b><span data-t="n2"></span></div>
+      <div class="num"><b>25</b><span data-t="n3"></span></div>
+      <div class="num"><b>0</b><span data-t="n4"></span></div>
+    </div>
+  </div>
+</section>
 
-  <section class="cards">
-    <a class="card" href="support.html">
-      <div class="card-label">Ayuda</div>
-      <div class="card-title">Soporte</div>
-      <div class="card-sub">Preguntas frecuentes, contacto y cómo informar de un fallo</div>
-    </a>
-    <a class="card" href="privacy.html">
-      <div class="card-label">Legal</div>
-      <div class="card-title">Privacidad</div>
-      <div class="card-sub">Qué datos se recogen (casi ninguno)</div>
-    </a>
-    <a class="card" href="terms.html">
-      <div class="card-label">Legal</div>
-      <div class="card-title">Términos de uso</div>
-      <div class="card-sub">Condiciones y normas de uso</div>
-    </a>
-    <a class="card" href="mailto:support@nihongosenseiapp.com">
-      <div class="card-label">Contacto</div>
-      <div class="card-title">Escríbenos</div>
-      <div class="card-sub">support@nihongosenseiapp.com</div>
-    </a>
-  </section>
-</main>
+<section>
+  <span class="swm l top" aria-hidden="true">聴</span>
+  <div class="wrap two">
+    <div class="rev-in">
+      <span class="eyebrow" data-t="s3eye"></span>
+      <h2 data-t="s3h"></h2>
+      <p data-t="s3p1"></p>
+      <p data-t="s3p2"></p>
+    </div>
+    <div class="rev-in">
+      <ol class="cycle">
+        <li><span class="t">0,0 s</span><span class="w jp">およぎます<small data-t="c1"></small></span></li>
+        <li class="beep"><span class="t">2,4 s</span><span class="w">bip · bip<small data-t="c2"></small></span></li>
+        <li class="beep"><span class="t">5,0 s</span><span class="w">biiip<small data-t="c3"></small></span></li>
+        <li><span class="t">5,3 s</span><span class="w"><span data-t="c4w"></span><small data-t="c4"></small></span></li>
+        <li><span class="t">7,7 s</span><span class="w jp">かえります<small data-t="c5"></small></span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap rev-in">
+    <span class="eyebrow" data-t="s8eye"></span>
+    <h2 data-t="s8h"></h2>
+    <div class="rooms">
+      <div class="room"><span class="k">今</span><h3 data-t="tb1h"></h3><p data-t="tb1p"></p></div>
+      <div class="room"><span class="k">課</span><h3 data-t="tb2h"></h3><p data-t="tb2p"></p></div>
+      <div class="room"><span class="k">練</span><h3 data-t="tb3h"></h3><p data-t="tb3p"></p></div>
+      <div class="room"><span class="k">書</span><h3 data-t="tb4h"></h3><p data-t="tb4p"></p></div>
+      <div class="room"><span class="k">道</span><h3 data-t="tb5h"></h3><p data-t="tb5p"></p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="swm r top" aria-hidden="true">鍛</span>
+  <div class="wrap rev-in">
+    <span class="eyebrow" data-t="s4eye"></span>
+    <h2 data-t="s4h"></h2>
+    <div class="rooms">
+      <div class="room"><span class="k">動</span><h3 data-t="rm1h"></h3><p data-t="rm1p"></p></div>
+      <div class="room"><span class="k">形</span><h3 data-t="rm2h"></h3><p data-t="rm2p"></p></div>
+      <div class="room"><span class="k">文</span><h3 data-t="rm3h"></h3><p data-t="rm3p"></p></div>
+      <div class="room"><span class="k">仮</span><h3 data-t="rm4h"></h3><p data-t="rm4p"></p></div>
+      <div class="room"><span class="k">耳</span><h3 data-t="rm5h"></h3><p data-t="rm5p"></p></div>
+      <div class="room"><span class="k">数</span><h3 data-t="rm6h"></h3><p data-t="rm6p"></p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="swm l top" aria-hidden="true">色</span>
+  <div class="wrap two">
+    <div class="rev-in">
+      <span class="eyebrow" data-t="s5eye"></span>
+      <h2 data-t="s5h"></h2>
+      <p data-t="s5p1"></p>
+      <p data-t="s5p2"></p>
+    </div>
+    <div class="rev-in">
+      <div class="skinbig">
+        <button class="sb b-sd" data-set="sakura-dark"><span class="dot"></span><span class="n">桜 · 夜</span><span class="d" data-t="sk1"></span></button>
+        <button class="sb b-sl" data-set="sakura-light"><span class="dot"></span><span class="n">桜 · 昼</span><span class="d" data-t="sk2"></span></button>
+        <button class="sb b-kj" data-set="kaiju"><span class="dot"></span><span class="n">怪獣</span><span class="d" data-t="sk3"></span></button>
+        <button class="sb b-fd" data-set="fuyu-dark"><span class="dot"></span><span class="n">冬 · 夜</span><span class="d" data-t="sk4"></span></button>
+        <button class="sb b-fl" data-set="fuyu-light"><span class="dot"></span><span class="n">冬 · 雪</span><span class="d" data-t="sk5"></span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="swm r top" aria-hidden="true">無</span>
+  <div class="wrap narrow rev-in">
+    <span class="eyebrow" data-t="s6eye"></span>
+    <h2 data-t="s6h"></h2>
+    <div class="without">
+      <span class="chip" data-t="w1"></span>
+      <span class="chip" data-t="w2"></span>
+      <span class="chip" data-t="w3"></span>
+      <span class="chip" data-t="w4"></span>
+      <span class="chip" data-t="w5"></span>
+      <span class="chip" data-t="w6"></span>
+    </div>
+    <p style="margin-top:1.6em" data-t="s6p"></p>
+  </div>
+</section>
+
+<section id="descargar" class="end">
+  <span class="swm c" aria-hidden="true">始</span>
+  <div class="wrap narrow rev-in">
+    <h2 data-t="s7h"></h2>
+    <p class="lead" data-t="s7p"></p>
+    <div class="cta">
+      <a class="btn btn-1" href="https://apps.apple.com/app/id6789333985">
+        <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.05 12.53c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.71-3.19-1.73-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.18-1.54 2.67-.39 6.62 1.11 8.79.73 1.06 1.6 2.25 2.74 2.21 1.1-.04 1.52-.71 2.85-.71 1.33 0 1.71.71 2.87.69 1.19-.02 1.94-1.08 2.66-2.15.84-1.23 1.19-2.42 1.21-2.48-.03-.01-2.31-.89-2.33-3.53zM14.9 5.6c.61-.74 1.02-1.77.91-2.8-.88.04-1.94.59-2.57 1.32-.56.65-1.05 1.7-.92 2.7.98.08 1.98-.5 2.58-1.22z"/></svg>
+        App Store</a>
+      <a class="btn btn-1" href="https://play.google.com/store/apps/details?id=com.nihongonosensei.app">
+        <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.1 2.4a1.5 1.5 0 0 0-.6 1.2v16.8a1.5 1.5 0 0 0 .6 1.2l.1.1 9.4-9.6v-.2L4.2 2.3l-.1.1zm10.9 6.7L5.1 2.3l8.6 8.8 1.3-2zm0 5.8-1.3-2-8.6 8.8 9.9-6.8zm.9-3.5-2.4-1.4-1.4 2.1 1.4 2.1 2.5-1.4c.7-.4.7-1 0-1.4z"/></svg>
+        Google Play</a>
+    </div>
+  </div>
+</section>
 
 <footer>
-  <p class="disclaimer">
-    Nihongo Sensei es una app independiente. No está afiliada a 3A Corporation ni
-    a los editores de Minna no Nihongo, y no reproduce contenido del libro: los
-    ejercicios, ejemplos y explicaciones son de elaboración propia.
-  </p>
-  <div>© 2026 Paul Campos Gil</div>
-  <div class="footer-links">
-    <a href="privacy.html">Privacidad</a>
-    <a href="terms.html">Términos</a>
-    <a href="support.html">Soporte</a>
+  <div class="wrap narrow">
+    <p data-t="foot"></p>
+    <p><a href="/privacy.html" data-t="fp">Privacidad</a> · <a href="/terms.html" data-t="ft">Términos</a> · <a href="/support.html" data-t="fs">Soporte</a></p>
   </div>
 </footer>
 
+<script>
+(function(){
+  "use strict";
+  var root = document.documentElement;
+
+  /* ================= apariencia ================= */
+  function applySkin(id){
+    root.setAttribute('data-appearance', id);
+    document.querySelectorAll('.skin').forEach(function(b){
+      b.setAttribute('aria-pressed', b.dataset.set === id ? 'true' : 'false');
+    });
+    try{ localStorage.setItem('ns-skin', id); }catch(e){}
+  }
+  document.querySelectorAll('[data-set]').forEach(function(b){
+    b.addEventListener('click', function(){ applySkin(b.dataset.set); });
+  });
+  try{ var sv = localStorage.getItem('ns-skin'); if(sv) applySkin(sv); }catch(e){}
+
+  /* ================= idioma ================= */
+  var T = {
+    es:{
+      tag:'Gratis · Sin anuncios · <b>Funciona sin conexión</b>',
+      h1:'Minna no Nihongo,<br>lección a lección.',
+      lead:'La app que sigue el orden de tus clases: el vocabulario de <em>esa</em> lección, no el que elige un algoritmo. Las 25 lecciones del primer libro, y subiendo. Y las respuestas se escriben.',
+      cta1:'Descargar', cta2:'Probarla aquí abajo',
+
+      s1eye:'Escribes, no eliges',
+      s1h:'Cuatro botones no enseñan a conjugar.',
+      s1p1:'Reconocer la respuesta entre cuatro opciones y producirla desde cero son dos cosas distintas, y en clase solo sirve la segunda.',
+      s1p2:'Pruébalo aquí: es el mismo ejercicio que hay dentro. Escribe la <strong>forma て</strong>.',
+      dlbl:'Verbos · forma て', dask:'¿Cuál es la forma て de…?', dgo:'Ver',
+      dhint:'Puedes escribirlo en rōmaji: <strong>nonde</strong>.',
+      dnext:'Siguiente →',
+      fbok:'Correcto', fbtypo:'Errata, no confusión',
+      typoRule:'<em>Errata</em>Te has comido el dakuten. La regla la tienes bien — en la app esto no cuenta como confundir una regla, porque no lo es.',
+      unknown:'Ese no es un error conocido, así que no te invento una regla. En la app, lo que no coincide con nada se registra: de ahí salen las reglas que faltan.',
+      ruleLbl:'La regla',
+
+      s2eye:'Cuando fallas',
+      s2h:'No dice «incorrecto». Dice qué regla usaste.',
+      s2p1:'Una cruz roja te deja donde estabas. Saber que trataste un verbo del grupo I como si fuera del II te deja con una regla — y con las demás palabras que la siguen.',
+      s2p2:'Y hay una pantalla que lleva la cuenta de <strong>en qué reglas andas flojo</strong>, no de qué palabras fallaste. Que es lo que de verdad se arregla.',
+      r1:'Grupo I · み・び・に → んで<small>dominada</small>',
+      r2:'Grupo II · quitar ます<small>casi</small>',
+      r3:'き → いて, con su excepción<small>en progreso</small>',
+      r4:'ぎ → いで, con dakuten<small>te cuesta</small>',
+
+      n1:'palabras, con audio', n2:'frases de ejemplo', n3:'lecciones, y subiendo', n4:'cuentas, anuncios y trackers',
+
+      s3eye:'Escuchar',
+      s3h:'Con el móvil en el bolsillo.',
+      s3p1:'Suena la palabra, se abre un hueco para que pienses, y llega la respuesta. Cuarenta minutos andando sin sacar el teléfono.',
+      s3p2:'Japonés en dos voces y dos velocidades. Las traducciones, en español y en inglés. Todo grabado de antemano y dentro de la app: <strong>ni un byte de red mientras estudias</strong>.',
+      c1:'suena la pregunta', c2:'tu turno — piensa', c3:'aquí va', c4w:'Nadar', c4:'suena la respuesta', c5:'siguiente palabra',
+
+      s8eye:'Por dentro', s8h:'Cinco pestañas, y ya.',
+      tb1h:'Hoy', tb1p:'Lo que toca repasar hoy. Nada más, y por eso se hace.',
+      tb2h:'Curso', tb2p:'Las 25 lecciones con su vocabulario, su gramática y sus frases.',
+      tb3h:'Entrenos', tb3p:'Vocabulario, kanji, kana y Escuchar, con los filtros que quieras.',
+      tb4h:'Biblioteca', tb4p:'Kana y kanji para consultar. Aquí no se examina a nadie.',
+      tb5h:'Dojo', tb5p:'Las seis salas donde se entrena de verdad.',
+
+      s4eye:'El dojo', s4h:'Seis salas de entrenamiento.',
+      rm1h:'Verbos', rm1p:'Escribes la forma て, ない, た o de diccionario.',
+      rm2h:'Adjetivos', rm2p:'Es, no es, era, y cómo van delante del nombre.',
+      rm3h:'Frases', rm3p:'El molde de la lección, con el verbo en la forma que pide.',
+      rm4h:'Kana', rm4p:'Hiragana y katakana enteros, y los pares que todos confunden.',
+      rm5h:'Listening', rm5p:'Oyes una palabra y escribes lo que has oído.',
+      rm6h:'Números', rm6p:'Con las lecturas que cambian: 300, 600, 800, 3000, 8000.',
+
+      s5eye:'Apariencia', s5h:'La app se viste como tú.',
+      s5p1:'Tres paletas, cinco apariencias. Y no es una demostración: <strong>estos botones pintan esta página con los colores exactos de la app.</strong>',
+      s5p2:'Pruébalos. Lo que ves es lo que vas a tener.',
+      sk1:'Sakura · oscuro', sk2:'Hanami · claro', sk3:'Kaiju · solo noche', sk4:'Fuyu · noche', sk5:'Fuyu · nieve',
+
+      s6eye:'Lo que no lleva', s6h:'Nada de lo de siempre.',
+      w1:'<b>Sin</b> cuenta', w2:'<b>Sin</b> registro', w3:'<b>Sin</b> anuncios',
+      w4:'<b>Sin</b> seguimiento', w5:'<b>Sin</b> rachas que te culpan', w6:'<b>Sin</b> conexión',
+      s6p:'El curso entero es gratis y se queda gratis. La escribí porque la necesitaba yo: estudio japonés en una academia y la app que quería no existía en español.',
+
+      s7h:'Empieza por tu lección.',
+      s7p:'Le dices en qué lección vas y empieza ahí. No hay que fingir que sabes lo de antes.',
+      foot:'<strong>Nihongo Sensei: Minna</strong> — ayuda de estudio independiente. No está afiliada, avalada ni conectada con la editorial de ningún libro de texto. Sigue el orden de lecciones del curso; no contiene el libro.',
+      fp:'Privacidad', ft:'Términos', fs:'Soporte'
+    },
+    en:{
+      tag:'Free · No ads · <b>Works offline</b>',
+      h1:'Minna no Nihongo,<br>lesson by lesson.',
+      lead:'The app that follows the order of your classes: the vocabulary from <em>that</em> lesson, not what an algorithm picked. All 25 lessons of the first book, and growing. And you type the answers.',
+      cta1:'Download', cta2:'Try it right here',
+
+      s1eye:'You write it, you don’t pick it',
+      s1h:'Four buttons never taught anyone to conjugate.',
+      s1p1:'Recognising the answer among four options and producing it from nothing are two different skills, and only the second one shows up in class.',
+      s1p2:'Try it here — it’s the same drill that’s inside. Type the <strong>て form</strong>.',
+      dlbl:'Verbs · て form', dask:'What is the て form of…?', dgo:'Check',
+      dhint:'You can type it in rōmaji: <strong>nonde</strong>.',
+      dnext:'Next →',
+      fbok:'Correct', fbtypo:'A typo, not a confusion',
+      typoRule:'<em>Typo</em>You dropped the dakuten. Your rule was right — in the app this doesn’t count as confusing a rule, because it isn’t one.',
+      unknown:'That isn’t a known mistake, so I won’t invent a rule for it. In the app, anything that matches nothing gets logged — that’s where the missing rules come from.',
+      ruleLbl:'The rule',
+
+      s2eye:'When you get it wrong',
+      s2h:'It doesn’t say “incorrect”. It names the rule you used.',
+      s2p1:'A red cross leaves you exactly where you were. Knowing you treated a Group I verb as if it were Group II leaves you with a rule — and with the other words that follow it.',
+      s2p2:'And there’s a screen that tracks <strong>which rules you’re weak at</strong>, not which words you missed. That’s the thing you can actually fix.',
+      r1:'Group I · み・び・に → んで<small>solid</small>',
+      r2:'Group II · drop ます<small>nearly there</small>',
+      r3:'き → いて, and its exception<small>in progress</small>',
+      r4:'ぎ → いで, with dakuten<small>this one costs you</small>',
+
+      n1:'words, all with audio', n2:'example sentences', n3:'lessons, and growing', n4:'accounts, ads and trackers',
+
+      s3eye:'Listen',
+      s3h:'With the phone in your pocket.',
+      s3p1:'The word plays, a gap opens for you to think, and the answer arrives. Forty minutes walking without taking the phone out.',
+      s3p2:'Japanese in two voices and two speeds. Translations in Spanish and English. All of it recorded in advance and bundled inside: <strong>not one byte of network while you study</strong>.',
+      c1:'the question plays', c2:'your turn — think', c3:'here it comes', c4w:'To swim', c4:'the answer plays', c5:'next word',
+
+      s8eye:'Inside', s8h:'Five tabs, that’s all.',
+      tb1h:'Today', tb1p:'What’s due today. Nothing else — which is why it gets done.',
+      tb2h:'Course', tb2p:'All 25 lessons with their vocabulary, grammar and sentences.',
+      tb3h:'Drills', tb3p:'Vocabulary, kanji, kana and Listen, filtered however you like.',
+      tb4h:'Library', tb4p:'Kana and kanji to look things up. Nobody gets tested here.',
+      tb5h:'Dojo', tb5p:'The six rooms where the real training happens.',
+
+      s4eye:'The dojo', s4h:'Six training rooms.',
+      rm1h:'Verbs', rm1p:'You type the て, ない, た or dictionary form.',
+      rm2h:'Adjectives', rm2p:'Is, is not, was, and how they sit before a noun.',
+      rm3h:'Sentences', rm3p:'The lesson’s pattern, with the verb in the form it asks for.',
+      rm4h:'Kana', rm4p:'All of hiragana and katakana, and the pairs everyone confuses.',
+      rm5h:'Listening', rm5p:'You hear a word and write what you heard.',
+      rm6h:'Numbers', rm6p:'Including the readings that change: 300, 600, 800, 3000, 8000.',
+
+      s5eye:'Appearance', s5h:'The app dresses like you.',
+      s5p1:'Three palettes, five looks. And this isn’t a mock-up: <strong>these buttons repaint this page with the app’s exact colours.</strong>',
+      s5p2:'Try them. What you see is what you get.',
+      sk1:'Sakura · dark', sk2:'Hanami · light', sk3:'Kaiju · dark only', sk4:'Fuyu · night', sk5:'Fuyu · snow',
+
+      s6eye:'What it doesn’t have', s6h:'None of the usual.',
+      w1:'<b>No</b> account', w2:'<b>No</b> sign-up', w3:'<b>No</b> ads',
+      w4:'<b>No</b> tracking', w5:'<b>No</b> guilt-trip streaks', w6:'<b>No</b> connection needed',
+      s6p:'The whole course is free and stays free. I wrote it because I needed it: I study Japanese in a class, and the app I wanted didn’t exist.',
+
+      s7h:'Start at your lesson.',
+      s7p:'You tell it which lesson you’re on and it starts there. No pretending you know what came before.',
+      foot:'<strong>Nihongo Sensei: Minna</strong> — an independent study aid. Not affiliated with, endorsed by or connected to the publisher of any textbook. It follows the standard lesson order; it does not contain the book.',
+      fp:'Privacy', ft:'Terms', fs:'Support'
+    }
+  };
+
+  var lang = 'es';
+
+  /* ================= el ejercicio ================= */
+  /* Los errores se GENERAN de antemano, cada uno con la regla que lo
+     produce — es el mismo diseño que usa la app: no se adivina el fallo. */
+  var ITEMS = [
+    { w:'のみます', ok:'のんで',
+      rom:{es:'nomimasu · beber', en:'nomimasu · to drink'},
+      map:{'nonde':'のんで','nomite':'のみて','notte':'のって','nonte':'のんて'},
+      typo:['のんて'],
+      wrong:{
+        'のみて':{es:'Has quitado ます y puesto て, que es lo del grupo II. 飲みます es del grupo I, y ahí la sílaba de antes de ます cambia.',
+                  en:'You dropped ます and added て, which is the Group II move. 飲みます is Group I, and there the syllable before ます changes first.'},
+        'のって':{es:'って es de い・ち・り. La sílaba de 飲みます es み, y み・び・に hacen んで.',
+                  en:'って belongs to い・ち・り. The syllable in 飲みます is み, and み・び・に make んで.'}
+      },
+      sib:'のみます → <b>のんで</b> · あそびます → <b>あそんで</b> · しにます → <b>しんで</b>' },
+
+    { w:'かきます', ok:'かいて',
+      rom:{es:'kakimasu · escribir', en:'kakimasu · to write'},
+      map:{'kaite':'かいて','katte':'かって','kakite':'かきて'},
+      typo:[],
+      wrong:{
+        'かって':{es:'き no va con い・ち・り. Tiene su propia regla y hace いて.',
+                  en:'き doesn’t follow い・ち・り. It has a rule of its own and makes いて.'},
+        'かきて':{es:'Has quitado ます y puesto て, que es lo del grupo II. 書きます es del grupo I.',
+                  en:'You dropped ます and added て — the Group II move. 書きます is Group I.'}
+      },
+      sib:'かきます → <b>かいて</b> · ききます → <b>きいて</b> · あるきます → <b>あるいて</b>' },
+
+    { w:'たべます', ok:'たべて',
+      rom:{es:'tabemasu · comer', en:'tabemasu · to eat'},
+      map:{'tabete':'たべて','tande':'たんで','tabette':'たべって'},
+      typo:[],
+      wrong:{
+        'たんで':{es:'Has cambiado la sílaba de antes de ます, que es lo del grupo I. 食べます es del grupo II: se quita ます y se pone て, sin más.',
+                  en:'You changed the syllable before ます — the Group I move. 食べます is Group II: drop ます, add て, nothing else.'},
+        'たべって':{es:'El grupo II no dobla nada. Se quita ます y se pone て.',
+                    en:'Group II doubles nothing. Drop ます, add て.'}
+      },
+      sib:'たべます → <b>たべて</b> · みます → <b>みて</b> · おきます → <b>おきて</b>' },
+
+    { w:'いきます', ok:'いって',
+      rom:{es:'ikimasu · ir', en:'ikimasu · to go'},
+      map:{'itte':'いって','iite':'いいて'},
+      typo:[],
+      wrong:{
+        'いいて':{es:'Has aplicado bien la regla de き. Lo que pasa es que 行きます es la única excepción que tiene: hace って.',
+                  en:'You applied the き rule correctly. The catch is that 行きます is its one and only exception: it makes って.'}
+      },
+      sib:'かきます → <b>かいて</b> · ききます → <b>きいて</b> · いきます → <b>いって</b>' },
+
+    { w:'いそぎます', ok:'いそいで',
+      rom:{es:'isogimasu · darse prisa', en:'isogimasu · to hurry'},
+      map:{'isoide':'いそいで','isoite':'いそいて','isotte':'いそって'},
+      typo:['いそいて'],
+      wrong:{
+        'いそって':{es:'ぎ no va con い・ち・り. Tiene su propia regla: hace いで, con dakuten.',
+                    en:'ぎ doesn’t follow い・ち・り. It has its own rule: いで, with dakuten.'}
+      },
+      sib:'いそぎます → <b>いそいで</b> · およぎます → <b>およいで</b> · ぬぎます → <b>ぬいで</b>' }
+  ];
+
+  var i = 0;
+  var elW = document.getElementById('word');
+  var elR = document.getElementById('rom');
+  var elC = document.getElementById('counter');
+  var elA = document.getElementById('ans');
+  var fb  = document.getElementById('fb');
+  var fbH = document.getElementById('fbhead');
+  var fbR = document.getElementById('fbrule');
+  var fbS = document.getElementById('fbsib');
+
+  function norm(s){ return (s||'').trim().toLowerCase().replace(/\s+/g,'').replace(/[。、.,\-_]/g,''); }
+
+  function resolve(it, raw){
+    var v = norm(raw);
+    if(/^[a-z]+$/.test(v) && it.map[v]) return it.map[v];
+    return (raw||'').trim().replace(/\s+/g,'');
+  }
+
+  function paint(){
+    var it = ITEMS[i];
+    elW.textContent = it.w;
+    elR.textContent = it.rom[lang];
+    elC.textContent = (i+1) + ' / ' + ITEMS.length;
+    elA.value = '';
+    elA.placeholder = it.ok;
+    fb.className = 'fb';
+  }
+
+  document.getElementById('form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var it = ITEMS[i], t = T[lang];
+    var v = resolve(it, elA.value);
+    if(!v){ elA.focus(); return; }
+
+    if(v === it.ok){
+      fb.className = 'fb ok on';
+      fbH.innerHTML = '✓ ' + t.fbok;
+      fbR.innerHTML = '';
+      fbS.innerHTML = it.sib;
+    } else if(it.typo.indexOf(v) > -1){
+      fb.className = 'fb typo on';
+      fbH.innerHTML = '≈ ' + t.fbtypo + ' &nbsp;<span class="strike">' + v + '</span>';
+      fbR.innerHTML = t.typoRule;
+      fbS.innerHTML = it.sib;
+    } else if(it.wrong[v]){
+      fb.className = 'fb no on';
+      fbH.innerHTML = '✗ ' + it.ok + ' &nbsp;<span class="strike">' + v + '</span>';
+      fbR.innerHTML = '<em>' + t.ruleLbl + '</em>' + it.wrong[v][lang];
+      fbS.innerHTML = it.sib;
+    } else {
+      fb.className = 'fb no on';
+      fbH.innerHTML = '✗ ' + it.ok + ' &nbsp;<span class="strike">' + v + '</span>';
+      fbR.textContent = t.unknown;
+      fbS.innerHTML = it.sib;
+    }
+  });
+
+  document.getElementById('next').addEventListener('click', function(){
+    i = (i + 1) % ITEMS.length;
+    paint(); elA.focus();
+  });
+
+  /* ================= aplicar idioma ================= */
+  function applyLang(L){
+    lang = L;
+    root.setAttribute('lang', L);
+    var d = T[L];
+    document.querySelectorAll('[data-t]').forEach(function(el){
+      var k = el.dataset.t;
+      if(d[k] !== undefined) el.innerHTML = d[k];
+    });
+    document.querySelectorAll('.lang button').forEach(function(b){
+      b.setAttribute('aria-pressed', b.dataset.lang === L ? 'true' : 'false');
+    });
+    elA.setAttribute('aria-label', L === 'es' ? 'Tu respuesta' : 'Your answer');
+    paint();
+    try{ localStorage.setItem('ns-lang', L); }catch(e){}
+  }
+  document.querySelectorAll('.lang button').forEach(function(b){
+    b.addEventListener('click', function(){ applyLang(b.dataset.lang); });
+  });
+
+  var start = 'es';
+  try{
+    var sl = localStorage.getItem('ns-lang');
+    if(sl) start = sl;
+    else if(!/^es/i.test(navigator.language || '')) start = 'en';
+  }catch(e){}
+  applyLang(start);
+
+  /* ================= entrada ================= */
+  var io = window.IntersectionObserver ? new IntersectionObserver(function(es){
+    es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('seen'); io.unobserve(en.target); } });
+  }, {rootMargin:'0px 0px -8% 0px'}) : null;
+
+  document.querySelectorAll('.rev-in').forEach(function(el, n){
+    if(!io){ el.classList.add('seen'); return; }
+    el.style.transitionDelay = Math.min(n, 3) * 70 + 'ms';
+    io.observe(el);
+  });
+})();
+</script>
 </body>
 </html>
