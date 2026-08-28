@@ -159,3 +159,37 @@ footer a{color:var(--t2)}
   *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important}
   .rev-in{opacity:1;transform:none}
 }
+
+/* ============================================================
+   Páginas de texto: privacy / terms / support.
+   Solo presentación, con tokens — el texto vive en cada página.
+   ============================================================ */
+main.legal{padding:clamp(40px,7vw,72px) 0 clamp(56px,9vw,90px)}
+.legal h1{font-size:clamp(2rem,5vw,2.8rem);margin:0 0 .12em}
+.legal .meta{font-size:.9rem;color:var(--t3);margin:0 0 2.3em}
+.legal h2{font-size:1.2rem;margin:2em 0 .5em}
+.legal h3{margin:0 0 .3em}
+.legal p{color:var(--t2);margin:0 0 1em}
+.legal a{color:var(--pl)}
+.legal strong,.legal b{color:var(--t1);font-weight:700}
+.legal ul{padding-left:1.2em;margin:0 0 1em;color:var(--t2)}
+.legal li{margin:0 0 .5em}
+.legal hr{border:none;border-top:1px solid var(--b);margin:2.6em 0}
+
+/* FAQ + tarjetas de contacto (support) */
+.faq{display:flex;flex-direction:column;gap:2px;margin:0 0 1em}
+.faq-item{background:var(--card2);border:1px solid var(--b);border-radius:14px;overflow:hidden;transition:background-color .5s ease,border-color .5s ease}
+.faq-q{padding:15px 18px;font-weight:700;font-size:.95rem;color:var(--t1)}
+.faq-a{padding:0 18px 15px;font-size:.92rem;color:var(--t2);line-height:1.6}
+.faq-a a{color:var(--pl)}
+.contact-card{background:var(--card2);border:1px solid var(--b);border-radius:14px;padding:22px 20px;margin:0 0 12px;transition:background-color .5s ease,border-color .5s ease}
+.contact-card h3{font-family:'Zen Kaku Gothic New','Hiragino Kaku Gothic ProN',sans-serif;font-size:1rem;font-weight:700;margin:0 0 .3em;color:var(--t1)}
+.contact-card p{font-size:.9rem;color:var(--t2);margin:0 0 .7em}
+.contact-card p:last-child{margin:0}
+.contact-email{display:inline-block;font-size:.92rem;font-weight:700;color:var(--pl);text-decoration:none}
+.contact-email:hover{text-decoration:underline}
+.response-time{margin-top:.7em;font-size:.8rem;color:var(--t3)}
+
+/* pie de las hijas */
+footer .disclaimer{font-size:.78rem;line-height:1.6;color:var(--t3);margin:0 0 .8em}
+footer .footer-links{margin-top:.4em;display:flex;gap:20px;flex-wrap:wrap}

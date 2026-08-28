@@ -1,46 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Privacy Policy — Nihongo Sensei</title>
-<style>
-  :root {
-    --bg: #ffffff; --text: #1d1d1f; --text2: #6e6e73;
-    --accent: #c0527a; --border: #d2d2d7;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #000000; --text: #f5f5f7; --text2: #98989d; --accent: #d97ba8; --border: #38383a; }
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { -webkit-font-smoothing: antialiased; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-    background: var(--bg); color: var(--text);
-    max-width: 680px; margin: 0 auto; padding: 60px 24px 80px;
-    line-height: 1.7; font-size: 1rem;
-  }
-  nav { margin-bottom: 48px; }
-  nav a { color: var(--accent); font-size: 0.9rem; text-decoration: none; }
-  nav a:hover { text-decoration: underline; }
-  h1 { font-size: clamp(1.6rem, 4vw, 2rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
-  .meta { font-size: 0.875rem; color: var(--text2); margin-top: 8px; margin-bottom: 40px; }
-  h2 { font-size: 1.05rem; font-weight: 600; margin-top: 40px; margin-bottom: 10px; color: var(--text); }
-  p { color: var(--text); margin-bottom: 16px; }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
-  footer { font-size: 0.8rem; color: var(--text2); }
-  footer a { color: var(--text2); }
-  footer a:hover { color: var(--accent); text-decoration: none; }
-  .footer-links { margin-top: 8px; display: flex; gap: 20px; flex-wrap: wrap; }
-  .disclaimer{max-width:660px;margin:0 auto 18px;font-size:.78rem;line-height:1.6;color:var(--text2);}
-</style>
+<link rel="canonical" href="https://nihongosenseiapp.com/privacy.html">
+<meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1E161C" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="img/icon-192.png" sizes="any">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<script>/* anti-parpadeo: estampa la apariencia antes de pintar */
+try{var s=localStorage.getItem("ns-skin");if(s)document.documentElement.setAttribute("data-appearance",s);}catch(e){}</script>
+<link rel="stylesheet" href="css/site.css">
 </head>
 <body>
+<header>
+  <div class="wrap hrow">
+    <a class="mark" href="/" aria-label="Nihongo Sensei">
+      <svg class="tree" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <g class="canopy">
+          <circle cx="16" cy="9.4" r="6.4"/>
+          <circle cx="9.8" cy="12.4" r="4.9"/>
+          <circle cx="22.2" cy="12.4" r="4.9"/>
+          <circle cx="16" cy="14.6" r="5.4"/>
+        </g>
+        <g class="trunk" fill="none" stroke-width="1.7" stroke-linecap="round">
+          <path d="M16 29.5V16.2"/>
+          <path d="M16 20.4c-1.5-1.5-2.9-2.4-4.5-3"/>
+          <path d="M16 23.2c1.4-1.3 2.6-2 4.1-2.5"/>
+        </g>
+      </svg>
+      <span class="name">Nihongo Sensei</span>
+    </a>
+    <div class="tools">
+      <div class="lang" role="group" aria-label="Language">
+        <button data-lang="es" aria-pressed="true">ES</button>
+        <button data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <div class="skins" role="group" aria-label="Apariencia">
+        <button class="skin s-sd" data-set="sakura-dark"  aria-label="Sakura · dark"></button>
+        <button class="skin s-sl" data-set="sakura-light" aria-label="Sakura · light"></button>
+        <button class="skin s-kj" data-set="kaiju"        aria-label="Kaiju"></button>
+        <button class="skin s-fd" data-set="fuyu-dark"    aria-label="Fuyu · dark"></button>
+        <button class="skin s-fl" data-set="fuyu-light"   aria-label="Fuyu · light"></button>
+      </div>
+    </div>
+  </div>
+</header>
 
-<nav><a href="index.html">← Nihongo Sensei</a></nav>
-
+<main class="wrap narrow legal">
 <h1>Privacy Policy</h1>
 <p class="meta">Last updated: August 2026</p>
 
@@ -61,10 +72,10 @@
 
 <h2>Contact</h2>
 <p>If you have questions about this policy, contact us at <a href="mailto:support@nihongosenseiapp.com">support@nihongosenseiapp.com</a>.</p>
-
-<hr>
+</main>
 
 <footer>
+  <div class="wrap narrow">
   <p class="disclaimer">
     Nihongo Sensei es una app independiente. No está afiliada a 3A Corporation ni
     a los editores de Minna no Nihongo, y no reproduce contenido del libro: los
@@ -76,7 +87,9 @@
     <a href="terms.html">Terms of Use</a>
     <a href="support.html">Support</a>
   </div>
+  </div>
 </footer>
 
+<script src="js/site.js"></script>
 </body>
 </html>
