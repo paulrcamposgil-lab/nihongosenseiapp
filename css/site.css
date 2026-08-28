@@ -111,14 +111,17 @@ header{
   transition:background-color .5s ease, border-color .5s ease;
 }
 .hrow{display:flex;align-items:center;justify-content:space-between;gap:14px;height:60px}
-.mark{display:flex;align-items:baseline;gap:.5em;text-decoration:none;color:var(--t1);flex-shrink:0}
+.mark{display:flex;align-items:center;gap:.5em;text-decoration:none;color:var(--t1);flex-shrink:0}
 .mark .name{font-size:.9rem;font-weight:700}
-.tree{width:26px;height:26px;flex-shrink:0;transition:transform .5s cubic-bezier(.2,.8,.3,1)}
-.tree .canopy circle{fill:var(--pl);transition:fill .5s ease}
-.tree .canopy circle:nth-child(1){opacity:1}
-.tree .canopy circle:nth-child(2),.tree .canopy circle:nth-child(3){opacity:.72}
-.tree .canopy circle:nth-child(4){opacity:.55}
-.tree .trunk{stroke:var(--t1);transition:stroke .5s ease}
+.tree{position:relative;display:block;width:28px;height:28px;flex-shrink:0;
+      border-radius:23%;overflow:hidden;
+      transition:transform .5s cubic-bezier(.2,.8,.3,1)}
+.tree i{position:absolute;inset:0;background-size:cover;background-position:center;
+        opacity:0;transition:opacity .5s ease}
+.tree .ic-s{background-image:url(../img/icon-sakura.webp);opacity:1}
+.tree .ic-f{background-image:url(../img/icon-fuyu.webp)}
+[data-appearance^="fuyu"] .tree .ic-s{opacity:0}
+[data-appearance^="fuyu"] .tree .ic-f{opacity:1}
 .mark:hover .tree{transform:rotate(-4deg) scale(1.06)}
 @media(max-width:520px){.mark .name{display:none}}
 .tools{display:flex;align-items:center;gap:14px}
@@ -193,3 +196,6 @@ main.legal{padding:clamp(40px,7vw,72px) 0 clamp(56px,9vw,90px)}
 /* pie de las hijas */
 footer .disclaimer{font-size:.78rem;line-height:1.6;color:var(--t3);margin:0 0 .8em}
 footer .footer-links{margin-top:.4em;display:flex;gap:20px;flex-wrap:wrap}
+
+/* aviso en páginas legales sin traducir */
+.only-en{font-size:.82rem;color:var(--t3);margin:0 0 2.2em;font-style:italic}
