@@ -184,6 +184,18 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 .end .cta{justify-content:center}
 .end .lead{margin-left:auto;margin-right:auto}
 .end .slogan{font-family:'Shippori Mincho B1','Hiragino Mincho ProN',Georgia,serif;font-size:1.18rem;color:var(--pl);margin:1.5em auto .1em;letter-spacing:.01em;transition:color .5s ease}
+.hero-video{display:flex;justify-content:center;margin:34px 0 8px}
+.hero-video video{width:100%;max-width:250px;border-radius:26px;display:block;box-shadow:var(--sh-lg)}
+@media (prefers-reduced-motion:reduce){
+  .hero-video video{display:none}
+  .hero-video{background:url(img/intro_poster.webp) center/contain no-repeat;width:250px;height:448px;border-radius:26px;margin:34px auto 8px}
+}
+.shots .eyebrow{margin-bottom:.4em}
+.shots-row{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:18px 0 6px;scrollbar-width:none}
+.shots-row::-webkit-scrollbar{display:none}
+.shots-row figure{margin:0;flex:0 0 190px;scroll-snap-align:center}
+.shots-row img{width:100%;border-radius:18px;display:block;border:1px solid var(--b);box-shadow:var(--sh)}
+.shots-row figcaption{font-size:.8rem;color:var(--t3);margin-top:10px;line-height:1.4;text-wrap:pretty}
 </style>
 </head>
 <body>
@@ -219,8 +231,26 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       <a class="btn btn-1" href="https://apps.apple.com/app/id6789333985" data-t="cta1"></a>
       <a class="btn btn-2" href="#probar" data-t="cta2"></a>
     </div>
+    <div class="hero-video rev-in">
+      <video src="img/intro_web.mp4" poster="img/intro_poster.webp"
+             autoplay muted loop playsinline preload="metadata"
+             aria-label="Nihongo Sensei"></video>
+    </div>
   </div>
 </div>
+
+<section class="shots">
+  <div class="wrap">
+    <div class="eyebrow rev-in" data-t="shots_eyebrow"></div>
+    <div class="shots-row rev-in">
+      <figure><img src="img/shot_regla.webp" alt="" loading="lazy"><figcaption data-t="shot_regla"></figcaption></figure>
+      <figure><img src="img/shot_hoy.webp" alt="" loading="lazy"><figcaption data-t="shot_hoy"></figcaption></figure>
+      <figure><img src="img/shot_leccion.webp" alt="" loading="lazy"><figcaption data-t="shot_leccion"></figcaption></figure>
+      <figure><img src="img/shot_escuchar.webp" alt="" loading="lazy"><figcaption data-t="shot_escuchar"></figcaption></figure>
+      <figure><img src="img/shot_kana.webp" alt="" loading="lazy"><figcaption data-t="shot_kana"></figcaption></figure>
+    </div>
+  </div>
+</section>
 
 <section id="probar">
   <span class="swm l top" aria-hidden="true">話</span>
@@ -472,6 +502,12 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       s7h:'Empieza por tu lección.',
       s7p:'Le dices en qué lección vas y empieza ahí. No hay que fingir que sabes lo de antes.',
       slogan:'Estudiemos juntos',
+      shots_eyebrow:'ASÍ SE VE',
+      shot_regla:'Cuando fallas, te dice qué regla aplicaste mal.',
+      shot_hoy:'Lo que toca hoy, ordenado por urgencia.',
+      shot_leccion:'Cada lección, con su frase y la gramática que entra.',
+      shot_escuchar:'Estudia con la pantalla apagada.',
+      shot_kana:'Kana, hasta que dejes de dudar.',
       foot:'<strong>Nihongo Sensei: Minna</strong> — ayuda de estudio independiente. No está afiliada, avalada ni conectada con la editorial de ningún libro de texto. Sigue el orden de lecciones del curso; no contiene el libro.',
       fp:'Privacidad', ft:'Términos', fs:'Soporte'
     },
@@ -538,6 +574,12 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       s7h:'Start at your lesson.',
       s7p:'You tell it which lesson you’re on and it starts there. No pretending you know what came before.',
       slogan:"Let's study together",
+      shots_eyebrow:'WHAT IT LOOKS LIKE',
+      shot_regla:"When you get it wrong, it names the rule you misapplied.",
+      shot_hoy:"Today's review, most urgent first.",
+      shot_leccion:"Every lesson, with its phrase and what's new in it.",
+      shot_escuchar:'Study with the screen off.',
+      shot_kana:'Kana, until you stop hesitating.',
       foot:'<strong>Nihongo Sensei: Minna</strong> — an independent study aid. Not affiliated with, endorsed by or connected to the publisher of any textbook. It follows the standard lesson order; it does not contain the book.',
       fp:'Privacy', ft:'Terms', fs:'Support'
     }
