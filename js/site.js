@@ -13,11 +13,30 @@
   var root = document.documentElement;
 
   /* ---- apariencia ---- */
+  /* El vídeo del hero cambia con la piel, y SOLO se descarga el de la piel elegida
+     (carga perezosa): se cambia el src cuando la piel cambia, no se precargan los cuatro. */
+  var _VIDS = {
+    sakura: ['intro_web.mp4', 'intro_poster.webp'],
+    aki:    ['intro_aki.mp4', 'poster_aki.webp'],
+    fuyu:   ['intro_fuyu.mp4', 'poster_fuyu.webp'],
+    kaiju:  ['intro_kaiju.mp4', 'poster_kaiju.webp']
+  };
+  function _heroVideo(id){
+    var v = _VIDS[(id || '').split('-')[0]]; if(!v) return;
+    var hv = document.querySelector('.hero-video video'); if(!hv) return;
+    var src = 'img/' + v[0];
+    if(hv.getAttribute('src') === src) return;      // ya es el de esta piel: no recargar
+    hv.setAttribute('poster', 'img/' + v[1]);
+    hv.setAttribute('src', src);
+    if(hv.parentElement) hv.parentElement.style.backgroundImage = 'url(img/' + v[1] + ')';  // fallback de pantalla estrecha, también por piel
+    try{ hv.load(); var pr = hv.play(); if(pr && pr.catch) pr.catch(function(){}); }catch(e){}
+  }
   function applySkin(id){
     root.setAttribute('data-appearance', id);
     document.querySelectorAll('.skin').forEach(function(b){
       b.setAttribute('aria-pressed', b.dataset.set === id ? 'true' : 'false');
     });
+    _heroVideo(id);
     try{ localStorage.setItem('ns-skin', id); }catch(e){}
   }
   document.querySelectorAll('[data-set]').forEach(function(b){
@@ -25,6 +44,7 @@
   });
   /* el <head> ya estampó data-appearance; aquí solo se refleja en los aria-pressed */
   try{ var sv = localStorage.getItem('ns-skin'); if(sv) applySkin(sv); }catch(e){}
+  _heroVideo(root.getAttribute('data-appearance') || 'sakura');   // carga el vídeo de la piel activa al abrir
 
   /* ---- idioma ----
      La portada define window.NS_STRINGS (las cadenas de los [data-t]) y,
