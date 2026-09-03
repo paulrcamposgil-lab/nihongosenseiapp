@@ -78,22 +78,34 @@
   }catch(e){}
   applyLang(start);
 
-  /* ---- atribución de campaña, SIN cookies (Code) ----
-     Si el visitante llega desde el anuncio (?utm_source=...), se etiquetan los enlaces
-     a las tiendas para que las CONSOLAS atribuyan la instalación a la campaña, sin
-     trackers ni banner de consentimiento:
-       · Google Play  → &referrer=utm_...  (lo captura Play Console · Adquisición)
-       · App Store    → ?ct=campaña        (App Store Connect · Analytics · Campañas)
-     El visitante orgánico no lleva utm, así que sus clics quedan limpios. */
+  /* ---- atribución de campaña + contador de embudo, SIN cookies (brief de Code, 3-sep) ----
+
+     DOS medidas, que responden a preguntas distintas:
+
+     1) INSTALACIONES por campaña — lo cuentan las CONSOLAS de las tiendas, no esta
+        página. Para Android se reenvía el utm como `referrer` y Play Console lo recoge
+        en Adquisición. Para iOS NO se compone nada: App Store no va por UTM, sino por
+        los Campaign Links que GENERA Apple (App Analytics -> Campaigns); Paul crea uno
+        por canal y ese enlace ya trae su token. Componer un ct a mano -como hacía la
+        versión anterior- no registra ninguna campaña en App Store Connect: era humo.
+
+     2) EMBUDO de la página por canal — lo cuenta este beacon contra el servicio propio
+        nihongo-sensei-metricas (Deno KV, agregado, sin cookie ni IP). Mide lo que las
+        tiendas no ven: de quien LLEGA de cada canal, cuántos PULSAN descargar. El canal
+        sale del utm_source de entrada; si no hay, es directo. */
+
+  var METRICAS = 'https://nihongo-sensei-metricas.nihongosenseiapp.deno.net/m';
+  var CANALES = ['instagram', 'reddit', 'discord', 'clase', 'web'];
+  var canal = 'directo';
   try{
     var q = new URLSearchParams(location.search);
     var src = q.get('utm_source');
+    if(src && CANALES.indexOf(src) !== -1) canal = src;
+
+    // Android: reenviar el utm como referrer para que Play Console atribuya la instalación.
     if(src){
       var camp = q.get('utm_campaign') || src;
-      var med  = q.get('utm_medium') || 'cpc';
-      document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a){
-        var u = new URL(a.href, location.href); u.searchParams.set('ct', camp); a.href = u.toString();
-      });
+      var med  = q.get('utm_medium') || 'social';
       document.querySelectorAll('a[href*="play.google.com"]').forEach(function(a){
         var u = new URL(a.href, location.href);
         u.searchParams.set('referrer', 'utm_source='+src+'&utm_medium='+med+'&utm_campaign='+camp);
@@ -101,4 +113,24 @@
       });
     }
   }catch(e){}
+
+  /* El beacon: sobrevive a que la página se vaya a la tienda (por eso sendBeacon y no
+     fetch), manda text/plain -petición simple, sin preflight- y nunca bloquea la
+     navegación. Si el navegador no lo soporta o falla, no pasa nada: un clic sin contar
+     es mejor que un clic que se retrasa. */
+  function marca(evento){
+    try{
+      var cuerpo = JSON.stringify({ e: evento, o: canal });
+      if(navigator.sendBeacon){ navigator.sendBeacon(METRICAS, cuerpo); return; }
+      fetch(METRICAS, { method:'POST', body:cuerpo, keepalive:true, mode:'no-cors' });
+    }catch(e){}
+  }
+
+  marca('visit');
+  document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a){
+    a.addEventListener('click', function(){ marca('ios'); });
+  });
+  document.querySelectorAll('a[href*="play.google.com"]').forEach(function(a){
+    a.addEventListener('click', function(){ marca('android'); });
+  });
 })();
