@@ -28,7 +28,6 @@
     if(hv.getAttribute('src') === src) return;      // ya es el de esta piel: no recargar
     hv.setAttribute('poster', 'img/' + v[1]);
     hv.setAttribute('src', src);
-    if(hv.parentElement) hv.parentElement.style.backgroundImage = 'url(img/' + v[1] + ')';  // fallback de pantalla estrecha, también por piel
     try{ hv.load(); var pr = hv.play(); if(pr && pr.catch) pr.catch(function(){}); }catch(e){}
   }
   function applySkin(id){
