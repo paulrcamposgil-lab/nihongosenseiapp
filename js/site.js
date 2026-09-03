@@ -58,4 +58,28 @@
     else if(!/^es/i.test(navigator.language || '')) start = 'en';
   }catch(e){}
   applyLang(start);
+
+  /* ---- atribución de campaña, SIN cookies (Code) ----
+     Si el visitante llega desde el anuncio (?utm_source=...), se etiquetan los enlaces
+     a las tiendas para que las CONSOLAS atribuyan la instalación a la campaña, sin
+     trackers ni banner de consentimiento:
+       · Google Play  → &referrer=utm_...  (lo captura Play Console · Adquisición)
+       · App Store    → ?ct=campaña        (App Store Connect · Analytics · Campañas)
+     El visitante orgánico no lleva utm, así que sus clics quedan limpios. */
+  try{
+    var q = new URLSearchParams(location.search);
+    var src = q.get('utm_source');
+    if(src){
+      var camp = q.get('utm_campaign') || src;
+      var med  = q.get('utm_medium') || 'cpc';
+      document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a){
+        var u = new URL(a.href, location.href); u.searchParams.set('ct', camp); a.href = u.toString();
+      });
+      document.querySelectorAll('a[href*="play.google.com"]').forEach(function(a){
+        var u = new URL(a.href, location.href);
+        u.searchParams.set('referrer', 'utm_source='+src+'&utm_medium='+med+'&utm_campaign='+camp);
+        a.href = u.toString();
+      });
+    }
+  }catch(e){}
 })();
