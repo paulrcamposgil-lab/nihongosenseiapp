@@ -47,6 +47,12 @@ var l=localStorage.getItem("ns-lang");if(l)document.documentElement.setAttribute
 .tag b{color:var(--pl);font-weight:700}
 
 .cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:1.9em}
+/* X · la fila de las dos tiendas, debajo del botón grande y sin competir con él. */
+.cta-mini{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:.95em 0 0;font-size:.85rem;color:var(--t2)}
+.cta-mini a{display:inline-flex;align-items:center;gap:.4em;color:var(--t1);text-decoration:none;
+  border-bottom:1px solid var(--b);padding-bottom:1px}
+.cta-mini a:hover{border-bottom-color:var(--pl)}
+.cta-mini .glyph{width:15px;height:15px}
 .btn{
   display:inline-flex;align-items:center;gap:.55em;text-decoration:none;
   font-size:.94rem;font-weight:700;padding:.82em 1.5em;border-radius:12px;
@@ -235,6 +241,15 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       <a class="btn btn-1" id="ctaDescarga" href="https://apps.apple.com/app/id6789333985" data-t="cta1"></a>
       <a class="btn btn-2" href="#probar" data-t="cta2"></a>
     </div>
+    <!-- X.3 y X.4 (15-sep-2026) · las dos tiendas, SIN bajar. El botón grande lleva a
+         la que toca, pero un visitante de Android que llegó aquí creyendo que esto es
+         «solo para iPhone» necesita verlo escrito y ver su tienda, no deducirlo. Los
+         badges del pie seguían estando a una página entera de scroll. -->
+    <p class="cta-mini rev-in">
+      <span data-t="ambas"></span>
+      <a href="https://apps.apple.com/app/id6789333985"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.05 12.53c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.71-3.19-1.73-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.18-1.54 2.67-.39 6.62 1.11 8.79.73 1.06 1.6 2.25 2.74 2.21 1.1-.04 1.52-.71 2.85-.71 1.33 0 1.71.71 2.87.69 1.19-.02 1.94-1.08 2.66-2.15.84-1.23 1.19-2.42 1.21-2.48-.03-.01-2.31-.89-2.33-3.53zM14.9 5.6c.61-.74 1.02-1.77.91-2.8-.88.04-1.94.59-2.57 1.32-.56.65-1.05 1.7-.92 2.7.98.08 1.98-.5 2.58-1.22z"/></svg>App Store</a>
+      <a href="https://play.google.com/store/apps/details?id=com.nihongonosensei.app"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.1 2.4a1.5 1.5 0 0 0-.6 1.2v16.8a1.5 1.5 0 0 0 .6 1.2l.1.1 9.4-9.6v-.2L4.2 2.3l-.1.1zm10.9 6.7L5.1 2.3l8.6 8.8 1.3-2zm0 5.8-1.3-2-8.6 8.8 9.9-6.8zm.9-3.5-2.4-1.4-1.4 2.1 1.4 2.1 2.5-1.4c.7-.4.7-1 0-1.4z"/></svg>Google Play</a>
+    </p>
     <div class="hero-video rev-in">
       <video poster="img/intro_poster.webp"
              autoplay muted loop playsinline preload="metadata"
@@ -450,6 +465,7 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       h1:'Minna no Nihongo,<br>lección a lección.',
       lead:'La app que sigue el orden de tus clases: el vocabulario de <em>esa</em> lección, no el que elige un algoritmo. 28 lecciones: todo el primer libro y el comienzo del segundo. Y las respuestas se escriben.',
       cta1:'Descargar', cta2:'Probarla aquí abajo',
+      ambas:'Para iPhone y para Android:',
 
       s1eye:'Escribes, no eliges',
       s1h:'Cuatro botones no enseñan a conjugar.',
@@ -522,6 +538,7 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       h1:'Minna no Nihongo,<br>lesson by lesson.',
       lead:'The app that follows the order of your classes: the vocabulary from <em>that</em> lesson, not what an algorithm picked. 28 lessons: all of the first book and the start of the second. And you type the answers.',
       cta1:'Download', cta2:'Try it right here',
+      ambas:'For iPhone and for Android:',
 
       s1eye:'You write it, you don’t pick it',
       s1h:'Four buttons never taught anyone to conjugate.',

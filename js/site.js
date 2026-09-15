@@ -110,6 +110,15 @@
   var IOS_URL = 'https://apps.apple.com/app/id6789333985';
   var AND_URL = 'https://play.google.com/store/apps/details?id=com.nihongonosensei.app';
   function sistema(){
+    // userAgentData primero: es el dato que los navegadores están dejando de meter en
+    // el user-agent (Chrome lo congela por privacidad), así que el UA a secas envejece.
+    try{
+      var p = navigator.userAgentData && navigator.userAgentData.platform;
+      if(p){
+        if(/android/i.test(p)) return 'android';
+        if(/ios|iphone|ipad/i.test(p)) return 'ios';
+      }
+    }catch(e){}
     var ua = navigator.userAgent || '';
     if(/Android/i.test(ua)) return 'android';
     // iPadOS 13+ se presenta como un Mac: se distingue por el táctil.
