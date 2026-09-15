@@ -103,6 +103,40 @@ const andUtm = await visita(UA.android);
 ok(/referrer=/.test(andUtm.href) && /utm_source%3Dinstagram|utm_source=instagram/.test(decodeURIComponent(andUtm.href)),
   'Android · el enlace conserva el referrer del utm (atribución de Play)', andUtm.href);
 
+// ── X.3 · LAS DOS TIENDAS SE VEN SIN BAJAR ──────────────────────────────────
+// Estaban en el pie, a una página entera de scroll. Se mide en una pantalla de móvil
+// de verdad: los dos enlaces tienen que caer DENTRO de lo que se ve al llegar.
+await env('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 3, mobile: true });
+await visita(UA.android);
+const arriba = await env('Runtime.evaluate', { expression: `(function(){
+  var f = document.querySelector('.cta-mini'); if(!f) return JSON.stringify({falta:true});
+  var as = [].slice.call(f.querySelectorAll('a'));
+  var ios = as.filter(function(a){return /apps.apple.com/.test(a.href);}).length;
+  var and = as.filter(function(a){return /play.google.com/.test(a.href);}).length;
+  var r = f.getBoundingClientRect();
+  return JSON.stringify({ios:ios, and:and, top:Math.round(r.top), bottom:Math.round(r.bottom),
+                         alto:window.innerHeight, texto:(f.textContent||'').trim().slice(0,40)});
+})()`, returnByValue: true });
+const A = JSON.parse(arriba.result.value);
+ok(A.ios === 1 && A.and === 1, 'X.3 · las dos tiendas están junto al botón grande', arriba.result.value);
+ok(A.bottom > 0 && A.bottom <= A.alto, 'X.3 · y se ven sin bajar en una pantalla de móvil', arriba.result.value);
+
+// ── X.4 · Y SE LEE, EN TEXTO, QUE HAY PARA LAS DOS ─────────────────────────
+const dice = await env('Runtime.evaluate', { expression: `(function(){
+  var out = {};
+  ['es','en'].forEach(function(L){
+    try{ applyLang(L); }catch(e){}
+    var f = document.querySelector('.cta-mini');
+    out[L] = f ? (f.textContent||'').replace(/\s+/g,' ').trim() : '';
+  });
+  try{ applyLang('es'); }catch(e){}
+  return JSON.stringify(out);
+})()`, returnByValue: true });
+const D = JSON.parse(dice.result.value);
+ok(/iPhone/i.test(D.es) && /Android/i.test(D.es), 'X.4 · en español dice que hay para iPhone y Android', dice.result.value);
+ok(/iPhone/i.test(D.en) && /Android/i.test(D.en), 'X.4 · y en inglés también', dice.result.value);
+await env('Emulation.clearDeviceMetricsOverride');
+
 let fallos = 0;
 for (const [okk, nombre, det] of res) {
   console.log(`  ${okk ? '✅' : '❌'} ${nombre}${okk ? '' : '\n        → ' + det}`);
