@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.nihongosensei.metricas</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string>
+    <string>/Users/paulcampos/Developer/nihongosenseiapp/tools/metricas_foto.py</string>
+  </array>
+  <!-- Dos veces al día. Las horas NO son en punto a propósito: una foto a las 09:00
+       en punto compite con todo lo que el sistema programa a esa hora. -->
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict><key>Hour</key><integer>9</integer><key>Minute</key><integer>7</integer></dict>
+    <dict><key>Hour</key><integer>21</integer><key>Minute</key><integer>7</integer></dict>
+  </array>
+  <key>StandardOutPath</key><string>/tmp/ns_metricas.log</string>
+  <key>StandardErrorPath</key><string>/tmp/ns_metricas.err</string>
+  <key>RunAtLoad</key><false/>
+</dict>
+</plist>
