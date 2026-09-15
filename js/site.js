@@ -94,6 +94,39 @@
         tiendas no ven: de quien LLEGA de cada canal, cuántos PULSAN descargar. El canal
         sale del utm_source de entrada; si no hay, es directo. */
 
+  /* ---- EL BOTÓN GRANDE LLEVA A LA TIENDA DEL QUE MIRA (15-sep-2026) --------
+     Estaba clavado en apps.apple.com. Es el único botón que se ve sin bajar, así que
+     un visitante con Android pulsaba «Descargar» y acababa en la App Store, que en su
+     teléfono no le ofrece nada; los badges de las dos tiendas viven al final de una
+     página larga. Desde el 4 de septiembre hay campañas pagando por traer gente aquí.
+
+     Cuando NO se sabe qué aparato es (escritorio, un navegador raro), no se adivina:
+     se baja a la sección de descarga, que enseña los dos badges y deja elegir. Es la
+     misma regla que rompió esto — decidir por el visitante— aplicada al revés.
+
+     Va ANTES del bloque de métricas a propósito: ése engancha los contadores mirando
+     el href, así que reescribirlo aquí hace que el clic se cuente en la tienda que de
+     verdad se abre, y que el referrer de Play se añada al enlace bueno. */
+  var IOS_URL = 'https://apps.apple.com/app/id6789333985';
+  var AND_URL = 'https://play.google.com/store/apps/details?id=com.nihongonosensei.app';
+  function sistema(){
+    var ua = navigator.userAgent || '';
+    if(/Android/i.test(ua)) return 'android';
+    // iPadOS 13+ se presenta como un Mac: se distingue por el táctil.
+    if(/iPad|iPhone|iPod/.test(ua)) return 'ios';
+    if(navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) return 'ios';
+    return null;
+  }
+  try{
+    var cta = document.getElementById('ctaDescarga');
+    if(cta){
+      var so = sistema();
+      if(so === 'android') cta.href = AND_URL;
+      else if(so === 'ios') cta.href = IOS_URL;
+      else cta.href = '#descargar';   // que elija él, con los dos badges delante
+    }
+  }catch(e){}
+
   var METRICAS = 'https://nihongo-sensei-metricas.nihongosenseiapp.deno.net/m';
   var CANALES = ['instagram', 'reddit', 'discord', 'clase', 'web'];
   var canal = 'directo';
