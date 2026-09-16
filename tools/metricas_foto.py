@@ -96,6 +96,13 @@ if __name__ == '__main__':
 #   launchctl load ~/Library/LaunchAgents/com.nihongosensei.metricas.plist
 #   launchctl start com.nihongosensei.metricas     # y se COMPRUEBA que escribió
 #
-# Dispara a las 09:07 y 21:07. Las horas no son en punto a proposito: a las 09:00
-# en punto compite con todo lo que el sistema programa a esa hora.
+# Dispara a las 00:04, 09:07 y 21:07. Las horas no son en punto a proposito: a las
+# 09:00 en punto compite con todo lo que el sistema programa a esa hora.
+#
+# LA DE LAS 00:04 ES LA QUE HACE QUE «HOY» SIGNIFIQUE ALGO. Con solo dos fotos al dia
+# no habia ningun corte en el cambio de fecha: la herramienta daba diferencias exactas
+# ENTRE FOTOS —que ya es mucho mejor que estimar— pero «los clics de hoy» seguia sin
+# poder contestarse, porque habia que restar dos ventanas que se comian parte del dia
+# anterior. Lo pidio Paul el 16-sep-2026 preguntando «cuantos clics de hoy» a las
+# 00:16, cuando «hoy» tenia dieciseis minutos y la respuesta honesta fue «no se puede».
 # El registro queda en /tmp/ns_metricas.log y los errores en /tmp/ns_metricas.err.
