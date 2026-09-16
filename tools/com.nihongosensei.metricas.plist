@@ -8,10 +8,16 @@
     <string>/usr/bin/python3</string>
     <string>/Users/paulcampos/Developer/nihongosenseiapp/tools/metricas_foto.py</string>
   </array>
-  <!-- Dos veces al día. Las horas NO son en punto a propósito: una foto a las 09:00
-       en punto compite con todo lo que el sistema programa a esa hora. -->
+  <!-- TRES AL DÍA, y la de medianoche es la que hace que «hoy» signifique algo.
+       Con solo 09:07 y 21:07 no habia ningun corte en el cambio de dia, asi que la
+       herramienta daba diferencias exactas ENTRE FOTOS pero nunca dias naturales:
+       para saber los clics del dia 16 habia que restar dos ventanas que se comian
+       parte del 15. La de las 00:04 pone la linea donde el calendario la pone.
+       Las horas NO son en punto a proposito: a las 00:00 y a las 09:00 compiten con
+       todo lo que el sistema programa ahi. -->
   <key>StartCalendarInterval</key>
   <array>
+    <dict><key>Hour</key><integer>0</integer><key>Minute</key><integer>4</integer></dict>
     <dict><key>Hour</key><integer>9</integer><key>Minute</key><integer>7</integer></dict>
     <dict><key>Hour</key><integer>21</integer><key>Minute</key><integer>7</integer></dict>
   </array>
