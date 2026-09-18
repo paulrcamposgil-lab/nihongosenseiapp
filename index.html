@@ -183,6 +183,7 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 .b-sd{--sw-bg:#1E161C;--sw-p:#EFA3C8;--sw-t:#FFFFFF}
 .b-sl{--sw-bg:#FAFAFA;--sw-p:#B84A70;--sw-t:#2B2B2B}
 .b-kj{--sw-bg:#0A0E1A;--sw-p:#FF3D9A;--sw-t:#F5F7FF}
+.b-yg{--sw-bg:#0B0F0D;--sw-p:#B8B5AA;--sw-t:#F2F1EC}
 .b-fd{--sw-bg:#0E1420;--sw-p:#7FB0D8;--sw-t:#F1F6FC}
 .b-fl{--sw-bg:#EEF3F8;--sw-p:#33608F;--sw-t:#16233A}
 .b-ad{--sw-bg:#1B0D06;--sw-p:#E8814F;--sw-t:#FFF3EA}
@@ -210,7 +211,7 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 <header>
   <div class="wrap hrow">
     <a class="mark" href="#top" aria-label="Nihongo Sensei">
-      <span class="tree" aria-hidden="true"><i class="ic-s"></i><i class="ic-a"></i><i class="ic-f"></i><i class="ic-k"></i></span>
+      <span class="tree" aria-hidden="true"><i class="ic-s"></i><i class="ic-a"></i><i class="ic-f"></i><i class="ic-k"></i><i class="ic-y"></i></span>
       <span class="name">Nihongo Sensei</span>
     </a>
     <div class="tools">
@@ -226,6 +227,7 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
         <button class="skin s-fd" data-set="fuyu-dark"    aria-label="Fuyu · dark"></button>
         <button class="skin s-fl" data-set="fuyu-light"   aria-label="Fuyu · light"></button>
         <button class="skin s-kj" data-set="kaiju"        aria-label="Kaiju"></button>
+        <button class="skin s-yg" data-set="yugen"        aria-label="Yugen"></button>
       </div>
     </div>
   </div>
@@ -406,6 +408,7 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
         <button class="sb b-fd" data-set="fuyu-dark"><span class="dot"></span><span class="n">冬 · 夜</span><span class="d" data-t="sk4"></span></button>
         <button class="sb b-fl" data-set="fuyu-light"><span class="dot"></span><span class="n">冬 · 雪</span><span class="d" data-t="sk5"></span></button>
         <button class="sb b-kj" data-set="kaiju"><span class="dot"></span><span class="n">怪獣</span><span class="d" data-t="sk3"></span></button>
+        <button class="sb b-yg" data-set="yugen"><span class="dot"></span><span class="n">幽玄</span><span class="d" data-t="sk8"></span></button>
       </div>
     </div>
   </div>
@@ -512,9 +515,9 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       rm6h:'Números', rm6p:'Con las lecturas que cambian: 300, 600, 800, 3000, 8000.',
 
       s5eye:'Apariencia', s5h:'La app se viste como tú.',
-      s5p1:'Tres paletas, cinco apariencias. Y no es una demostración: <strong>estos botones pintan esta página con los colores exactos de la app.</strong>',
+      s5p1:'Cinco paletas, ocho apariencias. Y no es una demostración: <strong>estos botones pintan esta página con los colores exactos de la app.</strong>',
       s5p2:'Pruébalos. Lo que ves es lo que vas a tener.',
-      sk1:'Sakura · oscuro', sk2:'Hanami · claro', sk3:'Kaiju · solo noche', sk4:'Fuyu · noche', sk5:'Fuyu · nieve', sk6:'Aki · noche', sk7:'Aki · atardecer', /* sk6/sk7 (aki) al final por no renumerar; en pantalla van entre sakura y fuyu */
+      sk1:'Sakura · oscuro', sk2:'Hanami · claro', sk3:'Kaiju · solo noche', sk4:'Fuyu · noche', sk5:'Fuyu · nieve', sk6:'Aki · noche', sk7:'Aki · atardecer', sk8:'Yūgen · solo noche', /* sk6/sk7 (aki) y sk8 (yugen) al final por no renumerar; en pantalla van en su sitio */
 
       s6eye:'Lo que no lleva', s6h:'Nada de lo de siempre.',
       w1:'<b>Sin</b> cuenta', w2:'<b>Sin</b> registro', w3:'<b>Sin</b> anuncios',
@@ -585,9 +588,9 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       rm6h:'Numbers', rm6p:'Including the readings that change: 300, 600, 800, 3000, 8000.',
 
       s5eye:'Appearance', s5h:'The app dresses like you.',
-      s5p1:'Three palettes, five looks. And this isn’t a mock-up: <strong>these buttons repaint this page with the app’s exact colours.</strong>',
+      s5p1:'Five palettes, eight looks. And this isn’t a mock-up: <strong>these buttons repaint this page with the app’s exact colours.</strong>',
       s5p2:'Try them. What you see is what you get.',
-      sk1:'Sakura · dark', sk2:'Hanami · light', sk3:'Kaiju · dark only', sk4:'Fuyu · night', sk5:'Fuyu · snow', sk6:'Aki · night', sk7:'Aki · dusk',
+      sk1:'Sakura · dark', sk2:'Hanami · light', sk3:'Kaiju · dark only', sk4:'Fuyu · night', sk5:'Fuyu · snow', sk6:'Aki · night', sk7:'Aki · dusk', sk8:'Yūgen · dark only',
 
       s6eye:'What it doesn’t have', s6h:'None of the usual.',
       w1:'<b>No</b> account', w2:'<b>No</b> sign-up', w3:'<b>No</b> ads',

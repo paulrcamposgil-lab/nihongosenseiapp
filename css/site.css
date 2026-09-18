@@ -65,6 +65,19 @@
   --m1:#FFC2DF; --m2:#FF8FC2; --m3:#FF5CAB; --m4:#FF3D9A; --m5:#C7176F;
   --sh:0 2px 16px rgba(0,0,0,.6); --sh-lg:0 24px 70px rgba(0,0,0,.7);
 }
+/* Yūgen (幽玄) · la quinta, y la unica monocroma: grises con un sesgo verde muy leve
+   y un hueso calido que es el kimono y la luz de los faroles. Copiada TAL CUAL de
+   quiz_app.html —[data-skin="yugen"]—, que es donde vive el original: la web y la app
+   tienen que ensenar el MISMO yugen.
+   Solo tiene cara oscura, como kaiju. */
+:root[data-appearance="yugen"]{
+  --bg:#0B0F0D; --card:#141A17; --card2:#1D2621; --b:#2C3733;
+  --p:#B8B5AA; --pl:#D6D3C8; --ps:rgba(184,181,170,0.13);
+  --t1:#F2F1EC; --t2:#B9BEB8; --t3:#7C867E;
+  --green:#5FA882; --red:#C46A6A; --warn:#C89257;
+  --m1:#3A443F; --m2:#55615B; --m3:#74807A; --m4:#96A099; --m5:#C3C7C0;
+  --sh:0 2px 18px rgba(0,0,0,.6); --sh-lg:0 24px 70px rgba(0,0,0,.7);
+}
 :root[data-appearance="fuyu-dark"]{
   --bg:#0E1420; --card:#161F30; --card2:#1E2A42; --b:#2C3A57;
   --p:#7FB0D8; --pl:#A7D4EC; --ps:rgba(127,176,216,0.14);
@@ -138,12 +151,15 @@ header{
 .tree .ic-f{background-image:url(../img/icon-fuyu.webp)}
 .tree .ic-k{background-image:url(../img/icon-kaiju.webp)}
 .tree .ic-a{background-image:url(../img/icon-aki.webp)}
+.tree .ic-y{background-image:url(../img/icon-yugen.webp)}
 [data-appearance^="aki"] .tree .ic-s{opacity:0}
 [data-appearance^="aki"] .tree .ic-a{opacity:1}
 [data-appearance^="fuyu"] .tree .ic-s{opacity:0}
 [data-appearance^="fuyu"] .tree .ic-f{opacity:1}
 [data-appearance="kaiju"] .tree .ic-s{opacity:0}
 [data-appearance="kaiju"] .tree .ic-k{opacity:1}
+[data-appearance="yugen"] .tree .ic-s{opacity:0}
+[data-appearance="yugen"] .tree .ic-y{opacity:1}
 .mark:hover .tree{transform:rotate(-4deg) scale(1.06)}
 @media(max-width:520px){.mark .name{display:none}}
 .tools{display:flex;align-items:center;gap:14px}
@@ -174,6 +190,7 @@ header{
 .s-fl{--sw-bg:#EEF3F8;--sw-p:#5E93C4}
 .s-ad{--sw-bg:#1B0D06;--sw-p:#E8814F}
 .s-al{--sw-bg:#FBF4EC;--sw-p:#C4552B}
+.s-yg{--sw-bg:#0B0F0D;--sw-p:#B8B5AA}
 
 footer{border-top:1px solid var(--b);padding:34px 0 58px;transition:border-color .5s ease}
 footer p{color:var(--t3);font-size:.81rem;margin:0 0 .5em}

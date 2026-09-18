@@ -19,7 +19,8 @@
     sakura: ['intro_web.mp4', 'intro_poster.webp'],
     aki:    ['intro_aki.mp4', 'poster_aki.webp'],
     fuyu:   ['intro_fuyu.mp4', 'poster_fuyu.webp'],
-    kaiju:  ['intro_kaiju.mp4', 'poster_kaiju.webp']
+    kaiju:  ['intro_kaiju.mp4', 'poster_kaiju.webp'],
+    yugen:  ['intro_yugen.mp4', 'poster_yugen.webp']
   };
   function _heroVideo(id){
     var v = _VIDS[(id || '').split('-')[0]]; if(!v) return;
