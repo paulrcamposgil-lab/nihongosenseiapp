@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Nihongo Sensei: Minna — la app para estudiar japonés lección a lección</title>
-<meta name="description" content="App gratuita para estudiar japonés siguiendo Minna no Nihongo lección a lección. 1.061 palabras con audio, 1.061 frases, ejercicios donde escribes la respuesta. Sin cuenta, sin anuncios, funciona sin conexión.">
+<meta name="description" content="App gratuita para estudiar japonés siguiendo Minna no Nihongo lección a lección. 1.224 palabras con audio, 1.224 frases, ejercicios donde escribes la respuesta. Sin cuenta, sin anuncios, funciona sin conexión.">
 <link rel="canonical" href="https://nihongosenseiapp.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Nihongo Sensei: Minna">
 <meta property="og:title" content="Nihongo Sensei: Minna — japonés, lección a lección">
-<meta property="og:description" content="1.061 palabras con audio, 1.061 frases y ejercicios donde escribes la respuesta. Gratis, sin cuenta y sin conexión.">
+<meta property="og:description" content="1.224 palabras con audio, 1.224 frases y ejercicios donde escribes la respuesta. Gratis, sin cuenta y sin conexión.">
 <meta property="og:url" content="https://nihongosenseiapp.com/">
 <meta property="og:image" content="https://nihongosenseiapp.com/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -414,6 +414,19 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
   </div>
 </section>
 
+<!-- QUE CUESTA. La seccion faltaba entera, y su ausencia es justo lo que las
+     resenas del lider de la categoria le reprochan: no dicen «caro», dicen «se
+     honesto sobre si es de pago». Va ANTES de «lo que no lleva» porque quien llega
+     buscando el precio no deberia tener que bajar hasta el final. -->
+<section>
+  <div class="wrap narrow rev-in">
+    <span class="eyebrow" data-t="precioEye"></span>
+    <h2 data-t="precioH"></h2>
+    <p style="margin-top:1.2em" data-t="precioP"></p>
+    <p style="margin-top:.9em;opacity:.75" data-t="precioC"></p>
+  </div>
+</section>
+
 <section>
   <span class="swm r top" aria-hidden="true">無</span>
   <div class="wrap narrow rev-in">
@@ -464,9 +477,9 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
   /* ================= idioma ================= */
   var T = {
     es:{
-      tag:'Gratis · Sin anuncios · <b>Funciona sin conexión</b>',
+      tag:'El curso, gratis · Sin anuncios · <b>Funciona sin conexión</b>',
       h1:'Minna no Nihongo,<br>lección a lección.',
-      lead:'La app que sigue el orden de tus clases: el vocabulario de <em>esa</em> lección, no el que elige un algoritmo. 28 lecciones: todo el primer libro y el comienzo del segundo. Y las respuestas se escriben.',
+      lead:'La app que sigue el orden de tus clases: el vocabulario de <em>esa</em> lección, no el que elige un algoritmo. 30 lecciones: todo el primer libro y el comienzo del segundo. Y las respuestas se escriben.',
       cta1:'Descargar', cta2:'Probarla aquí abajo',
       ambas:'Para iPhone y para Android:',
 
@@ -501,7 +514,7 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 
       s8eye:'Por dentro', s8h:'Cinco pestañas, y ya.',
       tb1h:'Hoy', tb1p:'Lo que toca repasar hoy. Nada más, y por eso se hace.',
-      tb2h:'Curso', tb2p:'28 lecciones con su vocabulario, su gramática y sus frases.',
+      tb2h:'Curso', tb2p:'30 lecciones con su vocabulario, su gramática y sus frases.',
       tb3h:'Entrenos', tb3p:'Vocabulario, kanji, kana y Escuchar, con los filtros que quieras.',
       tb4h:'Biblioteca', tb4p:'Kana y kanji para consultar. Aquí no se examina a nadie.',
       tb5h:'Dojo', tb5p:'Las seis salas donde se entrena de verdad.',
@@ -522,6 +535,13 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       s6eye:'Lo que no lleva', s6h:'Nada de lo de siempre.',
       w1:'<b>Sin</b> cuenta', w2:'<b>Sin</b> registro', w3:'<b>Sin</b> anuncios',
       w4:'<b>Sin</b> seguimiento', w5:'<b>Sin</b> rachas que te culpan', w6:'<b>Sin</b> conexión',
+      // QUE ES GRATIS, QUE SE PAGA Y CUANTO CUESTA. Faltaba, y su ausencia es
+      // exactamente lo que las resenas del lider de la categoria le reprochan: no
+      // dicen «caro», dicen «se honesto sobre si es de pago». El precio se escribe
+      // aqui porque es la web, no la app — en la app lo pone la tienda.
+      precioEye:'Qué cuesta', precioH:'El curso, gratis. Lo nuestro, de pago.',
+      precioP:'Todo el material del curso —1.224 palabras con audio, 290 kanji, las frases y las 30 lecciones— es gratis y se queda gratis. Lo que se paga es lo que hemos construido nosotros: el dojo, donde entrenas hasta que te sale solo, y las clases guiadas de la 4 en adelante. Las tres primeras son tuyas para siempre.',
+      precioC:'19,99 € al año, con 7 días de prueba. Sin cuenta y sin renovación sorpresa: lo gestiona tu tienda.',
       s6p:'El curso entero es gratis y se queda gratis. La escribí porque la necesitaba yo: estudio japonés en una academia y la app que quería no existía en español.',
 
       s7h:'Empieza por tu lección.',
@@ -537,9 +557,9 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       fp:'Privacidad', ft:'Términos', fs:'Soporte'
     },
     en:{
-      tag:'Free · No ads · <b>Works offline</b>',
+      tag:'The course, free · No ads · <b>Works offline</b>',
       h1:'Minna no Nihongo,<br>lesson by lesson.',
-      lead:'The app that follows the order of your classes: the vocabulary from <em>that</em> lesson, not what an algorithm picked. 28 lessons: all of the first book and the start of the second. And you type the answers.',
+      lead:'The app that follows the order of your classes: the vocabulary from <em>that</em> lesson, not what an algorithm picked. 30 lessons: all of the first book and the start of the second. And you type the answers.',
       cta1:'Download', cta2:'Try it right here',
       ambas:'For iPhone and for Android:',
 
@@ -574,7 +594,7 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 
       s8eye:'Inside', s8h:'Five tabs, that’s all.',
       tb1h:'Today', tb1p:'What’s due today. Nothing else — which is why it gets done.',
-      tb2h:'Course', tb2p:'28 lessons with their vocabulary, grammar and sentences.',
+      tb2h:'Course', tb2p:'30 lessons with their vocabulary, grammar and sentences.',
       tb3h:'Drills', tb3p:'Vocabulary, kanji, kana and Listen, filtered however you like.',
       tb4h:'Library', tb4p:'Kana and kanji to look things up. Nobody gets tested here.',
       tb5h:'Dojo', tb5p:'The six rooms where the real training happens.',
@@ -595,6 +615,9 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       s6eye:'What it doesn’t have', s6h:'None of the usual.',
       w1:'<b>No</b> account', w2:'<b>No</b> sign-up', w3:'<b>No</b> ads',
       w4:'<b>No</b> tracking', w5:'<b>No</b> guilt-trip streaks', w6:'<b>No</b> connection needed',
+      precioEye:'What it costs', precioH:'The course, free. Our own work, paid.',
+      precioP:'All the course material —1,224 words with audio, 290 kanji, the sentences and the 30 lessons— is free and stays free. What you pay for is what we built: the dojo, where you train until it comes out by itself, and the guided classes from 4 on. The first three are yours for good.',
+      precioC:'€19.99 a year, with a 7-day trial. No account and no surprise renewal: your store handles it.',
       s6p:'The whole course is free and stays free. I wrote it because I needed it: I study Japanese in a class, and the app I wanted didn’t exist.',
 
       s7h:'Start at your lesson.',
