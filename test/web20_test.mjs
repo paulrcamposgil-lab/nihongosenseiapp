@@ -30,7 +30,7 @@ const srv = http.createServer((q, s) => {
   fs.createReadStream(f).pipe(s);
 });
 await new Promise((r) => srv.listen(0, '127.0.0.1', r));
-const URL_WEB = `http://127.0.0.1:${srv.address().port}/index.html`;
+const URL_WEB = process.env.WEB_URL || `http://127.0.0.1:${srv.address().port}/index.html`;
 const perfil = fs.mkdtempSync('/tmp/web-');
 const PUERTO = 9600 + (process.pid % 200);
 const proc = spawn(chrome, ['--headless=new', `--remote-debugging-port=${PUERTO}`,
