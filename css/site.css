@@ -191,6 +191,18 @@ header{
 .s-ad{--sw-bg:#1B0D06;--sw-p:#E8814F}
 .s-al{--sw-bg:#FBF4EC;--sw-p:#C4552B}
 .s-yg{--sw-bg:#0B0F0D;--sw-p:#B8B5AA}
+/* 2.0 · A 375 PX LA FILA DE ESTILOS SE SALIA 10 PX por la derecha (ocho botones de 24 px y el
+   selector de idioma no caben). En pantallas estrechas, botones algo menores y huecos mas cortos. */
+@media(max-width:420px){
+  .tools{gap:10px}
+  .skins{gap:4px}
+  .skin{width:21px;height:21px}
+}
+@media(max-width:350px){
+  .tools{gap:8px}
+  .skins{gap:3px}
+  .skin{width:18px;height:18px}
+}
 
 footer{border-top:1px solid var(--b);padding:34px 0 58px;transition:border-color .5s ease}
 footer p{color:var(--t3);font-size:.81rem;margin:0 0 .5em}
