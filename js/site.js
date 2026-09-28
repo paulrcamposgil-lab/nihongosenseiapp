@@ -13,20 +13,18 @@
   var root = document.documentElement;
 
   /* ---- apariencia ---- */
-  /* El vídeo del hero cambia con la piel, y SOLO se descarga el de la piel elegida
-     (carga perezosa): se cambia el src cuando la piel cambia, no se precargan los cuatro. */
+  /* 2.0 · El vídeo del hero es el reel «Llegó el sensei», uno por IDIOMA (ya no uno por
+     piel). Solo se descarga el del idioma que se ve: se cambia el src al cambiar de idioma.
+     Las páginas hijas no tienen vídeo, y aquí no hacen nada. */
   var _VIDS = {
-    sakura: ['intro_web.mp4', 'intro_poster.webp'],
-    aki:    ['intro_aki.mp4', 'poster_aki.webp'],
-    fuyu:   ['intro_fuyu.mp4', 'poster_fuyu.webp'],
-    kaiju:  ['intro_kaiju.mp4', 'poster_kaiju.webp'],
-    yugen:  ['intro_yugen.mp4', 'poster_yugen.webp']
+    es: ['reel_es.mp4', 'reel_poster_es.jpg'],
+    en: ['reel_en.mp4', 'reel_poster_en.jpg']
   };
-  function _heroVideo(id){
-    var v = _VIDS[(id || '').split('-')[0]]; if(!v) return;
+  function _heroVideo(L){
+    var v = _VIDS[L] || _VIDS.es;
     var hv = document.querySelector('.hero-video video'); if(!hv) return;
     var src = 'img/' + v[0];
-    if(hv.getAttribute('src') === src) return;      // ya es el de esta piel: no recargar
+    if(hv.getAttribute('src') === src) return;      // ya es el de este idioma: no recargar
     hv.setAttribute('poster', 'img/' + v[1]);
     hv.setAttribute('src', src);
     try{ hv.load(); var pr = hv.play(); if(pr && pr.catch) pr.catch(function(){}); }catch(e){}
@@ -36,7 +34,6 @@
     document.querySelectorAll('.skin').forEach(function(b){
       b.setAttribute('aria-pressed', b.dataset.set === id ? 'true' : 'false');
     });
-    _heroVideo(id);
     try{ localStorage.setItem('ns-skin', id); }catch(e){}
   }
   document.querySelectorAll('[data-set]').forEach(function(b){
@@ -44,7 +41,6 @@
   });
   /* el <head> ya estampó data-appearance; aquí solo se refleja en los aria-pressed */
   try{ var sv = localStorage.getItem('ns-skin'); if(sv) applySkin(sv); }catch(e){}
-  _heroVideo(root.getAttribute('data-appearance') || 'sakura');   // carga el vídeo de la piel activa al abrir
 
   /* ---- idioma ----
      La portada define window.NS_STRINGS (las cadenas de los [data-t]) y,
@@ -64,6 +60,7 @@
     document.querySelectorAll('.lang button').forEach(function(b){
       b.setAttribute('aria-pressed', b.dataset.lang === L ? 'true' : 'false');
     });
+    _heroVideo(L);
     if(typeof window.NS_AFTER_LANG === 'function'){ window.NS_AFTER_LANG(L); }
     try{ localStorage.setItem('ns-lang', L); }catch(e){}
   }
