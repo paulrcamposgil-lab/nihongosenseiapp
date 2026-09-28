@@ -98,19 +98,71 @@ for (const L of ['es', 'en']) {
 // boton de colores de verdad (regla 5: cada estilo solo).
 const INTRO = { 'sakura-dark': 'img/intro_web.mp4', 'aki-dark': 'img/intro_aki.mp4', 'fuyu-dark': 'img/intro_fuyu.mp4', 'kaiju': 'img/intro_kaiju.mp4', 'yugen': 'img/intro_yugen.mp4' };
 for (const [set, esperado] of Object.entries(INTRO)) {
-  const r = await env('Runtime.evaluate', { returnByValue: true, expression: `(function(){ var b = document.querySelector('[data-set="${set}"]'); if (b) b.click(); var v = document.querySelector('.hero-video video'); return v ? v.getAttribute('src') : ''; })()` });
+  await env('Runtime.evaluate', { expression: `(function(){ var b = document.querySelector('[data-set="${set}"]'); if (b) b.click(); })()` });
+  await new Promise((z) => setTimeout(z, 1100));   // el cambio precarga y funde: se lee cuando ha acabado
+  const r = await env('Runtime.evaluate', { returnByValue: true, expression: `(function(){ var v = document.querySelector('.hero-video video'); return v ? v.getAttribute('src') : ''; })()` });
   ok(r.result.value === esperado, 'estilo ' + set + ' · el hero lleva su intro', r.result.value);
 }
 // «ASÍ SE VE» EN EL COLOR DEL ESTILO: cada una de las ocho apariencias, sola, pulsando su boton; las diez
 // capturas piden los ficheros de esa apariencia y del idioma, y esos ficheros existen de verdad.
 for (const ap of ['sakura-dark', 'sakura-light', 'aki-dark', 'aki-light', 'fuyu-dark', 'fuyu-light', 'kaiju', 'yugen']) {
-  const r = await env('Runtime.evaluate', { returnByValue: true, expression: `(function(){ var b = document.querySelector('[data-set="${ap}"]'); if (b) b.click();
-    return JSON.stringify([].map.call(document.querySelectorAll('.shots-row img'), function (i) { return i.getAttribute('src'); })); })()` });
+  await env('Runtime.evaluate', { expression: `(function(){ var b = document.querySelector('[data-set="${ap}"]'); if (b) b.click(); })()` });
+  await new Promise((z) => setTimeout(z, 1100));
+  const r = await env('Runtime.evaluate', { returnByValue: true, expression: `(function(){
+    return JSON.stringify([].map.call(document.querySelectorAll('.shots-row img:not(.ns-xfade)'), function (i) { return i.getAttribute('src'); })); })()` });
   const srcs = JSON.parse(r.result.value);
   const faltan = [];
   for (const s of srcs) { const f = path.join(RAIZ, s); if (!process.env.WEB_URL && !fs.existsSync(f)) faltan.push(s); }
   ok(srcs.length === 10 && srcs.every((s) => s.startsWith('img/cap/' + ap + '-')) && !faltan.length, 'estilo ' + ap + ' · las capturas son las de ese estilo (y existen)', (srcs[0] || '') + ' ' + faltan.slice(0, 2).join(' '));
 }
+// ── EL CAMBIO DE ESTILO, SUAVE (Paul: «el cambio es brusco») ──────────────────────────────────────────
+const leeJs = async (js) => JSON.parse((await env('Runtime.evaluate', { returnByValue: true, expression: '(function(){' + js + '})()' })).result.value);
+const zz = (ms) => new Promise((z) => setTimeout(z, ms));
+const pulsa = (ap) => env('Runtime.evaluate', { expression: `(function(){ var b = document.querySelector('[data-set="${ap}"]'); if (b) b.click(); })()` });
+const ESTADO = "var v = document.querySelectorAll('.hero-video video'), sh = [].slice.call(document.querySelectorAll('.shots-row img:not(.ns-xfade)'));" +
+  "return JSON.stringify({ ap: document.documentElement.getAttribute('data-appearance'), videos: v.length, vid: v.length ? v[0].getAttribute('src') : '', caps: sh.map(function (i) { return i.getAttribute('src'); })," +
+  " capas: document.querySelectorAll('.ns-xfade').length, clases: document.documentElement.className });";
+const final = (e, ap, intro) => e.ap === ap && e.videos === 1 && e.vid === intro && e.caps.length === 10 && e.caps.every((c) => c.indexOf('img/cap/' + ap + '-') === 0) && e.capas === 0 && !/ns-vt|ns-cambia/.test(e.clases);
+// (a) cambios rapidos seguidos: cuatro estilos a 120 ms; al final, el ultimo, entero, sin capas ni videos de sobra
+await pulsa('sakura-dark'); await zz(1100);
+for (const ap of ['aki-light', 'fuyu-dark', 'kaiju', 'yugen']) { await pulsa(ap); await zz(120); }
+await zz(1500);
+const rap = await leeJs(ESTADO);
+ok(final(rap, 'yugen', 'img/intro_yugen.mp4'), 'estilos · cuatro cambios seguidos: acaba en el ultimo, con su intro y sus capturas, sin capas ni videos de sobra', JSON.stringify(rap).slice(0, 220));
+// (a2) EL QUE LLEGA TARDE NO PINTA: con red lenta, un estilo pedido antes puede terminar de cargar DESPUES
+// de otro pedido luego. Se frena LA RED —desde el navegador, interceptando— solo para las capturas de
+// aki-light (900 ms), en español para que no salgan de la cache; se pide aki-light, al momento yugen, y
+// tiene que quedar yugen. Sin el numero de turno, aki-light pisaba a yugen al llegar.
+await env('Runtime.evaluate', { expression: "document.querySelector('.lang button[data-lang=es]').click();" });
+await pulsa('sakura-dark'); await zz(1100);
+const _onmsg = ws.onmessage;
+ws.onmessage = (e) => { const m = JSON.parse(e.data); if (m.method === 'Fetch.requestPaused') { const rid = m.params.requestId; setTimeout(() => { env('Fetch.continueRequest', { requestId: rid }); }, 900); return; } _onmsg(e); };
+await env('Fetch.enable', { patterns: [{ urlPattern: '*aki-light-*' }] });
+await pulsa('aki-light'); await zz(60); await pulsa('yugen'); await zz(2600);
+const tarde = await leeJs(ESTADO);
+await env('Fetch.disable'); ws.onmessage = _onmsg;
+ok(final(tarde, 'yugen', 'img/intro_yugen.mp4'), 'estilos · con red lenta, el estilo pedido antes no pisa al ultimo', JSON.stringify(tarde).slice(0, 200));
+// (b) nunca un hueco en blanco: a mitad del cambio, las capturas que se ven estan cargadas y hay un video
+await pulsa('sakura-light'); await zz(150);
+const medio = await leeJs("var sh = [].slice.call(document.querySelectorAll('.shots-row img')); return JSON.stringify({ vacias: sh.filter(function (i) { return !i.getAttribute('src') || (i.complete && i.naturalWidth === 0); }).length, videos: document.querySelectorAll('.hero-video video').length });");
+ok(medio.vacias === 0 && medio.videos >= 1, 'estilos · a mitad del fundido no hay ninguna captura vacia ni se queda sin intro', JSON.stringify(medio));
+await zz(1200);
+// (c) sin View Transitions: los colores cambian con 400 ms, las capas se funden y se van
+await env('Runtime.evaluate', { expression: "window.__vt = document.startViewTransition; document.startViewTransition = undefined;" });
+await pulsa('fuyu-light'); await zz(1100);
+const durante = await leeJs("var c = document.querySelector('.room') || document.body; return JSON.stringify({ clase: document.documentElement.classList.contains('ns-cambia'), dur: getComputedStyle(c).transitionDuration });");
+await pulsa('aki-dark'); await zz(250);
+const enMedio = await leeJs("var c = document.querySelector('.room') || document.body; return JSON.stringify({ clase: document.documentElement.classList.contains('ns-cambia'), dur: getComputedStyle(c).transitionDuration, capas: document.querySelectorAll('.ns-xfade').length });");
+await zz(1000);
+const tras = await leeJs(ESTADO);
+await env('Runtime.evaluate', { expression: "document.startViewTransition = window.__vt;" });
+ok(enMedio.clase && /0\.4s/.test(enMedio.dur) && enMedio.capas > 0, 'estilos · sin View Transitions: colores a 400 ms y fundido cruzado por capas', JSON.stringify(enMedio));
+ok(final(tras, 'aki-dark', 'img/intro_aki.mp4'), 'estilos · sin View Transitions: al acabar, sin capas ni clase, y todo del estilo nuevo', JSON.stringify(tras).slice(0, 200));
+// (d) «reducir movimiento»: instantaneo (se lee en el mismo instante del clic)
+await env('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
+const inst = await leeJs("document.querySelector('[data-set=kaiju]').click(); " + ESTADO);
+await env('Emulation.setEmulatedMedia', { features: [] });
+ok(final(inst, 'kaiju', 'img/intro_kaiju.mp4'), 'estilos · con «reducir movimiento», el cambio es instantaneo', JSON.stringify(inst).slice(0, 200));
 const sinReel = await env('Runtime.evaluate', { returnByValue: true, expression: "document.documentElement.outerHTML.indexOf('reel_') < 0" });
 ok(sinReel.result.value === true, 'el reel de Instagram no esta en la web', '');
 // LA TIRA: en movil se desliza; en escritorio, las diez enteras, dos filas de cinco dentro del ancho.

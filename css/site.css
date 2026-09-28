@@ -208,6 +208,18 @@ footer{border-top:1px solid var(--b);padding:34px 0 58px;transition:border-color
 footer p{color:var(--t3);font-size:.81rem;margin:0 0 .5em}
 footer a{color:var(--t2)}
 
+/* 2.0 · EL CAMBIO DE ESTILO, SUAVE (ver applySkin en js/site.js). Sin View Transitions, 400 ms en los
+   colores de toda la pagina mientras dura el cambio (y solo entonces: fuera de el, cada elemento tiene
+   las suyas); nada de layout. Con View Transitions, el fundido lo hace el navegador y aqui se apaga todo
+   lo propio para no fundir dos veces. Las capas del fundido cruzado van encima de su imagen. */
+html.ns-cambia, html.ns-cambia *, html.ns-cambia *::before, html.ns-cambia *::after{
+  transition:background-color .4s ease, color .4s ease, border-color .4s ease, box-shadow .4s ease,
+             fill .4s ease, stroke .4s ease, outline-color .4s ease, text-decoration-color .4s ease !important}
+html.ns-vt, html.ns-vt *, html.ns-vt *::before, html.ns-vt *::after{transition:none !important}
+::view-transition-old(root), ::view-transition-new(root){animation-duration:.4s;animation-timing-function:ease}
+.ns-xfade{position:absolute !important;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .4s ease !important;z-index:1}
+.shots-row figure, .hero-video{position:relative}
+
 /* entrada escalonada */
 .rev-in{opacity:0;transform:translateY(14px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
 .rev-in.seen{opacity:1;transform:none}
