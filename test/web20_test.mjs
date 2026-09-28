@@ -5,7 +5,8 @@
  *     node test/web20_test.mjs
  *
  * Se carga la pagina de verdad y se lee lo pintado tras pulsar el boton de idioma: el
- * titular «Llegó el sensei», el reel del idioma en el hero, las diez capturas del idioma,
+ * titular «Llegó el sensei», la intro del ESTILO elegido en el hero (no el reel: ese es para
+ * Instagram), las diez capturas del idioma (enteras en escritorio, en tira en movil),
  * las cifras (1.224 · 290 · 30), las clases con historia, los cuatro personajes (y
  * ninguno mas), el precio del dojo y Yūgen.
  */
@@ -76,7 +77,6 @@ const E = { es: { h1: 'Llegó el sensei', sub: 'Aprende japonés con Nihongo Sen
 for (const L of ['es', 'en']) {
   const d = await lee(L), e = E[L];
   ok(d.h1 === e.h1 && d.sub === e.sub, L + ' · el hero dice «' + e.h1 + '» y debajo «' + e.sub + '»', d.h1 + ' | ' + d.sub);
-  ok(d.video === 'img/reel_' + L + '.mp4' && d.poster === 'img/reel_poster_' + L + '.jpg', L + ' · el video del hero es el reel de su idioma', d.video + ' ' + d.poster);
   ok(d.shots.length === 10 && d.shots.every((s, i) => s.src === 'img/cap-' + L + '-' + String(i + 1).padStart(2, '0') + '.jpg' && s.alt), L + ' · las diez capturas, las de su idioma y en orden, con su texto', JSON.stringify(d.shots.slice(0, 3)));
   ok(d.nums[0] === e.n && d.nums[1] === '290' && d.nums[2] === '30', L + ' · las cifras: ' + e.n + ' palabras, 290 kanji, 30 lecciones', d.nums.join(' '));
   ok(d.clsH === e.cls && e.clsP.test(d.clsP), L + ' · la seccion de clases con historia', d.clsH + ' | ' + d.clsP.slice(0, 50));
@@ -86,6 +86,28 @@ for (const L of ['es', 'en']) {
   ok(/Yūgen/.test(d.yugen), L + ' · Yūgen, el estilo nuevo', d.yugen.slice(0, 60));
   ok(!/\b(978|1\.?061|994|966)\b/.test(d.texto), L + ' · ninguna cifra vieja', (d.texto.match(/\b(978|1\.?061|994|966)\b/) || [''])[0]);
 }
+// EL HERO LLEVA LA INTRO DEL ESTILO ELEGIDO, y cambia al cambiar de estilo. Uno a uno, pulsando el
+// boton de colores de verdad (regla 5: cada estilo solo).
+const INTRO = { 'sakura-dark': 'img/intro_web.mp4', 'aki-dark': 'img/intro_aki.mp4', 'fuyu-dark': 'img/intro_fuyu.mp4', 'kaiju': 'img/intro_kaiju.mp4', 'yugen': 'img/intro_yugen.mp4' };
+for (const [set, esperado] of Object.entries(INTRO)) {
+  const r = await env('Runtime.evaluate', { returnByValue: true, expression: `(function(){ var b = document.querySelector('[data-set="${set}"]'); if (b) b.click(); var v = document.querySelector('.hero-video video'); return v ? v.getAttribute('src') : ''; })()` });
+  ok(r.result.value === esperado, 'estilo ' + set + ' · el hero lleva su intro', r.result.value);
+}
+const sinReel = await env('Runtime.evaluate', { returnByValue: true, expression: "document.documentElement.outerHTML.indexOf('reel_') < 0" });
+ok(sinReel.result.value === true, 'el reel de Instagram no esta en la web', '');
+// LA TIRA: en movil se desliza; en escritorio, las diez enteras, dos filas de cinco dentro del ancho.
+const tira = async () => JSON.parse((await env('Runtime.evaluate', { returnByValue: true, expression: `(function(){
+  var row = document.querySelector('.shots-row'), ims = [].slice.call(row.querySelectorAll('img'));
+  var tops = {}; var fuera = ims.filter(function (i) { var r = i.getBoundingClientRect(); tops[Math.round(r.top)] = 1; return r.left < -1 || r.right > document.documentElement.clientWidth + 1; }).length;
+  return JSON.stringify({ n: ims.length, fuera: fuera, filas: Object.keys(tops).length, desliza: row.scrollWidth > row.clientWidth + 2 });
+})()` })).result.value);
+const movil = await tira();
+ok(movil.desliza === true, 'movil · la tira de capturas se desliza', JSON.stringify(movil));
+await env('Emulation.setDeviceMetricsOverride', { width: 1280, height: 900, deviceScaleFactor: 1, mobile: false });
+await new Promise((r) => setTimeout(r, 600));
+const escr = await tira();
+ok(escr.n === 10 && escr.fuera === 0 && escr.filas === 2 && escr.desliza === false, 'escritorio · las diez capturas enteras, en dos filas, sin cortarse', JSON.stringify(escr));
+
 let fallos = 0;
 for (const [okk, nombre, det] of res) { console.log(`  ${okk ? '✅' : '❌'} ${nombre}${okk ? '' : '\n        → ' + det}`); if (!okk) fallos++; }
 console.log(`\n${res.length - fallos}/${res.length} comprobaciones en verde`);
