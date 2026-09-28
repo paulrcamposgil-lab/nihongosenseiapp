@@ -854,6 +854,13 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
     });
   }
   window.NS_AFTER_SKIN = function(){ pintaCapturas(); };
+  // para el cambio suave (js/site.js): que capturas pediria el estilo nuevo, para precargarlas antes
+  window.NS_SKIN_IMGS = function(ap){
+    var L = (lang === 'en' ? 'en' : 'es');
+    return [].map.call(document.querySelectorAll('.shots-row img[data-shot]'), function(im){
+      return { el: im, src: 'img/cap/' + ap + '-' + L + '-' + im.dataset.shot + '.webp' };
+    });
+  };
   window.NS_AFTER_LANG = function(L){
     lang = L;
     pintaCapturas();

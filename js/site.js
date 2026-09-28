@@ -31,7 +31,20 @@
     hv.setAttribute('src', src);
     try{ hv.load(); var pr = hv.play(); if(pr && pr.catch) pr.catch(function(){}); }catch(e){}
   }
-  function applySkin(id){
+  /* ── EL CAMBIO DE ESTILO, SUAVE (Paul, 28-sep: «el cambio es brusco») ─────────────────
+     · Se PRECARGA lo nuevo antes de tocar nada: las capturas del estilo (NS_SKIN_IMGS, de la portada)
+       y la intro (un <video> escondido que ya tiene su primer fotograma). Nunca un hueco en blanco ni
+       la imagen vieja saltando.
+     · Con View Transitions, fundido de TODA la pagina en 400 ms; durante el, sin transiciones
+       propias (html.ns-vt), o habria dos fundidos a la vez.
+     · Sin ellas: colores a 400 ms (html.ns-cambia: fondo, texto, bordes y sombras; nada de layout) y
+       las imagenes y la intro se funden por encima de las viejas y las sustituyen al acabar.
+     · Cambios rapidos seguidos: cada cambio lleva su numero; el que llega tarde no pinta nada, y la
+       transicion en curso se corta.
+     · «Reducir movimiento», y el primer pintado al abrir: cambio instantaneo, como siempre. */
+  var _turno = 0, _vtEnCurso = null, DUR = 400;
+  var _reduce = function(){ try{ return window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){ return false; } };
+  function _aplicaYa(id){
     root.setAttribute('data-appearance', id);
     document.querySelectorAll('.skin').forEach(function(b){
       b.setAttribute('aria-pressed', b.dataset.set === id ? 'true' : 'false');
@@ -40,11 +53,58 @@
     if(typeof window.NS_AFTER_SKIN === 'function'){ window.NS_AFTER_SKIN(id); }   // la portada repinta sus capturas
     try{ localStorage.setItem('ns-skin', id); }catch(e){}
   }
+  function _precargaImg(src){ return new Promise(function(ok){ var im = new Image(); im.onload = im.onerror = function(){ ok(im); }; im.src = src; if(im.complete) ok(im); }); }
+  function _precargaVideo(id){
+    return new Promise(function(ok){
+      var v = _VIDS[(id || '').split('-')[0]], hv = document.querySelector('.hero-video video');
+      if(!v || !hv || hv.getAttribute('src') === 'img/' + v[0]) return ok(null);
+      var nv = hv.cloneNode(false); nv.setAttribute('poster', 'img/' + v[1]); nv.setAttribute('src', 'img/' + v[0]);
+      nv.muted = true; nv.setAttribute('muted', ''); nv.preload = 'auto';
+      var listo = false, fin = function(){ if(listo) return; listo = true; ok(nv); };
+      nv.addEventListener('loadeddata', fin); setTimeout(fin, 2500);   // si la red va lenta, no se espera para siempre
+      try{ nv.load(); }catch(e){ fin(); }
+    });
+  }
+  function applySkin(id, inmediato){
+    var mio = ++_turno;
+    if(_vtEnCurso && _vtEnCurso.skipTransition){ try{ _vtEnCurso.skipTransition(); }catch(e){} }
+    if(inmediato || _reduce()){ _aplicaYa(id); return; }
+    var imgs = (typeof window.NS_SKIN_IMGS === 'function') ? window.NS_SKIN_IMGS(id) : [];
+    Promise.all([_precargaVideo(id)].concat(imgs.map(function(x){ return _precargaImg(x.src); }))).then(function(res){
+      if(mio !== _turno) return;                          // ya se ha pedido otro estilo: este no pinta nada
+      var nv = res[0], hv = document.querySelector('.hero-video video');
+      var cambiaVideo = function(){ if(nv && hv && hv.parentNode){ hv.parentNode.replaceChild(nv, hv); try{ var pr = nv.play(); if(pr && pr.catch) pr.catch(function(){}); }catch(e){} } };
+      if(document.startViewTransition){
+        root.classList.add('ns-vt');
+        var vt = _vtEnCurso = document.startViewTransition(function(){ cambiaVideo(); _aplicaYa(id); });
+        var limpia = function(){ if(_vtEnCurso === vt){ _vtEnCurso = null; root.classList.remove('ns-vt'); } };
+        vt.finished.then(limpia, limpia);
+        return;
+      }
+      // sin View Transitions: colores a 400 ms y fundido cruzado de las imagenes y de la intro
+      root.classList.add('ns-cambia');
+      imgs.forEach(function(x){
+        var fig = x.el.parentNode; if(!fig) return;
+        var capa = x.el.cloneNode(false); capa.className = (capa.className ? capa.className + ' ' : '') + 'ns-xfade';
+        capa.setAttribute('src', x.src); capa.style.opacity = '0'; fig.appendChild(capa);
+        requestAnimationFrame(function(){ capa.style.opacity = '1'; });
+        setTimeout(function(){ if(mio === _turno) x.el.setAttribute('src', x.src); if(capa.parentNode) capa.parentNode.removeChild(capa); }, DUR + 30);
+      });
+      if(nv && hv && hv.parentNode){
+        nv.classList.add('ns-xfade'); nv.style.opacity = '0'; hv.parentNode.appendChild(nv);
+        try{ var pr2 = nv.play(); if(pr2 && pr2.catch) pr2.catch(function(){}); }catch(e){}
+        requestAnimationFrame(function(){ nv.style.opacity = '1'; });
+        setTimeout(function(){ if(hv.parentNode) hv.parentNode.removeChild(hv); nv.classList.remove('ns-xfade'); nv.style.opacity = ''; }, DUR + 30);
+      }
+      _aplicaYa(id);
+      setTimeout(function(){ if(mio === _turno) root.classList.remove('ns-cambia'); }, DUR + 60);
+    });
+  }
   document.querySelectorAll('[data-set]').forEach(function(b){
     b.addEventListener('click', function(){ applySkin(b.dataset.set); });
   });
   /* el <head> ya estampó data-appearance; aquí solo se refleja en los aria-pressed */
-  try{ var sv = localStorage.getItem('ns-skin'); if(sv) applySkin(sv); }catch(e){}
+  try{ var sv = localStorage.getItem('ns-skin'); if(sv) applySkin(sv, true); }catch(e){}   // al abrir: sin animar
   _heroVideo(root.getAttribute('data-appearance') || 'sakura');   // carga el vídeo de la piel activa al abrir
 
   /* ---- idioma ----
