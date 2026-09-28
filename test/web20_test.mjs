@@ -68,19 +68,27 @@ const lee = async (L) => {
     var pjs = [].map.call(document.querySelectorAll('.cast .pj b'), function (b) { return b.textContent.trim(); });
     return JSON.stringify({ h1: q('h1'), sub: q('.hero-sub'), video: v ? v.getAttribute('src') : '', poster: v ? v.getAttribute('poster') : '',
       shots: shots, nums: nums, clsH: q('#clases h2'), clsP: q('#clases p'), pjs: pjs, real: q('.pj-real'),
-      precio: q('[data-t=precioC]'), yugen: q('[data-t=s5p1]'), texto: document.body.textContent });
+      precio: q('[data-t=precioC]'), yugen: q('[data-t=s5p1]'), texto: document.body.innerText,
+      ap: document.documentElement.getAttribute('data-appearance') || '',
+      salas: [].map.call(document.querySelectorAll('[data-t=s4h]')[0].closest('.wrap').querySelectorAll('.room h3'), function (h) { return h.textContent.trim(); }),
+      s4h: q('[data-t=s4h]'), monica: q('[data-t=pjMonica]'), real: document.querySelectorAll('.pj-real,[data-t=pjReal]').length,
+      tag: q('[data-t=tag]'), bloque: document.querySelector('[data-t=precioP]').closest('section').innerText.replace(/\\s+/g, ' ') });
   })()` });
   return JSON.parse(r.result.value);
 };
-const E = { es: { h1: 'Llegó el sensei', sub: 'Aprende japonés con Nihongo Sensei', n: '1.224', cls: 'Clases con historia', clsP: /^Nihongo Sensei ahora te da clase/, real: 'Siena y Luna existen de verdad.', precio: /19,99 € al año.*7 días gratis/ },
-            en: { h1: 'The sensei is here', sub: 'Learn Japanese with Nihongo Sensei', n: '1,224', cls: 'Classes with a story', clsP: /^Nihongo Sensei now teaches you/, real: 'Siena and Luna are real.', precio: /€19\.99 a year.*7-day free trial/ } };
+const E = { es: { monica: /^La pareja de Paul\. Viaja a Japón con él y estudia contigo\.$/, sala0: 'Aprender', ocho: /^Ocho salas/, gratis: /^Vocabulario gratis/, libre: 'Gratis: el vocabulario de las 30 lecciones con su audio', precioN: '19,99 €', h1: 'Llegó el sensei', sub: 'Aprende japonés con Nihongo Sensei', n: '1.224', cls: 'Clases con historia', clsP: /^Nihongo Sensei ahora te da clase/, real: 'Siena y Luna existen de verdad.', precio: /19,99 € al año.*7 días gratis/ },
+            en: { monica: /^Paul's partner\. She travels to Japan with him and studies with you\.$/, sala0: 'Learn', ocho: /^Eight training rooms/, gratis: /^Free vocabulary/, libre: 'Free: the vocabulary of all 30 lessons with audio', precioN: '€19.99', h1: 'The sensei is here', sub: 'Learn Japanese with Nihongo Sensei', n: '1,224', cls: 'Classes with a story', clsP: /^Nihongo Sensei now teaches you/, real: 'Siena and Luna are real.', precio: /€19\.99 a year.*7-day free trial/ } };
 for (const L of ['es', 'en']) {
   const d = await lee(L), e = E[L];
   ok(d.h1 === e.h1 && d.sub === e.sub, L + ' · el hero dice «' + e.h1 + '» y debajo «' + e.sub + '»', d.h1 + ' | ' + d.sub);
-  ok(d.shots.length === 10 && d.shots.every((s, i) => s.src === 'img/cap-' + L + '-' + String(i + 1).padStart(2, '0') + '.jpg' && s.alt), L + ' · las diez capturas, las de su idioma y en orden, con su texto', JSON.stringify(d.shots.slice(0, 3)));
+  ok(d.shots.length === 10 && d.shots.every((s, i) => /^img\/cap\/(sakura|aki|fuyu)-(dark|light)|^img\/cap\/(kaiju|yugen)/.test(s.src) && s.src.endsWith('-' + L + '-' + String(i + 1).padStart(2, '0') + '.webp') && s.alt), L + ' · las diez capturas, las de su idioma y en orden, con su texto', JSON.stringify(d.shots.slice(0, 3)));
   ok(d.nums[0] === e.n && d.nums[1] === '290' && d.nums[2] === '30', L + ' · las cifras: ' + e.n + ' palabras, 290 kanji, 30 lecciones', d.nums.join(' '));
   ok(d.clsH === e.cls && e.clsP.test(d.clsP), L + ' · la seccion de clases con historia', d.clsH + ' | ' + d.clsP.slice(0, 50));
-  ok(d.pjs.join(',') === 'Paul,Mónica,Siena,Luna' && d.real === e.real, L + ' · los personajes son Paul, Mónica, Siena y Luna', d.pjs.join(',') + ' | ' + d.real);
+  ok(d.pjs.join(',') === 'Paul,Mónica,Siena,Luna', L + ' · los personajes son Paul, Mónica, Siena y Luna', d.pjs.join(','));
+  ok(d.real === 0 && !/existen de verdad|are real/.test(d.texto), L + ' · y ya no dice que Siena y Luna existen de verdad (ni el parrafo vacio)', 'pj-real: ' + d.real);
+  ok(e.monica.test(d.monica) && !/esposa|wife/i.test(d.texto), L + ' · Mónica es la pareja de Paul, y «esposa»/«wife» no sale en ninguna parte', d.monica);
+  ok(d.salas.length === 8 && d.salas[0] === e.sala0 && d.salas.indexOf('Kanji') >= 0 && e.ocho.test(d.s4h) && !/(seis|six|siete|seven) (salas|rooms)|(Seis|Six|Siete|Seven) /.test(d.texto), L + ' · el dojo: ocho salas, la primera ' + e.sala0 + ', con Kanji, y ningun «seis»/«siete»', d.s4h + ' | ' + d.salas.join(','));
+  ok(e.gratis.test(d.tag) && (d.texto.split(e.libre).length - 1) >= 1 && (d.bloque.split(e.libre).length - 1) === 1 && (d.texto.split(e.precioN).length - 1) === 1 && !/curso entero es gratis|whole course is free|se queda gratis|stays free/.test(d.texto), L + ' · lo gratis: etiqueta, la lista una vez en «Qué cuesta», el precio una sola vez', d.tag + ' | precio×' + (d.texto.split(e.precioN).length - 1));
   ok(!/Marco|Gus\b|Kimura/.test(d.texto), L + ' · y ni Marco, ni Gus, ni Kimura en toda la pagina', (d.texto.match(/Marco|Gus\b|Kimura/) || [''])[0]);
   ok(e.precio.test(d.precio), L + ' · el precio del dojo, a la vista', d.precio);
   ok(/Yūgen/.test(d.yugen), L + ' · Yūgen, el estilo nuevo', d.yugen.slice(0, 60));
@@ -92,6 +100,16 @@ const INTRO = { 'sakura-dark': 'img/intro_web.mp4', 'aki-dark': 'img/intro_aki.m
 for (const [set, esperado] of Object.entries(INTRO)) {
   const r = await env('Runtime.evaluate', { returnByValue: true, expression: `(function(){ var b = document.querySelector('[data-set="${set}"]'); if (b) b.click(); var v = document.querySelector('.hero-video video'); return v ? v.getAttribute('src') : ''; })()` });
   ok(r.result.value === esperado, 'estilo ' + set + ' · el hero lleva su intro', r.result.value);
+}
+// «ASÍ SE VE» EN EL COLOR DEL ESTILO: cada una de las ocho apariencias, sola, pulsando su boton; las diez
+// capturas piden los ficheros de esa apariencia y del idioma, y esos ficheros existen de verdad.
+for (const ap of ['sakura-dark', 'sakura-light', 'aki-dark', 'aki-light', 'fuyu-dark', 'fuyu-light', 'kaiju', 'yugen']) {
+  const r = await env('Runtime.evaluate', { returnByValue: true, expression: `(function(){ var b = document.querySelector('[data-set="${ap}"]'); if (b) b.click();
+    return JSON.stringify([].map.call(document.querySelectorAll('.shots-row img'), function (i) { return i.getAttribute('src'); })); })()` });
+  const srcs = JSON.parse(r.result.value);
+  const faltan = [];
+  for (const s of srcs) { const f = path.join(RAIZ, s); if (!process.env.WEB_URL && !fs.existsSync(f)) faltan.push(s); }
+  ok(srcs.length === 10 && srcs.every((s) => s.startsWith('img/cap/' + ap + '-')) && !faltan.length, 'estilo ' + ap + ' · las capturas son las de ese estilo (y existen)', (srcs[0] || '') + ' ' + faltan.slice(0, 2).join(' '));
 }
 const sinReel = await env('Runtime.evaluate', { returnByValue: true, expression: "document.documentElement.outerHTML.indexOf('reel_') < 0" });
 ok(sinReel.result.value === true, 'el reel de Instagram no esta en la web', '');

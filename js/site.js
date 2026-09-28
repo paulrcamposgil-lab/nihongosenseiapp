@@ -37,6 +37,7 @@
       b.setAttribute('aria-pressed', b.dataset.set === id ? 'true' : 'false');
     });
     _heroVideo(id);
+    if(typeof window.NS_AFTER_SKIN === 'function'){ window.NS_AFTER_SKIN(id); }   // la portada repinta sus capturas
     try{ localStorage.setItem('ns-skin', id); }catch(e){}
   }
   document.querySelectorAll('[data-set]').forEach(function(b){
