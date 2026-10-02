@@ -49,8 +49,14 @@ const ws = new WebSocket(target.webSocketDebuggerUrl);
 await new Promise((r, j) => { ws.onopen = r; ws.onerror = j; });
 let id = 0; const pend = new Map();
 const env = (m, p = {}) => new Promise((res) => { const i = ++id; pend.set(i, res); ws.send(JSON.stringify({ id: i, method: m, params: p })); });
-ws.onmessage = (e) => { const m = JSON.parse(e.data); if (m.id && pend.has(m.id)) { pend.get(m.id)(m.result); pend.delete(m.id); } };
-await env('Page.enable'); await env('Runtime.enable');
+// LA CONSOLA, ESCUCHADA DESDE EL PRINCIPIO (2-oct-2026, al quitar la demo): quitar un bloque de
+// HTML deja vivo cualquier getElementById que lo buscara, y eso no se ve en la pagina — solo en la consola.
+const errores = [];
+ws.onmessage = (e) => { const m = JSON.parse(e.data); if (m.id && pend.has(m.id)) { pend.get(m.id)(m.result); pend.delete(m.id); return; }
+  if (m.method === 'Runtime.exceptionThrown') errores.push((m.params.exceptionDetails.exception || {}).description || m.params.exceptionDetails.text);
+  else if (m.method === 'Runtime.consoleAPICalled' && m.params.type === 'error') errores.push(m.params.args.map((a) => a.value ?? a.description).join(' '));
+  else if (m.method === 'Log.entryAdded' && m.params.entry.level === 'error') errores.push(m.params.entry.text + ' ' + (m.params.entry.url || '')); };
+await env('Page.enable'); await env('Runtime.enable'); await env('Log.enable');
 
 const res = [];
 const ok = (cond, nombre, det = '') => res.push([cond === true, nombre, cond === true ? '' : String(det)]);
@@ -72,14 +78,20 @@ const lee = async (L) => {
       ap: document.documentElement.getAttribute('data-appearance') || '',
       salas: [].map.call(document.querySelectorAll('[data-t=s4h]')[0].closest('.wrap').querySelectorAll('.room h3'), function (h) { return h.textContent.trim(); }),
       s4h: q('[data-t=s4h]'), noa: q('[data-t=pjNoa]'), nico: q('[data-t=pjNico]'), hachi: q('[data-t=pjHachi]'), goma: q('[data-t=pjGoma]'), imgs: [].map.call(document.querySelectorAll('.cast .pj img'), function (i) { return i.getAttribute('src'); }).join(','), real: document.querySelectorAll('.pj-real,[data-t=pjReal]').length,
+      cta: [].map.call(document.querySelector('.cta').querySelectorAll('a,button'), function (a) { return a.textContent.trim(); }),
+      mini: [].map.call(document.querySelectorAll('.cta-mini a'), function (a) { return a.getAttribute('href'); }),
+      probar: document.querySelectorAll('#probar,[href*="#probar"],[data-t=cta2],[data-t=s1h],.drill').length,
       tag: q('[data-t=tag]'), bloque: document.querySelector('[data-t=precioP]').closest('section').innerText.replace(/\\s+/g, ' ') });
   })()` });
   return JSON.parse(r.result.value);
 };
-const E = { es: { noa: 'Su hermana pequeña. Estudia en Osaka.', nico: 'Viaja a Japón y aprende contigo.', hachi: 'Shiba roja. La seria.', goma: 'Shiba negra y fuego. La alegre.', clsHist: 'Nico y Noa, dos hermanos de Barcelona, llegan a Japón con sus perras Hachi y Goma', sala0: 'Aprender', ocho: /^Ocho salas/, gratis: /^Vocabulario gratis/, libre: 'Gratis: el vocabulario de las 30 lecciones con su audio', precioN: '19,99 €', h1: 'Llegó el sensei', sub: 'Aprende japonés con Nihongo Sensei', n: '1.224', cls: 'Clases con historia', clsP: /^Nihongo Sensei ahora te da clase/, real: 'Siena y Luna existen de verdad.', precio: /19,99 € al año.*7 días gratis/ },
-            en: { noa: 'His younger sister. She studies in Osaka.', nico: 'Travels to Japan and learns with you.', hachi: 'Red shiba. The serious one.', goma: 'Black and tan shiba. The cheerful one.', clsHist: 'Nico and Noa, a brother and sister from Barcelona, arrive in Japan with their dogs Hachi and Goma', sala0: 'Learn', ocho: /^Eight training rooms/, gratis: /^Free vocabulary/, libre: 'Free: the vocabulary of all 30 lessons with audio', precioN: '€19.99', h1: 'The sensei is here', sub: 'Learn Japanese with Nihongo Sensei', n: '1,224', cls: 'Classes with a story', clsP: /^Nihongo Sensei now teaches you/, real: 'Siena and Luna are real.', precio: /€19\.99 a year.*7-day free trial/ } };
+const E = { es: { noa: 'Su hermana pequeña. Estudia en Osaka.', nico: 'Viaja a Japón y aprende contigo.', hachi: 'Shiba roja. La seria.', goma: 'Shiba negra y fuego. La alegre.', clsHist: 'Nico y Noa, dos hermanos de Barcelona, llegan a Japón con sus perras Hachi y Goma', sala0: 'Aprender', ocho: /^Ocho salas/, gratis: /^Vocabulario gratis/, libre: 'Gratis: el vocabulario de las 30 lecciones con su audio', precioN: '19,99 €', h1: 'Llegó el sensei', sub: 'Aprende japonés con Nihongo Sensei', n: '1.224', cls: 'Clases con historia', cta1: 'Descargar', clsP: /^Nihongo Sensei ahora te da clase/, real: 'Siena y Luna existen de verdad.', precio: /19,99 € al año.*7 días gratis/ },
+            en: { noa: 'His younger sister. She studies in Osaka.', nico: 'Travels to Japan and learns with you.', hachi: 'Red shiba. The serious one.', goma: 'Black and tan shiba. The cheerful one.', clsHist: 'Nico and Noa, a brother and sister from Barcelona, arrive in Japan with their dogs Hachi and Goma', sala0: 'Learn', ocho: /^Eight training rooms/, gratis: /^Free vocabulary/, libre: 'Free: the vocabulary of all 30 lessons with audio', precioN: '€19.99', h1: 'The sensei is here', sub: 'Learn Japanese with Nihongo Sensei', n: '1,224', cls: 'Classes with a story', cta1: 'Download', clsP: /^Nihongo Sensei now teaches you/, real: 'Siena and Luna are real.', precio: /€19\.99 a year.*7-day free trial/ } };
 for (const L of ['es', 'en']) {
   const d = await lee(L), e = E[L];
+  ok(d.cta.length === 1 && d.cta[0] === e.cta1, L + ' · arriba un solo boton, «' + e.cta1 + '» (sin «Probarla aqui abajo»)', JSON.stringify(d.cta));
+  ok(d.mini.length === 2 && /apps\.apple\.com/.test(d.mini[0]) && /play\.google\.com/.test(d.mini[1]), L + ' · y debajo los dos enlaces pequeños, App Store y Google Play', JSON.stringify(d.mini));
+  ok(d.probar === 0, L + ' · la demo de la forma て no esta, ni ningun enlace a #probar', d.probar + ' restos');
   ok(d.h1 === e.h1 && d.sub === e.sub, L + ' · el hero dice «' + e.h1 + '» y debajo «' + e.sub + '»', d.h1 + ' | ' + d.sub);
   ok(d.shots.length === 10 && d.shots.every((s, i) => /^img\/cap\/(sakura|aki|fuyu)-(dark|light)|^img\/cap\/(kaiju|yugen)/.test(s.src) && s.src.endsWith('-' + L + '-' + String(i + 1).padStart(2, '0') + '.webp') && s.alt), L + ' · las diez capturas, las de su idioma y en orden, con su texto', JSON.stringify(d.shots.slice(0, 3)));
   ok(d.nums[0] === e.n && d.nums[1] === '290' && d.nums[2] === '30', L + ' · las cifras: ' + e.n + ' palabras, 290 kanji, 30 lecciones', d.nums.join(' '));
@@ -179,6 +191,7 @@ await env('Emulation.setDeviceMetricsOverride', { width: 1280, height: 900, devi
 await new Promise((r) => setTimeout(r, 600));
 const escr = await tira();
 ok(escr.n === 10 && escr.fuera === 0 && escr.filas === 2 && escr.desliza === false, 'escritorio · las diez capturas enteras, en dos filas, sin cortarse', JSON.stringify(escr));
+ok(errores.length === 0, 'consola · ningun error en toda la pasada (ES, EN, estilos, movil y escritorio)', errores.slice(0, 3).join(' | '));
 
 let fallos = 0;
 for (const [okk, nombre, det] of res) { console.log(`  ${okk ? '✅' : '❌'} ${nombre}${okk ? '' : '\n        → ' + det}`); if (!okk) fallos++; }
