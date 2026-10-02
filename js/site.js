@@ -109,7 +109,7 @@
 
   /* ---- idioma ----
      La portada define window.NS_STRINGS (las cadenas de los [data-t]) y,
-     si quiere, window.NS_AFTER_LANG (para repintar el ejercicio). Las
+     si quiere, window.NS_AFTER_LANG (para repintar lo que dependa del idioma). Las
      hijas NO tienen NS_STRINGS: en ellas el selector solo guarda la
      preferencia y marca el botón. El texto legal no se traduce ni se toca. */
   function applyLang(L){

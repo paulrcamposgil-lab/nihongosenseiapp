@@ -60,57 +60,9 @@ var l=localStorage.getItem("ns-lang");if(l)document.documentElement.setAttribute
   transition:transform .16s ease,box-shadow .16s ease,opacity .16s ease
 }
 .btn-1{background:var(--pl);color:var(--bg);box-shadow:0 6px 22px color-mix(in srgb,var(--pl) 30%,transparent)}
-.btn-2{background:transparent;color:var(--t1);border-color:var(--b)}
 .btn:hover{transform:translateY(-2px)}
 .glyph{width:18px;height:18px;fill:currentColor;flex-shrink:0;margin-top:-1px}
 .btn:focus-visible{outline:2px solid var(--pl);outline-offset:3px}
-
-/* ---------- ejercicio ---------- */
-.drill{
-  background:var(--card);border:1px solid var(--b);border-radius:20px;
-  box-shadow:var(--sh-lg);padding:clamp(20px,4vw,30px);max-width:530px;
-  min-width:0;width:100%;
-  transition:background-color .5s ease,border-color .5s ease
-}
-.drill-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.35em;gap:12px}
-.drill-lbl{font-size:.69rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--t3);font-variant-numeric:tabular-nums}
-.drill-ask{font-size:.85rem;color:var(--t2);margin:0 0 .28em}
-.drill-word{font-family:'Shippori Mincho B1',serif;font-size:clamp(2rem,5.5vw,2.7rem);line-height:1.2;margin:0 0 .04em;color:var(--t1)}
-.drill-rom{font-size:.81rem;color:var(--t3);margin:0 0 1.15em;letter-spacing:.03em}
-.drill-form{display:flex;gap:9px}
-input[type=text]{
-  flex:1;min-width:0;font-family:inherit;font-size:1.12rem;color:var(--t1);
-  background:var(--card2);border:1px solid var(--b);border-radius:12px;padding:.7em .9em;
-  transition:border-color .2s ease,background-color .5s ease,box-shadow .2s ease
-}
-input[type=text]::placeholder{color:var(--t3)}
-input[type=text]:focus{outline:none;border-color:var(--pl);box-shadow:0 0 0 3px var(--ps)}
-.go{
-  font-family:inherit;font-size:.89rem;font-weight:700;cursor:pointer;
-  background:var(--pl);color:var(--bg);border:none;border-radius:12px;padding:0 1.15em;
-  transition:opacity .16s ease
-}
-.go:hover{opacity:.87}
-.go:focus-visible{outline:2px solid var(--pl);outline-offset:3px}
-.hint{font-size:.75rem;color:var(--t3);margin:.7em 0 0}
-
-.fb{margin-top:1.05em;border-radius:14px;padding:.95em 1.05em;font-size:.91rem;display:none}
-.fb.on{display:block;animation:rise .34s cubic-bezier(.2,.7,.3,1)}
-@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.fb-head{font-weight:700;font-size:.83rem;margin-bottom:.45em;display:flex;gap:.5em;align-items:baseline;flex-wrap:wrap}
-.fb.ok{background:color-mix(in srgb,var(--green) 12%,var(--card2));border:1px solid color-mix(in srgb,var(--green) 32%,transparent)}
-.fb.ok .fb-head{color:var(--green)}
-.fb.no{background:color-mix(in srgb,var(--red) 10%,var(--card2));border:1px solid color-mix(in srgb,var(--red) 26%,transparent)}
-.fb.no .fb-head{color:var(--red)}
-.fb.typo{background:color-mix(in srgb,var(--warn) 11%,var(--card2));border:1px solid color-mix(in srgb,var(--warn) 30%,transparent)}
-.fb.typo .fb-head{color:var(--warn)}
-.fb .rule{color:var(--t1);margin:0 0 .62em;line-height:1.55;font-size:.9rem}
-.fb .rule em{font-style:normal;font-weight:700;letter-spacing:.08em;font-size:.76rem;color:var(--t3);text-transform:uppercase;margin-right:.45em}
-.fb .sib{font-size:.88rem;color:var(--t2);margin:0;letter-spacing:.01em}
-.fb .sib b{color:var(--pl);font-weight:700}
-.strike{color:var(--t3);text-decoration:line-through;text-decoration-thickness:1px;font-weight:400}
-.next{margin-top:.85em;background:none;border:none;padding:0;cursor:pointer;font-family:inherit;font-size:.84rem;font-weight:700;color:var(--pl)}
-.next:focus-visible{outline:2px solid var(--pl);outline-offset:3px}
 
 section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transition:border-color .5s ease;position:relative;overflow:hidden}
 .wrap{position:relative;z-index:1}
@@ -131,12 +83,10 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 .two{display:grid;grid-template-columns:1fr;gap:clamp(28px,5vw,54px);align-items:center}
 @media(min-width:830px){.two{grid-template-columns:1fr 1fr}.two.rev>div:first-child{order:2}}
 /* BUG del móvil: los hijos de un grid llevan min-width:auto y no encogen por
-   debajo de su contenido; el input arrastraba la columna y desbordaba a 390px.
-   min-width:0 les deja encoger; overflow-wrap parte las palabras largas. */
+   debajo de su contenido; el input de la demo (ya quitada) arrastraba la columna
+   y desbordaba a 390px. min-width:0 les deja encoger. */
 .two>*{min-width:0}
-.drill,.rules,.nums,.rooms,.skinbig,.cycle{min-width:0;max-width:100%}
-.drill-form{min-width:0}
-.fb,.fb-head,.fb .rule,.fb .sib{overflow-wrap:anywhere}
+.rules,.nums,.rooms,.skinbig,.cycle{min-width:0;max-width:100%}
 
 /* ---------- mis reglas ---------- */
 .rules{list-style:none;margin:0;padding:0;background:var(--card);border:1px solid var(--b);border-radius:18px;overflow:hidden;transition:background-color .5s ease,border-color .5s ease}
@@ -256,7 +206,6 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
     <p class="lead rev-in" data-t="lead"></p>
     <div class="cta rev-in">
       <a class="btn btn-1" id="ctaDescarga" href="https://apps.apple.com/app/id6789333985" data-t="cta1"></a>
-      <a class="btn btn-2" href="#probar" data-t="cta2"></a>
     </div>
     <!-- X.3 y X.4 (15-sep-2026) · las dos tiendas, SIN bajar. El botón grande lleva a
          la que toca, pero un visitante de Android que llegó aquí creyendo que esto es
@@ -313,41 +262,6 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       <figure class="pj"><img src="img/pj-noa.svg" alt="Noa" loading="lazy"><figcaption><b>Noa</b><span data-t="pjNoa"></span></figcaption></figure>
       <figure class="pj"><img src="img/pj-hachi.svg" alt="Hachi" loading="lazy"><figcaption><b>Hachi</b><span data-t="pjHachi"></span></figcaption></figure>
       <figure class="pj"><img src="img/pj-goma.svg" alt="Goma" loading="lazy"><figcaption><b>Goma</b><span data-t="pjGoma"></span></figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<section id="probar">
-  <span class="swm l top" aria-hidden="true">話</span>
-  <div class="wrap two">
-    <div class="rev-in">
-      <span class="eyebrow" data-t="s1eye"></span>
-      <h2 data-t="s1h"></h2>
-      <p data-t="s1p1"></p>
-      <p data-t="s1p2"></p>
-    </div>
-
-    <div class="drill rev-in">
-      <div class="drill-top">
-        <span class="drill-lbl" data-t="dlbl"></span>
-        <span class="drill-lbl" id="counter">1 / 5</span>
-      </div>
-      <p class="drill-ask" data-t="dask"></p>
-      <p class="drill-word jp" id="word">のみます</p>
-      <p class="drill-rom" id="rom"></p>
-
-      <form class="drill-form" id="form">
-        <input type="text" id="ans" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="respuesta">
-        <button class="go" type="submit" data-t="dgo"></button>
-      </form>
-      <p class="hint" data-t="dhint"></p>
-
-      <div class="fb" id="fb" role="status" aria-live="polite">
-        <div class="fb-head" id="fbhead"></div>
-        <p class="rule" id="fbrule"></p>
-        <p class="sib" id="fbsib"></p>
-        <button class="next" id="next" type="button" data-t="dnext"></button>
-      </div>
     </div>
   </div>
 </section>
@@ -527,20 +441,8 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       h1:'Llegó el sensei',
       h1sub:'Aprende japonés con Nihongo Sensei',
       lead:'La app que sigue el orden de tus clases: el vocabulario de <em>esa</em> lección, no el que elige un algoritmo. 30 lecciones: todo el primer libro y el comienzo del segundo. Y las respuestas se escriben.',
-      cta1:'Descargar', cta2:'Probarla aquí abajo',
+      cta1:'Descargar',
       ambas:'Para iPhone y para Android:',
-
-      s1eye:'Escribes, no eliges',
-      s1h:'Cuatro botones no enseñan a conjugar.',
-      s1p1:'Reconocer la respuesta entre cuatro opciones y producirla desde cero son dos cosas distintas, y en clase solo sirve la segunda.',
-      s1p2:'Pruébalo aquí: es el mismo ejercicio que hay dentro. Escribe la <strong>forma て</strong>.',
-      dlbl:'Verbos · forma て', dask:'¿Cuál es la forma て de…?', dgo:'Ver',
-      dhint:'Puedes escribirlo en rōmaji: <strong>nonde</strong>.',
-      dnext:'Siguiente →',
-      fbok:'Correcto', fbtypo:'Errata, no confusión',
-      typoRule:'<em>Errata</em>Te has comido el dakuten. La regla la tienes bien — en la app esto no cuenta como confundir una regla, porque no lo es.',
-      unknown:'Ese no es un error conocido, así que no te invento una regla. En la app, lo que no coincide con nada se registra: de ahí salen las reglas que faltan.',
-      ruleLbl:'La regla',
 
       s2eye:'Cuando fallas',
       s2h:'No dice «incorrecto». Dice qué regla usaste.',
@@ -618,20 +520,8 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       h1:'The sensei is here',
       h1sub:'Learn Japanese with Nihongo Sensei',
       lead:'The app that follows the order of your classes: the vocabulary from <em>that</em> lesson, not what an algorithm picked. 30 lessons: all of the first book and the start of the second. And you type the answers.',
-      cta1:'Download', cta2:'Try it right here',
+      cta1:'Download',
       ambas:'For iPhone and for Android:',
-
-      s1eye:'You write it, you don’t pick it',
-      s1h:'Four buttons never taught anyone to conjugate.',
-      s1p1:'Recognising the answer among four options and producing it from nothing are two different skills, and only the second one shows up in class.',
-      s1p2:'Try it here — it’s the same drill that’s inside. Type the <strong>て form</strong>.',
-      dlbl:'Verbs · て form', dask:'What is the て form of…?', dgo:'Check',
-      dhint:'You can type it in rōmaji: <strong>nonde</strong>.',
-      dnext:'Next →',
-      fbok:'Correct', fbtypo:'A typo, not a confusion',
-      typoRule:'<em>Typo</em>You dropped the dakuten. Your rule was right — in the app this doesn’t count as confusing a rule, because it isn’t one.',
-      unknown:'That isn’t a known mistake, so I won’t invent a rule for it. In the app, anything that matches nothing gets logged — that’s where the missing rules come from.',
-      ruleLbl:'The rule',
 
       s2eye:'When you get it wrong',
       s2h:'It doesn’t say “incorrect”. It names the rule you used.',
@@ -704,134 +594,10 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 
   var lang = 'es';
 
-  /* ================= el ejercicio ================= */
-  /* Los errores se GENERAN de antemano, cada uno con la regla que lo
-     produce — es el mismo diseño que usa la app: no se adivina el fallo. */
-  var ITEMS = [
-    { w:'のみます', ok:'のんで',
-      rom:{es:'nomimasu · beber', en:'nomimasu · to drink'},
-      map:{'nonde':'のんで','nomite':'のみて','notte':'のって','nonte':'のんて'},
-      typo:['のんて'],
-      wrong:{
-        'のみて':{es:'Has quitado ます y puesto て, que es lo del grupo II. 飲みます es del grupo I, y ahí la sílaba de antes de ます cambia.',
-                  en:'You dropped ます and added て, which is the Group II move. 飲みます is Group I, and there the syllable before ます changes first.'},
-        'のって':{es:'って es de い・ち・り. La sílaba de 飲みます es み, y み・び・に hacen んで.',
-                  en:'って belongs to い・ち・り. The syllable in 飲みます is み, and み・び・に make んで.'}
-      },
-      sib:'のみます → <b>のんで</b> · あそびます → <b>あそんで</b> · しにます → <b>しんで</b>' },
-
-    { w:'かきます', ok:'かいて',
-      rom:{es:'kakimasu · escribir', en:'kakimasu · to write'},
-      map:{'kaite':'かいて','katte':'かって','kakite':'かきて'},
-      typo:[],
-      wrong:{
-        'かって':{es:'き no va con い・ち・り. Tiene su propia regla y hace いて.',
-                  en:'き doesn’t follow い・ち・り. It has a rule of its own and makes いて.'},
-        'かきて':{es:'Has quitado ます y puesto て, que es lo del grupo II. 書きます es del grupo I.',
-                  en:'You dropped ます and added て — the Group II move. 書きます is Group I.'}
-      },
-      sib:'かきます → <b>かいて</b> · ききます → <b>きいて</b> · あるきます → <b>あるいて</b>' },
-
-    { w:'たべます', ok:'たべて',
-      rom:{es:'tabemasu · comer', en:'tabemasu · to eat'},
-      map:{'tabete':'たべて','tande':'たんで','tabette':'たべって'},
-      typo:[],
-      wrong:{
-        'たんで':{es:'Has cambiado la sílaba de antes de ます, que es lo del grupo I. 食べます es del grupo II: se quita ます y se pone て, sin más.',
-                  en:'You changed the syllable before ます — the Group I move. 食べます is Group II: drop ます, add て, nothing else.'},
-        'たべって':{es:'El grupo II no dobla nada. Se quita ます y se pone て.',
-                    en:'Group II doubles nothing. Drop ます, add て.'}
-      },
-      sib:'たべます → <b>たべて</b> · みます → <b>みて</b> · おきます → <b>おきて</b>' },
-
-    { w:'いきます', ok:'いって',
-      rom:{es:'ikimasu · ir', en:'ikimasu · to go'},
-      map:{'itte':'いって','iite':'いいて'},
-      typo:[],
-      wrong:{
-        'いいて':{es:'Has aplicado bien la regla de き. Lo que pasa es que 行きます es la única excepción que tiene: hace って.',
-                  en:'You applied the き rule correctly. The catch is that 行きます is its one and only exception: it makes って.'}
-      },
-      sib:'かきます → <b>かいて</b> · ききます → <b>きいて</b> · いきます → <b>いって</b>' },
-
-    { w:'いそぎます', ok:'いそいで',
-      rom:{es:'isogimasu · darse prisa', en:'isogimasu · to hurry'},
-      map:{'isoide':'いそいで','isoite':'いそいて','isotte':'いそって'},
-      typo:['いそいて'],
-      wrong:{
-        'いそって':{es:'ぎ no va con い・ち・り. Tiene su propia regla: hace いで, con dakuten.',
-                    en:'ぎ doesn’t follow い・ち・り. It has its own rule: いで, with dakuten.'}
-      },
-      sib:'いそぎます → <b>いそいで</b> · およぎます → <b>およいで</b> · ぬぎます → <b>ぬいで</b>' }
-  ];
-
-  var i = 0;
-  var elW = document.getElementById('word');
-  var elR = document.getElementById('rom');
-  var elC = document.getElementById('counter');
-  var elA = document.getElementById('ans');
-  var fb  = document.getElementById('fb');
-  var fbH = document.getElementById('fbhead');
-  var fbR = document.getElementById('fbrule');
-  var fbS = document.getElementById('fbsib');
-
-  function norm(s){ return (s||'').trim().toLowerCase().replace(/\s+/g,'').replace(/[。、.,\-_]/g,''); }
-
-  function resolve(it, raw){
-    var v = norm(raw);
-    if(/^[a-z]+$/.test(v) && it.map[v]) return it.map[v];
-    return (raw||'').trim().replace(/\s+/g,'');
-  }
-
-  function paint(){
-    var it = ITEMS[i];
-    elW.textContent = it.w;
-    elR.textContent = it.rom[lang];
-    elC.textContent = (i+1) + ' / ' + ITEMS.length;
-    elA.value = '';
-    elA.placeholder = it.ok;
-    fb.className = 'fb';
-  }
-
-  document.getElementById('form').addEventListener('submit', function(e){
-    e.preventDefault();
-    var it = ITEMS[i], t = T[lang];
-    var v = resolve(it, elA.value);
-    if(!v){ elA.focus(); return; }
-
-    if(v === it.ok){
-      fb.className = 'fb ok on';
-      fbH.innerHTML = '✓ ' + t.fbok;
-      fbR.innerHTML = '';
-      fbS.innerHTML = it.sib;
-    } else if(it.typo.indexOf(v) > -1){
-      fb.className = 'fb typo on';
-      fbH.innerHTML = '≈ ' + t.fbtypo + ' &nbsp;<span class="strike">' + v + '</span>';
-      fbR.innerHTML = t.typoRule;
-      fbS.innerHTML = it.sib;
-    } else if(it.wrong[v]){
-      fb.className = 'fb no on';
-      fbH.innerHTML = '✗ ' + it.ok + ' &nbsp;<span class="strike">' + v + '</span>';
-      fbR.innerHTML = '<em>' + t.ruleLbl + '</em>' + it.wrong[v][lang];
-      fbS.innerHTML = it.sib;
-    } else {
-      fb.className = 'fb no on';
-      fbH.innerHTML = '✗ ' + it.ok + ' &nbsp;<span class="strike">' + v + '</span>';
-      fbR.textContent = t.unknown;
-      fbS.innerHTML = it.sib;
-    }
-  });
-
-  document.getElementById('next').addEventListener('click', function(){
-    i = (i + 1) % ITEMS.length;
-    paint(); elA.focus();
-  });
-
-
   /* ================= idioma · el motor vive en site.js ================= */
   /* site.js (compartido con las hijas) aplica el idioma. Aquí solo se le
-     entregan las cadenas de la portada y un gancho para repintar el
-     ejercicio cuando se cambia de idioma. */
+     entregan las cadenas de la portada y un gancho para repintar las
+     capturas cuando se cambia de idioma. */
   window.NS_STRINGS = T;
   /* 2.0 · «ASÍ SE VE» EN EL COLOR DEL ESTILO ELEGIDO. Las diez capturas estan recoloreadas para las
      ocho apariencias (color por color, con los dibujos intactos) y el nombre del fichero se COMPONE
@@ -864,8 +630,6 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
   window.NS_AFTER_LANG = function(L){
     lang = L;
     pintaCapturas();
-    elA.setAttribute('aria-label', L === 'es' ? 'Tu respuesta' : 'Your answer');
-    paint();
   };
 
   /* ================= entrada ================= */
