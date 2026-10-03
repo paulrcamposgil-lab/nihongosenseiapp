@@ -45,6 +45,11 @@ var l=localStorage.getItem("ns-lang");if(l)document.documentElement.setAttribute
   transition:background-color .5s ease,border-color .5s ease
 }
 .tag b{color:var(--pl);font-weight:700}
+/* (3-oct) LA PILDORA SALTA ENTERA POR LOS SEPARADORES: cada pieza no se parte (.tg-i) y el «·»
+   es una pieza aparte (.tg-s). Si una linea empieza o acaba en «·», se esconde (tagPiezas). */
+.tag{flex-wrap:wrap;row-gap:.2em;max-width:100%}
+.tag .tg-i{white-space:nowrap}
+.tag .tg-s.fuera{visibility:hidden}   /* invisible y en su sitio: quitarlo dejaria subir la pieza siguiente sin «·» */
 
 .cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:1.9em}
 /* X · la fila de las dos tiendas, debajo del botón grande y sin competir con él. */
@@ -437,8 +442,8 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
   /* ================= idioma ================= */
   var T = {
     es:{
-      tag:'Vocabulario gratis · Sin anuncios · <b>Funciona sin conexión</b>',
-      h1:'Llegó el sensei',
+      tag:'30 lecciones completas · Sin anuncios · <b>Funciona sin conexión</b>',
+      h1:'Aprende japonés. Descárgala gratis.',
       h1sub:'Aprende japonés con Nihongo Sensei',
       lead:'La app que sigue el orden de tus clases: el vocabulario de <em>esa</em> lección, no el que elige un algoritmo. 30 lecciones: todo el primer libro y el comienzo del segundo. Y las respuestas se escriben.',
       cta1:'Descargar',
@@ -516,8 +521,8 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       fp:'Privacidad', ft:'Términos', fs:'Soporte'
     },
     en:{
-      tag:'Free vocabulary · No ads · <b>Works offline</b>',
-      h1:'The sensei is here',
+      tag:'All 30 lessons · No ads · <b>Works offline</b>',
+      h1:'Learn Japanese. Download it free.',
       h1sub:'Learn Japanese with Nihongo Sensei',
       lead:'The app that follows the order of your classes: the vocabulary from <em>that</em> lesson, not what an algorithm picked. 30 lessons: all of the first book and the start of the second. And you type the answers.',
       cta1:'Download',
@@ -627,9 +632,32 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       return { el: im, src: 'img/cap/' + ap + '-' + L + '-' + im.dataset.shot + '.webp' };
     });
   };
+  /* (3-oct) LA PILDORA EN PIEZAS. El texto llega como «a · b · <b>c</b>»: se parte por « · »,
+     cada trozo va en un span que no se parte y cada «·» en el suyo. Despues de maquetar, un «·»
+     que no esta en la misma linea que sus dos vecinos queda en un borde: se esconde. */
+  function tagPiezas(){
+    var t = document.querySelector('.tag[data-t=tag]');
+    if(!t) return;
+    if(!t.querySelector('.tg-i')){
+      t.innerHTML = t.innerHTML.split(' · ').map(function(x){ return '<span class="tg-i">' + x + '</span>'; })
+        .join('<span class="tg-s" aria-hidden="true">·</span>');
+    }
+    var seps = t.querySelectorAll('.tg-s');
+    [].forEach.call(seps, function(sp){ sp.classList.remove('fuera'); });
+    [].forEach.call(seps, function(sp){
+      var a = sp.previousElementSibling, b = sp.nextElementSibling, y = sp.getBoundingClientRect().top;
+      if(!a || !b || Math.abs(a.getBoundingClientRect().top - y) > 2 || Math.abs(b.getBoundingClientRect().top - y) > 2) sp.classList.add('fuera');
+    });
+  }
+  window.tagPiezas = tagPiezas;
+  window.addEventListener('resize', tagPiezas);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(tagPiezas);   // la letra cambia los anchos
+  tagPiezas();
+
   window.NS_AFTER_LANG = function(L){
     lang = L;
     pintaCapturas();
+    tagPiezas();
   };
 
   /* ================= entrada ================= */

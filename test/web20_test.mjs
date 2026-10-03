@@ -5,7 +5,7 @@
  *     node test/web20_test.mjs
  *
  * Se carga la pagina de verdad y se lee lo pintado tras pulsar el boton de idioma: el
- * titular «Llegó el sensei», la intro del ESTILO elegido en el hero (no el reel: ese es para
+ * titular «Aprende japonés. Descárgala gratis.» (3-oct; antes «Llegó el sensei»), la intro del ESTILO elegido en el hero (no el reel: ese es para
  * Instagram), las diez capturas del idioma (enteras en escritorio, en tira en movil),
  * las cifras (1.224 · 290 · 30), las clases con historia, los cuatro personajes (y
  * ninguno mas), el precio del dojo y Yūgen.
@@ -85,8 +85,8 @@ const lee = async (L) => {
   })()` });
   return JSON.parse(r.result.value);
 };
-const E = { es: { noa: 'Su hermana pequeña. Estudia en Osaka.', nico: 'Viaja a Japón y aprende contigo.', hachi: 'Shiba roja. La seria.', goma: 'Shiba negra y fuego. La alegre.', clsHist: 'Nico y Noa, dos hermanos de Barcelona, llegan a Japón con sus perras Hachi y Goma', sala0: 'Aprender', ocho: /^Ocho salas/, gratis: /^Vocabulario gratis/, libre: 'Gratis: el vocabulario de las 30 lecciones con su audio', precioN: '19,99 €', h1: 'Llegó el sensei', sub: 'Aprende japonés con Nihongo Sensei', n: '1.224', cls: 'Clases con historia', cta1: 'Descargar', clsP: /^Nihongo Sensei ahora te da clase/, real: 'Siena y Luna existen de verdad.', precio: /19,99 € al año.*7 días gratis/ },
-            en: { noa: 'His younger sister. She studies in Osaka.', nico: 'Travels to Japan and learns with you.', hachi: 'Red shiba. The serious one.', goma: 'Black and tan shiba. The cheerful one.', clsHist: 'Nico and Noa, a brother and sister from Barcelona, arrive in Japan with their dogs Hachi and Goma', sala0: 'Learn', ocho: /^Eight training rooms/, gratis: /^Free vocabulary/, libre: 'Free: the vocabulary of all 30 lessons with audio', precioN: '€19.99', h1: 'The sensei is here', sub: 'Learn Japanese with Nihongo Sensei', n: '1,224', cls: 'Classes with a story', cta1: 'Download', clsP: /^Nihongo Sensei now teaches you/, real: 'Siena and Luna are real.', precio: /€19\.99 a year.*7-day free trial/ } };
+const E = { es: { noa: 'Su hermana pequeña. Estudia en Osaka.', nico: 'Viaja a Japón y aprende contigo.', hachi: 'Shiba roja. La seria.', goma: 'Shiba negra y fuego. La alegre.', clsHist: 'Nico y Noa, dos hermanos de Barcelona, llegan a Japón con sus perras Hachi y Goma', sala0: 'Aprender', ocho: /^Ocho salas/, gratis: /^30 lecciones completas·Sin anuncios·Funciona sin conexión$/, libre: 'Gratis: el vocabulario de las 30 lecciones con su audio', precioN: '19,99 €', h1: 'Aprende japonés. Descárgala gratis.', sub: 'Aprende japonés con Nihongo Sensei', n: '1.224', cls: 'Clases con historia', cta1: 'Descargar', clsP: /^Nihongo Sensei ahora te da clase/, real: 'Siena y Luna existen de verdad.', precio: /19,99 € al año.*7 días gratis/ },
+            en: { noa: 'His younger sister. She studies in Osaka.', nico: 'Travels to Japan and learns with you.', hachi: 'Red shiba. The serious one.', goma: 'Black and tan shiba. The cheerful one.', clsHist: 'Nico and Noa, a brother and sister from Barcelona, arrive in Japan with their dogs Hachi and Goma', sala0: 'Learn', ocho: /^Eight training rooms/, gratis: /^All 30 lessons·No ads·Works offline$/, libre: 'Free: the vocabulary of all 30 lessons with audio', precioN: '€19.99', h1: 'Learn Japanese. Download it free.', sub: 'Learn Japanese with Nihongo Sensei', n: '1,224', cls: 'Classes with a story', cta1: 'Download', clsP: /^Nihongo Sensei now teaches you/, real: 'Siena and Luna are real.', precio: /€19\.99 a year.*7-day free trial/ } };
 for (const L of ['es', 'en']) {
   const d = await lee(L), e = E[L];
   ok(d.cta.length === 1 && d.cta[0] === e.cta1, L + ' · arriba un solo boton, «' + e.cta1 + '» (sin «Probarla aqui abajo»)', JSON.stringify(d.cta));
@@ -179,6 +179,41 @@ await env('Emulation.setEmulatedMedia', { features: [] });
 ok(final(inst, 'kaiju', 'img/intro_kaiju.mp4'), 'estilos · con «reducir movimiento», el cambio es instantaneo', JSON.stringify(inst).slice(0, 200));
 const sinReel = await env('Runtime.evaluate', { returnByValue: true, expression: "document.documentElement.outerHTML.indexOf('reel_') < 0" });
 ok(sinReel.result.value === true, 'el reel de Instagram no esta en la web', '');
+// (3-oct) EL TITULAR Y LA PILDORA A 375 Y 390 PX, EN ES Y EN: el h1 y la pildora enteros dentro de
+// la pantalla; la pildora salta por los separadores y ningun «·» visible queda en un borde de
+// linea (sus dos vecinas en su misma linea), ni dos piezas juntas en una linea sin su «·».
+// Los enlaces a las tiendas, los de siempre. Romper: quitar tagPiezas → ROJO a 375 en ES.
+const TIENDAS = await leeJs("return JSON.stringify([].map.call(document.querySelectorAll('a[href*=\"apps.apple.com\"], a[href*=\"play.google.com\"]'), function (a) { return a.getAttribute('href'); }).sort());");
+for (const W of [375, 390]) {
+  await env('Emulation.setDeviceMetricsOverride', { width: W, height: 812, deviceScaleFactor: 2, mobile: true });
+  for (const L of ['es', 'en']) {
+    await env('Runtime.evaluate', { expression: "document.querySelector('.lang button[data-lang=" + L + "]').click();" });
+    await new Promise((r) => setTimeout(r, 400));
+    const t = await leeJs(`
+      var vw = document.documentElement.clientWidth, h = document.querySelector('h1'), t = document.querySelector('.tag[data-t=tag]');
+      var dentro = function (e) { var r = e.getBoundingClientRect(); return r.left >= -0.5 && r.right <= vw + 0.5 && e.scrollWidth <= e.clientWidth + 1; };
+      var hijos = [].slice.call(t.children), mal = [];
+      hijos.forEach(function (c, i) {
+        var y = Math.round(c.getBoundingClientRect().top), vis = getComputedStyle(c).visibility !== 'hidden';
+        if (c.classList.contains('tg-s')) {
+          var a = hijos[i - 1], b = hijos[i + 1], ya = a && Math.round(a.getBoundingClientRect().top), yb = b && Math.round(b.getBoundingClientRect().top);
+          if (vis && (Math.abs(ya - y) > 2 || Math.abs(yb - y) > 2)) mal.push('«·» suelto en un borde (' + i + ')');
+          if (!vis && a && b && Math.abs(ya - yb) <= 2) mal.push('dos piezas juntas sin «·» (' + i + ')');
+        } else if (c.scrollWidth > c.clientWidth + 1) mal.push('pieza partida: ' + c.textContent);
+      });
+      var lineas = {}; hijos.forEach(function (c) { lineas[Math.round(c.getBoundingClientRect().top)] = 1; });
+      return JSON.stringify({ h1: h.textContent, h1ok: dentro(h), tag: t.textContent, tagok: dentro(t), piezas: t.querySelectorAll('.tg-i').length, lineas: Object.keys(lineas).length, mal: mal });`);
+    const e = E[L];
+    ok(t.h1 === e.h1 && t.h1ok && e.gratis.test(t.tag) && t.tagok && t.piezas === 3 && t.mal.length === 0,
+       W + ' px ' + L + ' · el titular y la pildora enteros, sin «·» suelto', JSON.stringify(t));
+  }
+}
+await env('Runtime.evaluate', { expression: "document.querySelector('.lang button[data-lang=es]').click();" });
+const TIENDAS2 = await leeJs("return JSON.stringify([].map.call(document.querySelectorAll('a[href*=\"apps.apple.com\"], a[href*=\"play.google.com\"]'), function (a) { return a.getAttribute('href'); }).sort());");
+ok(TIENDAS.length >= 2 && JSON.stringify(TIENDAS) === JSON.stringify(TIENDAS2) && TIENDAS.every((u) => /id6789333985|com\.nihongonosensei\.app/.test(u)),
+   'los enlaces a las tiendas son los de siempre', JSON.stringify(TIENDAS));
+await env('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 2, mobile: true });
+await new Promise((r) => setTimeout(r, 300));
 // LA TIRA: en movil se desliza; en escritorio, las diez enteras, dos filas de cinco dentro del ancho.
 const tira = async () => JSON.parse((await env('Runtime.evaluate', { returnByValue: true, expression: `(function(){
   var row = document.querySelector('.shots-row'), ims = [].slice.call(row.querySelectorAll('img'));
