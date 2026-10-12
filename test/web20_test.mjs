@@ -7,7 +7,7 @@
  * Se carga la pagina de verdad y se lee lo pintado tras pulsar el boton de idioma: el
  * titular «Aprende japonés. Descárgala gratis.» (3-oct; antes «Llegó el sensei»), la intro del ESTILO elegido en el hero (no el reel: ese es para
  * Instagram), las diez capturas del idioma (enteras en escritorio, en tira en movil),
- * las cifras (1.224 · 290 · 30), las clases con historia, los cuatro personajes (y
+ * las cifras (las de cifras.json · 290 kanji), las clases con historia, los cuatro personajes (y
  * ninguno mas), el precio del dojo y Yūgen.
  */
 import http from 'node:http';
@@ -85,8 +85,12 @@ const lee = async (L) => {
   })()` });
   return JSON.parse(r.result.value);
 };
-const E = { es: { noa: 'Su hermana pequeña. Estudia en Osaka.', nico: 'Viaja a Japón y aprende contigo.', hachi: 'Shiba roja. La seria.', goma: 'Shiba negra y fuego. La alegre.', clsHist: 'Nico y Noa, dos hermanos de Barcelona, llegan a Japón con sus perras Hachi y Goma', sala0: 'Aprender', ocho: /^Ocho salas/, gratis: /^30 lecciones completas·Sin anuncios·Funciona sin conexión$/, libre: 'Gratis: el vocabulario de las 30 lecciones con su audio', precioN: '19,99 €', h1: 'Aprende japonés. Descárgala gratis.', sub: 'Aprende japonés con Nihongo Sensei', n: '1.224', cls: 'Clases con historia', cta1: 'Descargar', clsP: /^Nihongo Sensei ahora te da clase/, real: 'Siena y Luna existen de verdad.', precio: /19,99 € al año.*7 días gratis/ },
-            en: { noa: 'His younger sister. She studies in Osaka.', nico: 'Travels to Japan and learns with you.', hachi: 'Red shiba. The serious one.', goma: 'Black and tan shiba. The cheerful one.', clsHist: 'Nico and Noa, a brother and sister from Barcelona, arrive in Japan with their dogs Hachi and Goma', sala0: 'Learn', ocho: /^Eight training rooms/, gratis: /^All 30 lessons·No ads·Works offline$/, libre: 'Free: the vocabulary of all 30 lessons with audio', precioN: '€19.99', h1: 'Learn Japanese. Download it free.', sub: 'Learn Japanese with Nihongo Sensei', n: '1,224', cls: 'Classes with a story', cta1: 'Download', clsP: /^Nihongo Sensei now teaches you/, real: 'Siena and Luna are real.', precio: /€19\.99 a year.*7-day free trial/ } };
+// LAS CIFRAS NO SE ESCRIBEN AQUI (regla 10): salen de cifras.json, que escribe tools/cifras_web.py al
+// cambiarlas en la pagina. La prueba mira que la pagina diga lo declarado, en todos sus sitios.
+const _cj = JSON.parse(fs.readFileSync(new URL('../cifras.json', import.meta.url), 'utf8'));
+const CIF = { lec: _cj.lecciones, es: _cj.palabras.toLocaleString('de-DE'), en: _cj.palabras.toLocaleString('en-US') };
+const E = { es: { noa: 'Su hermana pequeña. Estudia en Osaka.', nico: 'Viaja a Japón y aprende contigo.', hachi: 'Shiba roja. La seria.', goma: 'Shiba negra y fuego. La alegre.', clsHist: 'Nico y Noa, dos hermanos de Barcelona, llegan a Japón con sus perras Hachi y Goma', sala0: 'Aprender', ocho: /^Ocho salas/, gratis: new RegExp('^' + CIF.lec + ' lecciones completas·Sin anuncios·Funciona sin conexión$'), libre: 'Gratis: el vocabulario de las ' + CIF.lec + ' lecciones con su audio', precioN: '19,99 €', h1: 'Aprende japonés. Descárgala gratis.', sub: 'Aprende japonés con Nihongo Sensei', n: CIF.es, cls: 'Clases con historia', cta1: 'Descargar', clsP: /^Nihongo Sensei ahora te da clase/, real: 'Siena y Luna existen de verdad.', precio: /19,99 € al año.*7 días gratis/ },
+            en: { noa: 'His younger sister. She studies in Osaka.', nico: 'Travels to Japan and learns with you.', hachi: 'Red shiba. The serious one.', goma: 'Black and tan shiba. The cheerful one.', clsHist: 'Nico and Noa, a brother and sister from Barcelona, arrive in Japan with their dogs Hachi and Goma', sala0: 'Learn', ocho: /^Eight training rooms/, gratis: new RegExp('^All ' + CIF.lec + ' lessons·No ads·Works offline$'), libre: 'Free: the vocabulary of all ' + CIF.lec + ' lessons with audio', precioN: '€19.99', h1: 'Learn Japanese. Download it free.', sub: 'Learn Japanese with Nihongo Sensei', n: CIF.en, cls: 'Classes with a story', cta1: 'Download', clsP: /^Nihongo Sensei now teaches you/, real: 'Siena and Luna are real.', precio: /€19\.99 a year.*7-day free trial/ } };
 for (const L of ['es', 'en']) {
   const d = await lee(L), e = E[L];
   ok(d.cta.length === 1 && d.cta[0] === e.cta1, L + ' · arriba un solo boton, «' + e.cta1 + '» (sin «Probarla aqui abajo»)', JSON.stringify(d.cta));
@@ -94,7 +98,7 @@ for (const L of ['es', 'en']) {
   ok(d.probar === 0, L + ' · la demo de la forma て no esta, ni ningun enlace a #probar', d.probar + ' restos');
   ok(d.h1 === e.h1 && d.sub === e.sub, L + ' · el hero dice «' + e.h1 + '» y debajo «' + e.sub + '»', d.h1 + ' | ' + d.sub);
   ok(d.shots.length === 10 && d.shots.every((s, i) => /^img\/cap\/(sakura|aki|fuyu)-(dark|light)|^img\/cap\/(kaiju|yugen)/.test(s.src) && s.src.endsWith('-' + L + '-' + String(i + 1).padStart(2, '0') + '.webp') && s.alt), L + ' · las diez capturas, las de su idioma y en orden, con su texto', JSON.stringify(d.shots.slice(0, 3)));
-  ok(d.nums[0] === e.n && d.nums[1] === '290' && d.nums[2] === '30', L + ' · las cifras: ' + e.n + ' palabras, 290 kanji, 30 lecciones', d.nums.join(' '));
+  ok(d.nums[0] === e.n && d.nums[1] === '290' && d.nums[2] === String(CIF.lec), L + ' · las cifras: ' + e.n + ' palabras, 290 kanji, ' + CIF.lec + ' lecciones (de cifras.json)', d.nums.join(' '));
   ok(d.clsH === e.cls && e.clsP.test(d.clsP), L + ' · la seccion de clases con historia', d.clsH + ' | ' + d.clsP.slice(0, 50));
   ok(d.pjs.join(',') === 'Nico,Noa,Hachi,Goma' && d.imgs === 'img/pj-nico.svg,img/pj-noa.svg,img/pj-hachi.svg,img/pj-goma.svg', L + ' · los personajes son Nico, Noa, Hachi y Goma, cada uno con su dibujo', d.pjs.join(',') + ' | ' + d.imgs);
   ok(d.nico === e.nico && d.noa === e.noa && d.hachi === e.hachi && d.goma === e.goma, L + ' · y cada uno dice lo que es (Noa, la hermana pequeña)', [d.nico, d.noa, d.hachi, d.goma].join(' | '));
