@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Nihongo Sensei</title>
+<!--
+  /app?c=<campaña> · EL ENLACE DE LOS ANUNCIOS, DIRECTO A LA TIENDA (15-oct-2026)
+
+  Las campañas de septiembre compraban visitas a la web y solo un 6 % llegaba a pulsar una
+  tienda: un paso de más. Este enlace se salta la web: iPhone/iPad → App Store, Android →
+  Google Play, ordenador → la portada (ahí no hay tienda que abrir y la web enseña las dos).
+
+  · Cuenta el clic en el contador de siempre (nihongo-sensei-metricas), con canal = c.
+    El servidor solo acepta canales de su lista cerrada; uno que no esté cuenta como
+    «directo», nunca como casilla nueva.
+  · App Store: etiqueta de campaña de App Analytics, pt (provider token) + ct (campaña).
+    Sin el pt, Apple no la registra: si PT está vacío, el enlace va limpio, sin ct.
+  · Google Play: referrer con utm_source=meta y utm_campaign=<c>, para Play Console.
+  · Salto inmediato con location.replace (el botón Atrás no vuelve a esta página). Si
+    tarda, se ve el cerezo; sin JavaScript, los dos badges.
+-->
+<style>
+  :root { --fondo: #FBF4F6; --tinta: #3A2A30; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --fondo: #1E1719; --tinta: #F3E6EA; } }
+  html, body { margin: 0; height: 100%; background: var(--fondo); color: var(--tinta);
+    font: 16px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .caja { min-height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 0 16px; text-align: center; }
+  .caja img { width: 96px; height: 96px; border-radius: 22px; }
+  .caja a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="caja">
+  <img src="img/icon-sakura.webp" alt="Nihongo Sensei">
+  <noscript>
+    <p><a href="https://apps.apple.com/app/id6789333985">App Store</a> · <a href="https://play.google.com/store/apps/details?id=com.nihongonosensei.app">Google Play</a></p>
+  </noscript>
+</div>
+<script>
+(function () {
+  var IOS_URL = 'https://apps.apple.com/app/id6789333985';
+  var AND_URL = 'https://play.google.com/store/apps/details?id=com.nihongonosensei.app';
+  var METRICAS = 'https://nihongo-sensei-metricas.nihongosenseiapp.deno.net/m';
+  // El provider token de App Analytics (App Store Connect › App Analytics › Campaigns ›
+  // Generate link: el número de «pt=»). Vacío = el enlace de iOS va sin etiqueta de campaña.
+  var PT = '';
+
+  var c = 'directo';
+  try {
+    var q = new URLSearchParams(location.search).get('c');
+    // la campaña viaja a tres sitios (contador, App Store, Play): solo letras, cifras y guiones
+    if (q && /^[a-z0-9-]{1,40}$/i.test(q)) c = q.toLowerCase();
+  } catch (e) {}
+
+  // El mismo detector que js/site.js: userAgentData primero, y el iPad que se presenta como Mac.
+  function sistema() {
+    try {
+      var p = navigator.userAgentData && navigator.userAgentData.platform;
+      if (p) {
+        if (/android/i.test(p)) return 'android';
+        if (/ios|iphone|ipad/i.test(p)) return 'ios';
+      }
+    } catch (e) {}
+    var ua = navigator.userAgent || '';
+    if (/Android/i.test(ua)) return 'android';
+    if (/iPad|iPhone|iPod/.test(ua)) return 'ios';
+    if (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) return 'ios';
+    return null;
+  }
+
+  function marca(evento) {
+    try {
+      var cuerpo = JSON.stringify({ e: evento, o: c });
+      if (navigator.sendBeacon && navigator.sendBeacon(METRICAS, cuerpo)) return;
+      fetch(METRICAS, { method: 'POST', body: cuerpo, keepalive: true, mode: 'no-cors' });
+    } catch (e) {}
+  }
+
+  var so = sistema(), destino;
+  if (so === 'ios') {
+    destino = IOS_URL + (PT ? '?pt=' + encodeURIComponent(PT) + '&ct=' + encodeURIComponent(c) + '&mt=8' : '');
+    marca('ios');
+  } else if (so === 'android') {
+    destino = AND_URL + '&referrer=utm_source%3Dmeta%26utm_campaign%3D' + encodeURIComponent(c);
+    marca('android');
+  } else {
+    // Ordenador: a la portada, con la campaña como canal (la portada elige sola el idioma por
+    // el del navegador; en.html es solo un salto a /). La visita la cuenta la propia portada
+    // (js/site.js), así que aquí no se marca nada: si no, contaría dos veces.
+    destino = '/?utm_source=' + encodeURIComponent(c);
+  }
+  location.replace(destino);
+})();
+</script>
+</body>
+</html>

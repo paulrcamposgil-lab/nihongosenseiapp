@@ -199,7 +199,9 @@
   }catch(e){}
 
   var METRICAS = 'https://nihongo-sensei-metricas.nihongosenseiapp.deno.net/m';
-  var CANALES = ['instagram', 'reddit', 'discord', 'clase', 'web'];
+  // meta-es / meta-en (15-oct): las campañas de Meta entran por /app; desde un ordenador, /app
+  // las deja aquí con su utm_source, y la visita se cuenta en su canal.
+  var CANALES = ['instagram', 'reddit', 'discord', 'clase', 'web', 'meta-es', 'meta-en'];
   var canal = 'directo';
   try{
     var q = new URLSearchParams(location.search);
