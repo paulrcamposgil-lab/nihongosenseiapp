@@ -25,9 +25,9 @@
   function _heroVideo(id){
     var v = _VIDS[(id || '').split('-')[0]]; if(!v) return;
     var hv = document.querySelector('.hero-video video'); if(!hv) return;
-    var src = 'img/' + v[0];
+    var src = '/img/' + v[0];
     if(hv.getAttribute('src') === src) return;      // ya es el de esta piel: no recargar
-    hv.setAttribute('poster', 'img/' + v[1]);
+    hv.setAttribute('poster', '/img/' + v[1]);
     hv.setAttribute('src', src);
     try{ hv.load(); var pr = hv.play(); if(pr && pr.catch) pr.catch(function(){}); }catch(e){}
   }
@@ -57,8 +57,8 @@
   function _precargaVideo(id){
     return new Promise(function(ok){
       var v = _VIDS[(id || '').split('-')[0]], hv = document.querySelector('.hero-video video');
-      if(!v || !hv || hv.getAttribute('src') === 'img/' + v[0]) return ok(null);
-      var nv = hv.cloneNode(false); nv.setAttribute('poster', 'img/' + v[1]); nv.setAttribute('src', 'img/' + v[0]);
+      if(!v || !hv || hv.getAttribute('src') === '/img/' + v[0]) return ok(null);
+      var nv = hv.cloneNode(false); nv.setAttribute('poster', '/img/' + v[1]); nv.setAttribute('src', '/img/' + v[0]);
       nv.muted = true; nv.setAttribute('muted', ''); nv.preload = 'auto';
       var listo = false, fin = function(){ if(listo) return; listo = true; ok(nv); };
       nv.addEventListener('loadeddata', fin); setTimeout(fin, 2500);   // si la red va lenta, no se espera para siempre
@@ -125,6 +125,17 @@
     document.querySelectorAll('.lang button').forEach(function(b){
       b.setAttribute('aria-pressed', b.dataset.lang === L ? 'true' : 'false');
     });
+    // (20-oct) CADA IDIOMA TIENE SU URL: / es español y /en/ inglés, con su HTML escrito (Google lee
+    // eso, no lo que pinta este script). Al cambiar de idioma aquí, la dirección pasa a la del otro.
+    // Los enlaces marcados con data-href-en apuntan a su versión inglesa.
+    document.querySelectorAll('[data-href-en]').forEach(function(a){
+      if(!a.dataset.hrefEs) a.dataset.hrefEs = a.getAttribute('href');
+      a.setAttribute('href', L === 'en' ? a.dataset.hrefEn : a.dataset.hrefEs);
+    });
+    var url = root.getAttribute('data-url-' + L);
+    if(url && location.protocol !== 'file:' && location.pathname !== url){
+      try{ history.replaceState(null, '', url + location.search + location.hash); }catch(e){}
+    }
     if(typeof window.NS_AFTER_LANG === 'function'){ window.NS_AFTER_LANG(L); }
     try{ localStorage.setItem('ns-lang', L); }catch(e){}
   }
@@ -132,12 +143,18 @@
     b.addEventListener('click', function(){ applyLang(b.dataset.lang); });
   });
 
-  var start = 'es';
-  try{
-    var sl = localStorage.getItem('ns-lang');
-    if(sl) start = sl;
-    else if(!/^es/i.test(navigator.language || '')) start = 'en';
-  }catch(e){}
+  // (20-oct) UNA PÁGINA CON IDIOMA PROPIO (data-idioma: la portada en / y en /en/, las lecciones) SE
+  // ABRE EN EL SUYO. Antes la portada miraba el idioma del navegador, y Googlebot navega en inglés: la
+  // portada española se le pintaba en inglés. Quien prefiere el otro idioma tiene el botón, y hreflang
+  // ya manda a cada buscador a su versión.
+  var start = root.getAttribute('data-idioma') || 'es';
+  if(!root.getAttribute('data-idioma')){
+    try{
+      var sl = localStorage.getItem('ns-lang');
+      if(sl) start = sl;
+      else if(!/^es/i.test(navigator.language || '')) start = 'en';
+    }catch(e){}
+  }
   applyLang(start);
 
   /* ---- atribución de campaña + contador de embudo, SIN cookies (brief de Code, 3-sep) ----

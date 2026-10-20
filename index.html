@@ -1,16 +1,19 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-idioma="es" data-url-es="/" data-url-en="/en/">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Nihongo Sensei: Minna — la app para estudiar japonés lección a lección</title>
-<meta name="description" content="App gratuita para estudiar japonés siguiendo Minna no Nihongo lección a lección. 1.438 palabras con audio, 1.438 frases, ejercicios donde escribes la respuesta. Sin cuenta, sin anuncios, funciona sin conexión.">
+<title>Minna no Nihongo: app para estudiar japonés lección a lección | Nihongo Sensei</title>
+<meta name="description" content="App para estudiar japonés siguiendo Minna no Nihongo lección a lección: 1.438 palabras con audio, 1.438 frases, la gramática de cada lección y ejercicios donde escribes la respuesta. Sin cuenta, sin anuncios y sin conexión.">
 <link rel="canonical" href="https://nihongosenseiapp.com/">
+<link rel="alternate" hreflang="es" href="https://nihongosenseiapp.com/">
+<link rel="alternate" hreflang="en" href="https://nihongosenseiapp.com/en/">
+<link rel="alternate" hreflang="x-default" href="https://nihongosenseiapp.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Nihongo Sensei: Minna">
-<meta property="og:title" content="Nihongo Sensei: Minna — japonés, lección a lección">
-<meta property="og:description" content="1.438 palabras con audio, 1.438 frases y ejercicios donde escribes la respuesta. Gratis, sin cuenta y sin conexión.">
+<meta property="og:title" content="Minna no Nihongo, lección a lección · Nihongo Sensei">
+<meta property="og:description" content="Estudia japonés siguiendo Minna no Nihongo: 1.438 palabras con audio, 1.438 frases y ejercicios donde escribes la respuesta. Sin cuenta, sin anuncios y sin conexión.">
 <meta property="og:url" content="https://nihongosenseiapp.com/">
 <meta property="og:image" content="https://nihongosenseiapp.com/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -18,16 +21,23 @@
 <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1E161C" media="(prefers-color-scheme: dark)">
 
-<link rel="icon" href="img/icon-192.png" sizes="any">
-<link rel="apple-touch-icon" href="img/icon-192.png">
+<link rel="icon" href="/img/icon-192.png" sizes="any">
+<link rel="apple-touch-icon" href="/img/icon-192.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
 <script>/* anti-parpadeo: estampa la apariencia (y el idioma) antes de pintar */
 try{var s=localStorage.getItem("ns-skin");if(s)document.documentElement.setAttribute("data-appearance",s);
-var l=localStorage.getItem("ns-lang");if(l)document.documentElement.setAttribute("lang",l);}catch(e){}</script>
-<link rel="stylesheet" href="css/site.css">
+var l=localStorage.getItem("ns-lang");if(l&&!document.documentElement.getAttribute("data-idioma"))document.documentElement.setAttribute("lang",l);}catch(e){}</script>
+<link rel="stylesheet" href="/css/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Nihongo Sensei: Minna",
+ "applicationCategory":"EducationalApplication","operatingSystem":"iOS, Android",
+ "url":"https://nihongosenseiapp.com/","inLanguage":["es","en"],
+ "description":"App para estudiar japonés siguiendo Minna no Nihongo lección a lección.",
+ "installUrl":["https://apps.apple.com/app/id6789333985","https://play.google.com/store/apps/details?id=com.nihongonosensei.app"]}
+</script>
 <style>
 
 /* ---------- hero ---------- */
@@ -152,7 +162,7 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 .hero-video video{width:100%;max-width:250px;border-radius:26px;display:block;box-shadow:var(--sh-lg)}
 @media (prefers-reduced-motion:reduce){
   .hero-video video{display:none}
-  .hero-video{background:url(img/intro_poster.webp) center/contain no-repeat;width:250px;height:448px;border-radius:26px;margin:34px auto 8px}
+  .hero-video{background:url(/img/intro_poster.webp) center/contain no-repeat;width:250px;height:448px;border-radius:26px;margin:34px auto 8px}
 }
 .shots .eyebrow{margin-bottom:.4em}
 .shots-row{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:18px 0 6px;scrollbar-width:none}
@@ -205,24 +215,24 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 <div class="hero" id="top">
   <div class="wm" aria-hidden="true">語</div>
   <div class="wrap">
-    <span class="tag rev-in" data-t="tag"></span>
-    <h1 class="rev-in" data-t="h1"></h1>
-    <p class="hero-sub rev-in" data-t="h1sub"></p>
-    <p class="lead rev-in" data-t="lead"></p>
+    <span class="tag rev-in" data-t="tag">35 lecciones completas · Sin anuncios · <b>Funciona sin conexión</b></span>
+    <h1 class="rev-in" data-t="h1">Minna no Nihongo, lección a lección.</h1>
+    <p class="hero-sub rev-in" data-t="h1sub">Aprende japonés con Nihongo Sensei</p>
+    <p class="lead rev-in" data-t="lead">La app que sigue el orden de tus clases: el vocabulario de <em>esa</em> lección, no el que elige un algoritmo. 35 lecciones: todo el primer libro y el comienzo del segundo. Y las respuestas se escriben.</p>
     <div class="cta rev-in">
-      <a class="btn btn-1" id="ctaDescarga" href="https://apps.apple.com/app/id6789333985" data-t="cta1"></a>
+      <a class="btn btn-1" id="ctaDescarga" href="https://apps.apple.com/app/id6789333985" data-t="cta1">Pruébala gratis</a>
     </div>
     <!-- X.3 y X.4 (15-sep-2026) · las dos tiendas, SIN bajar. El botón grande lleva a
          la que toca, pero un visitante de Android que llegó aquí creyendo que esto es
          «solo para iPhone» necesita verlo escrito y ver su tienda, no deducirlo. Los
          badges del pie seguían estando a una página entera de scroll. -->
     <p class="cta-mini rev-in">
-      <span data-t="ambas"></span>
+      <span data-t="ambas">Para iPhone y para Android:</span>
       <a href="https://apps.apple.com/app/id6789333985"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.05 12.53c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.71-3.19-1.73-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.18-1.54 2.67-.39 6.62 1.11 8.79.73 1.06 1.6 2.25 2.74 2.21 1.1-.04 1.52-.71 2.85-.71 1.33 0 1.71.71 2.87.69 1.19-.02 1.94-1.08 2.66-2.15.84-1.23 1.19-2.42 1.21-2.48-.03-.01-2.31-.89-2.33-3.53zM14.9 5.6c.61-.74 1.02-1.77.91-2.8-.88.04-1.94.59-2.57 1.32-.56.65-1.05 1.7-.92 2.7.98.08 1.98-.5 2.58-1.22z"/></svg>App Store</a>
       <a href="https://play.google.com/store/apps/details?id=com.nihongonosensei.app"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.1 2.4a1.5 1.5 0 0 0-.6 1.2v16.8a1.5 1.5 0 0 0 .6 1.2l.1.1 9.4-9.6v-.2L4.2 2.3l-.1.1zm10.9 6.7L5.1 2.3l8.6 8.8 1.3-2zm0 5.8-1.3-2-8.6 8.8 9.9-6.8zm.9-3.5-2.4-1.4-1.4 2.1 1.4 2.1 2.5-1.4c.7-.4.7-1 0-1.4z"/></svg>Google Play</a>
     </p>
     <div class="hero-video rev-in">
-      <video poster="img/intro_poster.webp"
+      <video poster="/img/intro_poster.webp"
              autoplay muted loop playsinline preload="metadata"
              aria-label="Nihongo Sensei"></video>
     </div>
@@ -231,18 +241,18 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 
 <section class="shots">
   <div class="wrap">
-    <div class="eyebrow rev-in" data-t="shots_eyebrow"></div>
+    <div class="eyebrow rev-in" data-t="shots_eyebrow">ASÍ SE VE</div>
     <div class="shots-row rev-in">
-      <figure><img src="img/cap/sakura-dark-es-01.webp" data-shot="01" data-t-alt="cap1" alt="" loading="lazy" width="555" height="1200"></figure>
-      <figure><img src="img/cap/sakura-dark-es-02.webp" data-shot="02" data-t-alt="cap2" alt="" loading="lazy" width="555" height="1200"></figure>
-      <figure><img src="img/cap/sakura-dark-es-03.webp" data-shot="03" data-t-alt="cap3" alt="" loading="lazy" width="555" height="1200"></figure>
-      <figure><img src="img/cap/sakura-dark-es-04.webp" data-shot="04" data-t-alt="cap4" alt="" loading="lazy" width="555" height="1200"></figure>
-      <figure><img src="img/cap/sakura-dark-es-05.webp" data-shot="05" data-t-alt="cap5" alt="" loading="lazy" width="555" height="1200"></figure>
-      <figure><img src="img/cap/sakura-dark-es-06.webp" data-shot="06" data-t-alt="cap6" alt="" loading="lazy" width="555" height="1200"></figure>
-      <figure><img src="img/cap/sakura-dark-es-07.webp" data-shot="07" data-t-alt="cap7" alt="" loading="lazy" width="555" height="1200"></figure>
-      <figure><img src="img/cap/sakura-dark-es-08.webp" data-shot="08" data-t-alt="cap8" alt="" loading="lazy" width="555" height="1200"></figure>
-      <figure><img src="img/cap/sakura-dark-es-09.webp" data-shot="09" data-t-alt="cap9" alt="" loading="lazy" width="555" height="1200"></figure>
-      <figure><img src="img/cap/sakura-dark-es-10.webp" data-shot="10" data-t-alt="cap10" alt="" loading="lazy" width="555" height="1200"></figure>
+      <figure><img src="/img/cap/sakura-dark-es-01.webp" data-shot="01" data-t-alt="cap1" alt="Aprende japonés viajando a Japón" loading="lazy" width="555" height="1200"></figure>
+      <figure><img src="/img/cap/sakura-dark-es-02.webp" data-shot="02" data-t-alt="cap2" alt="Cada regla, dentro de la historia" loading="lazy" width="555" height="1200"></figure>
+      <figure><img src="/img/cap/sakura-dark-es-03.webp" data-shot="03" data-t-alt="cap3" alt="Escribe y te corrige al momento" loading="lazy" width="555" height="1200"></figure>
+      <figure><img src="/img/cap/sakura-dark-es-04.webp" data-shot="04" data-t-alt="cap4" alt="Practica justo lo de hoy" loading="lazy" width="555" height="1200"></figure>
+      <figure><img src="/img/cap/sakura-dark-es-05.webp" data-shot="05" data-t-alt="cap5" alt="Vuelve lo que te cuesta" loading="lazy" width="555" height="1200"></figure>
+      <figure><img src="/img/cap/sakura-dark-es-06.webp" data-shot="06" data-t-alt="cap6" alt="1.438 palabras con audio" loading="lazy" width="555" height="1200"></figure>
+      <figure><img src="/img/cap/sakura-dark-es-07.webp" data-shot="07" data-t-alt="cap7" alt="Un dojo para entrenar" loading="lazy" width="555" height="1200"></figure>
+      <figure><img src="/img/cap/sakura-dark-es-08.webp" data-shot="08" data-t-alt="cap8" alt="290 kanji para leer y escribir" loading="lazy" width="555" height="1200"></figure>
+      <figure><img src="/img/cap/sakura-dark-es-09.webp" data-shot="09" data-t-alt="cap9" alt="Hiragana y katakana, completos" loading="lazy" width="555" height="1200"></figure>
+      <figure><img src="/img/cap/sakura-dark-es-10.webp" data-shot="10" data-t-alt="cap10" alt="Mira cuánto llevas" loading="lazy" width="555" height="1200"></figure>
     </div>
   </div>
 </section>
@@ -251,22 +261,35 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 <section id="clases">
   <span class="swm r top" aria-hidden="true">授</span>
   <div class="wrap narrow rev-in">
-    <span class="eyebrow" data-t="clsEye"></span>
-    <h2 data-t="clsH"></h2>
-    <p style="margin-top:1.2em" data-t="clsP"></p>
+    <span class="eyebrow" data-t="clsEye">Novedad</span>
+    <h2 data-t="clsH">Clases con historia</h2>
+    <p style="margin-top:1.2em" data-t="clsP">Nihongo Sensei ahora te da clase. Clases guiadas que siguen las lecciones de Minna no Nihongo, con una historia de fondo: Nico y Noa, dos hermanos de Barcelona, llegan a Japón con sus perras Hachi y Goma, y cada punto de gramática ocurre dentro de la historia. Escenas animadas, audio en japonés en cada frase y ejercicios que corrigen lo que escribes. Al acabar cada clase, una práctica solo de lo de hoy; lo que fallas vuelve en el repaso. Las primeras clases son gratis.</p>
+  </div>
+</section>
+
+<!-- (20-oct, Paul) ¿QUÉ ES MINNA NO NIHONGO? Texto nuestro, para quien llega buscando el libro. -->
+<section id="minna">
+  <span class="swm l top" aria-hidden="true">本</span>
+  <div class="wrap narrow rev-in">
+    <span class="eyebrow" data-t="mnEye">El libro</span>
+    <h2 data-t="mnH">¿Qué es Minna no Nihongo?</h2>
+    <p style="margin-top:1.2em" data-t="mnP1">Minna no Nihongo («japonés para todos») es el manual de japonés con el que estudian muchas academias y escuelas de idiomas. Empieza desde cero y avanza en lecciones cortas: cada una presenta su vocabulario, uno o dos puntos de gramática y frases para usarlos.</p>
+    <p data-t="mnP2">El nivel principiante son dos libros y 50 lecciones: del 1 al 25, el primero, y del 26 al 50, el segundo. Al acabarlos se llega más o menos al nivel N4 del JLPT, el examen de japonés más conocido. Después vienen los libros de nivel intermedio.</p>
+    <p data-t="mnP3">Nihongo Sensei sigue ese orden lección a lección: el vocabulario de cada lección con su audio, su gramática explicada con nuestros ejemplos y ejercicios donde escribes la respuesta. Hoy llega a la lección 35; las de la 36 a la 50 están en camino.</p>
+    <p style="margin-top:1.2em"><a class="btn btn-1" href="/minna-no-nihongo/" data-href-en="/en/minna-no-nihongo/" data-t="mnLink">Vocabulario y gramática de cada lección</a></p>
   </div>
 </section>
 
 <!-- 2.0.1 · LOS PERSONAJES, inventados: Nico, Noa, Hachi y Goma (Paul, 28-sep: «nada de familia real») -->
 <section id="personajes">
   <div class="wrap rev-in">
-    <span class="eyebrow" data-t="pjEye"></span>
-    <h2 data-t="pjH"></h2>
+    <span class="eyebrow" data-t="pjEye">La historia</span>
+    <h2 data-t="pjH">Los personajes</h2>
     <div class="cast">
-      <figure class="pj"><img src="img/pj-nico.svg" alt="Nico" loading="lazy"><figcaption><b>Nico</b><span data-t="pjNico"></span></figcaption></figure>
-      <figure class="pj"><img src="img/pj-noa.svg" alt="Noa" loading="lazy"><figcaption><b>Noa</b><span data-t="pjNoa"></span></figcaption></figure>
-      <figure class="pj"><img src="img/pj-hachi.svg" alt="Hachi" loading="lazy"><figcaption><b>Hachi</b><span data-t="pjHachi"></span></figcaption></figure>
-      <figure class="pj"><img src="img/pj-goma.svg" alt="Goma" loading="lazy"><figcaption><b>Goma</b><span data-t="pjGoma"></span></figcaption></figure>
+      <figure class="pj"><img src="/img/pj-nico.svg" alt="Nico" loading="lazy"><figcaption><b>Nico</b><span data-t="pjNico">Viaja a Japón y aprende contigo.</span></figcaption></figure>
+      <figure class="pj"><img src="/img/pj-noa.svg" alt="Noa" loading="lazy"><figcaption><b>Noa</b><span data-t="pjNoa">Su hermana pequeña. Estudia en Osaka.</span></figcaption></figure>
+      <figure class="pj"><img src="/img/pj-hachi.svg" alt="Hachi" loading="lazy"><figcaption><b>Hachi</b><span data-t="pjHachi">Shiba roja. La seria.</span></figcaption></figure>
+      <figure class="pj"><img src="/img/pj-goma.svg" alt="Goma" loading="lazy"><figcaption><b>Goma</b><span data-t="pjGoma">Shiba negra y fuego. La alegre.</span></figcaption></figure>
     </div>
   </div>
 </section>
@@ -275,17 +298,17 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
   <span class="swm r top" aria-hidden="true">則</span>
   <div class="wrap two rev">
     <div class="rev-in">
-      <span class="eyebrow" data-t="s2eye"></span>
-      <h2 data-t="s2h"></h2>
-      <p data-t="s2p1"></p>
-      <p data-t="s2p2"></p>
+      <span class="eyebrow" data-t="s2eye">Cuando fallas</span>
+      <h2 data-t="s2h">No dice «incorrecto». Dice qué regla usaste.</h2>
+      <p data-t="s2p1">Una cruz roja te deja donde estabas. Saber que trataste un verbo del grupo I como si fuera del II te deja con una regla — y con las demás palabras que la siguen.</p>
+      <p data-t="s2p2">Y hay una pantalla que lleva la cuenta de <strong>en qué reglas andas flojo</strong>, no de qué palabras fallaste. Que es lo que de verdad se arregla.</p>
     </div>
     <div class="rev-in">
       <ul class="rules">
-        <li><span class="rn" data-t="r1"></span><span class="bar"><i style="width:88%;background:var(--m5)"></i></span></li>
-        <li><span class="rn" data-t="r2"></span><span class="bar"><i style="width:71%;background:var(--m4)"></i></span></li>
-        <li><span class="rn" data-t="r3"></span><span class="bar"><i style="width:46%;background:var(--m3)"></i></span></li>
-        <li><span class="rn" data-t="r4"></span><span class="bar"><i style="width:22%;background:var(--m2)"></i></span></li>
+        <li><span class="rn" data-t="r1">Grupo I · み・び・に → んで<small>dominada</small></span><span class="bar"><i style="width:88%;background:var(--m5)"></i></span></li>
+        <li><span class="rn" data-t="r2">Grupo II · quitar ます<small>casi</small></span><span class="bar"><i style="width:71%;background:var(--m4)"></i></span></li>
+        <li><span class="rn" data-t="r3">き → いて, con su excepción<small>en progreso</small></span><span class="bar"><i style="width:46%;background:var(--m3)"></i></span></li>
+        <li><span class="rn" data-t="r4">ぎ → いで, con dakuten<small>te cuesta</small></span><span class="bar"><i style="width:22%;background:var(--m2)"></i></span></li>
       </ul>
     </div>
   </div>
@@ -294,10 +317,10 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 <section>
   <div class="wrap rev-in">
     <div class="nums">
-      <div class="num"><b data-t="nn1">1.438</b><span data-t="n1"></span></div>
-      <div class="num"><b>290</b><span data-t="n2"></span></div>
-      <div class="num"><b>35</b><span data-t="n3"></span></div>
-      <div class="num"><b>0</b><span data-t="n4"></span></div>
+      <div class="num"><b data-t="nn1">1.438</b><span data-t="n1">palabras, con audio</span></div>
+      <div class="num"><b>290</b><span data-t="n2">kanji</span></div>
+      <div class="num"><b>35</b><span data-t="n3">lecciones, de la 1 a la 35</span></div>
+      <div class="num"><b>0</b><span data-t="n4">cuentas, anuncios y trackers</span></div>
     </div>
   </div>
 </section>
@@ -306,18 +329,18 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
   <span class="swm l top" aria-hidden="true">聴</span>
   <div class="wrap two">
     <div class="rev-in">
-      <span class="eyebrow" data-t="s3eye"></span>
-      <h2 data-t="s3h"></h2>
-      <p data-t="s3p1"></p>
-      <p data-t="s3p2"></p>
+      <span class="eyebrow" data-t="s3eye">Escuchar</span>
+      <h2 data-t="s3h">Con el móvil en el bolsillo.</h2>
+      <p data-t="s3p1">Suena la palabra, se abre un hueco para que pienses, y llega la respuesta. Cuarenta minutos andando sin sacar el teléfono.</p>
+      <p data-t="s3p2">Japonés en dos voces y dos velocidades. Las traducciones, en español y en inglés. Todo grabado de antemano y dentro de la app: <strong>ni un byte de red mientras estudias</strong>.</p>
     </div>
     <div class="rev-in">
       <ol class="cycle">
-        <li><span class="t">0,0 s</span><span class="w jp">およぎます<small data-t="c1"></small></span></li>
-        <li class="beep"><span class="t">2,4 s</span><span class="w">bip · bip<small data-t="c2"></small></span></li>
-        <li class="beep"><span class="t">5,0 s</span><span class="w">biiip<small data-t="c3"></small></span></li>
-        <li><span class="t">5,3 s</span><span class="w"><span data-t="c4w"></span><small data-t="c4"></small></span></li>
-        <li><span class="t">7,7 s</span><span class="w jp">かえります<small data-t="c5"></small></span></li>
+        <li><span class="t">0,0 s</span><span class="w jp">およぎます<small data-t="c1">suena la pregunta</small></span></li>
+        <li class="beep"><span class="t">2,4 s</span><span class="w">bip · bip<small data-t="c2">tu turno — piensa</small></span></li>
+        <li class="beep"><span class="t">5,0 s</span><span class="w">biiip<small data-t="c3">aquí va</small></span></li>
+        <li><span class="t">5,3 s</span><span class="w"><span data-t="c4w">Nadar</span><small data-t="c4">suena la respuesta</small></span></li>
+        <li><span class="t">7,7 s</span><span class="w jp">かえります<small data-t="c5">siguiente palabra</small></span></li>
       </ol>
     </div>
   </div>
@@ -325,14 +348,14 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 
 <section>
   <div class="wrap rev-in">
-    <span class="eyebrow" data-t="s8eye"></span>
-    <h2 data-t="s8h"></h2>
+    <span class="eyebrow" data-t="s8eye">Por dentro</span>
+    <h2 data-t="s8h">Cinco pestañas, y ya.</h2>
     <div class="rooms">
-      <div class="room"><span class="k">今</span><h3 data-t="tb1h"></h3><p data-t="tb1p"></p></div>
-      <div class="room"><span class="k">課</span><h3 data-t="tb2h"></h3><p data-t="tb2p"></p></div>
-      <div class="room"><span class="k">練</span><h3 data-t="tb3h"></h3><p data-t="tb3p"></p></div>
-      <div class="room"><span class="k">書</span><h3 data-t="tb4h"></h3><p data-t="tb4p"></p></div>
-      <div class="room"><span class="k">道</span><h3 data-t="tb5h"></h3><p data-t="tb5p"></p></div>
+      <div class="room"><span class="k">今</span><h3 data-t="tb1h">Hoy</h3><p data-t="tb1p">Lo que toca repasar hoy. Nada más, y por eso se hace.</p></div>
+      <div class="room"><span class="k">課</span><h3 data-t="tb2h">Curso</h3><p data-t="tb2p">35 lecciones con su vocabulario, su gramática y sus frases.</p></div>
+      <div class="room"><span class="k">練</span><h3 data-t="tb3h">Entrenos</h3><p data-t="tb3p">Vocabulario, kanji, kana y Escuchar, con los filtros que quieras.</p></div>
+      <div class="room"><span class="k">書</span><h3 data-t="tb4h">Biblioteca</h3><p data-t="tb4p">Kana y kanji para consultar. Aquí no se examina a nadie.</p></div>
+      <div class="room"><span class="k">道</span><h3 data-t="tb5h">Dojo</h3><p data-t="tb5p">Las ocho salas donde se entrena de verdad.</p></div>
     </div>
   </div>
 </section>
@@ -340,17 +363,17 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 <section>
   <span class="swm r top" aria-hidden="true">鍛</span>
   <div class="wrap rev-in">
-    <span class="eyebrow" data-t="s4eye"></span>
-    <h2 data-t="s4h"></h2>
+    <span class="eyebrow" data-t="s4eye">El dojo</span>
+    <h2 data-t="s4h">Ocho salas de entrenamiento.</h2>
     <div class="rooms">
-      <div class="room"><span class="k">学</span><h3 data-t="rm0h"></h3><p data-t="rm0p"></p></div>
-      <div class="room"><span class="k">動</span><h3 data-t="rm1h"></h3><p data-t="rm1p"></p></div>
-      <div class="room"><span class="k">形</span><h3 data-t="rm2h"></h3><p data-t="rm2p"></p></div>
-      <div class="room"><span class="k">文</span><h3 data-t="rm3h"></h3><p data-t="rm3p"></p></div>
-      <div class="room"><span class="k">仮</span><h3 data-t="rm4h"></h3><p data-t="rm4p"></p></div>
-      <div class="room"><span class="k">字</span><h3 data-t="rm7h"></h3><p data-t="rm7p"></p></div>
-      <div class="room"><span class="k">耳</span><h3 data-t="rm5h"></h3><p data-t="rm5p"></p></div>
-      <div class="room"><span class="k">数</span><h3 data-t="rm6h"></h3><p data-t="rm6p"></p></div>
+      <div class="room"><span class="k">学</span><h3 data-t="rm0h">Aprender</h3><p data-t="rm0p">Clases guiadas con historia, lección a lección, y al acabar, una práctica solo de lo de hoy.</p></div>
+      <div class="room"><span class="k">動</span><h3 data-t="rm1h">Verbos</h3><p data-t="rm1p">Escribes la forma て, ない, た o de diccionario.</p></div>
+      <div class="room"><span class="k">形</span><h3 data-t="rm2h">Adjetivos</h3><p data-t="rm2p">Es, no es, era, y cómo van delante del nombre.</p></div>
+      <div class="room"><span class="k">文</span><h3 data-t="rm3h">Frases</h3><p data-t="rm3p">El molde de la lección, con el verbo en la forma que pide.</p></div>
+      <div class="room"><span class="k">仮</span><h3 data-t="rm4h">Kana</h3><p data-t="rm4p">Hiragana y katakana enteros, y los pares que todos confunden.</p></div>
+      <div class="room"><span class="k">字</span><h3 data-t="rm7h">Kanji</h3><p data-t="rm7p">290 kanji para leerlos y escribirlos, con repaso espaciado.</p></div>
+      <div class="room"><span class="k">耳</span><h3 data-t="rm5h">Listening</h3><p data-t="rm5p">Oyes una palabra y escribes lo que has oído.</p></div>
+      <div class="room"><span class="k">数</span><h3 data-t="rm6h">Números</h3><p data-t="rm6p">Con las lecturas que cambian: 300, 600, 800, 3000, 8000.</p></div>
     </div>
   </div>
 </section>
@@ -359,21 +382,21 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
   <span class="swm l top" aria-hidden="true">色</span>
   <div class="wrap two">
     <div class="rev-in">
-      <span class="eyebrow" data-t="s5eye"></span>
-      <h2 data-t="s5h"></h2>
-      <p data-t="s5p1"></p>
-      <p data-t="s5p2"></p>
+      <span class="eyebrow" data-t="s5eye">Apariencia</span>
+      <h2 data-t="s5h">La app se viste como tú.</h2>
+      <p data-t="s5p1">Cinco estilos para la app; el último, Yūgen: noche, niebla y faroles. Y no es una demostración: <strong>estos botones pintan esta página con los colores exactos de la app.</strong></p>
+      <p data-t="s5p2">Pruébalos. Lo que ves es lo que vas a tener.</p>
     </div>
     <div class="rev-in">
       <div class="skinbig">
-        <button class="sb b-sd" data-set="sakura-dark"><span class="dot"></span><span class="n">桜 · 夜</span><span class="d" data-t="sk1"></span></button>
-        <button class="sb b-sl" data-set="sakura-light"><span class="dot"></span><span class="n">桜 · 昼</span><span class="d" data-t="sk2"></span></button>
-        <button class="sb b-ad" data-set="aki-dark"><span class="dot"></span><span class="n">秋 · 夜</span><span class="d" data-t="sk6"></span></button>
-        <button class="sb b-al" data-set="aki-light"><span class="dot"></span><span class="n">秋 · 昼</span><span class="d" data-t="sk7"></span></button>
-        <button class="sb b-fd" data-set="fuyu-dark"><span class="dot"></span><span class="n">冬 · 夜</span><span class="d" data-t="sk4"></span></button>
-        <button class="sb b-fl" data-set="fuyu-light"><span class="dot"></span><span class="n">冬 · 雪</span><span class="d" data-t="sk5"></span></button>
-        <button class="sb b-kj" data-set="kaiju"><span class="dot"></span><span class="n">怪獣</span><span class="d" data-t="sk3"></span></button>
-        <button class="sb b-yg" data-set="yugen"><span class="dot"></span><span class="n">幽玄</span><span class="d" data-t="sk8"></span></button>
+        <button class="sb b-sd" data-set="sakura-dark"><span class="dot"></span><span class="n">桜 · 夜</span><span class="d" data-t="sk1">Sakura · oscuro</span></button>
+        <button class="sb b-sl" data-set="sakura-light"><span class="dot"></span><span class="n">桜 · 昼</span><span class="d" data-t="sk2">Hanami · claro</span></button>
+        <button class="sb b-ad" data-set="aki-dark"><span class="dot"></span><span class="n">秋 · 夜</span><span class="d" data-t="sk6">Aki · noche</span></button>
+        <button class="sb b-al" data-set="aki-light"><span class="dot"></span><span class="n">秋 · 昼</span><span class="d" data-t="sk7">Aki · atardecer</span></button>
+        <button class="sb b-fd" data-set="fuyu-dark"><span class="dot"></span><span class="n">冬 · 夜</span><span class="d" data-t="sk4">Fuyu · noche</span></button>
+        <button class="sb b-fl" data-set="fuyu-light"><span class="dot"></span><span class="n">冬 · 雪</span><span class="d" data-t="sk5">Fuyu · nieve</span></button>
+        <button class="sb b-kj" data-set="kaiju"><span class="dot"></span><span class="n">怪獣</span><span class="d" data-t="sk3">Kaiju · solo noche</span></button>
+        <button class="sb b-yg" data-set="yugen"><span class="dot"></span><span class="n">幽玄</span><span class="d" data-t="sk8">Yūgen · solo noche</span></button>
       </div>
     </div>
   </div>
@@ -385,36 +408,36 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
      buscando el precio no deberia tener que bajar hasta el final. -->
 <section>
   <div class="wrap narrow rev-in">
-    <span class="eyebrow" data-t="precioEye"></span>
-    <h2 data-t="precioH"></h2>
-    <p style="margin-top:1.2em" data-t="precioP"></p>
-    <p style="margin-top:.9em;opacity:.75" data-t="precioC"></p>
+    <span class="eyebrow" data-t="precioEye">Qué cuesta</span>
+    <h2 data-t="precioH">El curso, gratis. Lo nuestro, de pago.</h2>
+    <p style="margin-top:1.2em" data-t="precioP">Gratis: el vocabulario de las 35 lecciones con su audio, las tarjetas, el quiz, el repaso, el hiragana y el katakana, y las primeras clases. Lo que se paga es lo que hemos construido nosotros: el dojo, donde entrenas hasta que te sale solo, y las clases guiadas de la 4 en adelante. Las primeras clases son tuyas para siempre.</p>
+    <p style="margin-top:.9em;opacity:.75" data-t="precioC">El dojo completo, con todas las clases, cuesta 19,99 € al año, con 7 días gratis para probarlo. Sin cuenta y sin renovación sorpresa: lo gestiona tu tienda.</p>
   </div>
 </section>
 
 <section>
   <span class="swm r top" aria-hidden="true">無</span>
   <div class="wrap narrow rev-in">
-    <span class="eyebrow" data-t="s6eye"></span>
-    <h2 data-t="s6h"></h2>
+    <span class="eyebrow" data-t="s6eye">Lo que no lleva</span>
+    <h2 data-t="s6h">Nada de lo de siempre.</h2>
     <div class="without">
-      <span class="chip" data-t="w1"></span>
-      <span class="chip" data-t="w2"></span>
-      <span class="chip" data-t="w3"></span>
-      <span class="chip" data-t="w4"></span>
-      <span class="chip" data-t="w5"></span>
-      <span class="chip" data-t="w6"></span>
+      <span class="chip" data-t="w1"><b>Sin</b> cuenta</span>
+      <span class="chip" data-t="w2"><b>Sin</b> registro</span>
+      <span class="chip" data-t="w3"><b>Sin</b> anuncios</span>
+      <span class="chip" data-t="w4"><b>Sin</b> seguimiento</span>
+      <span class="chip" data-t="w5"><b>Sin</b> rachas que te culpan</span>
+      <span class="chip" data-t="w6"><b>Sin</b> conexión</span>
     </div>
-    <p style="margin-top:1.6em" data-t="s6p"></p>
+    <p style="margin-top:1.6em" data-t="s6p">Gratis: el vocabulario de las 35 lecciones con su audio, las tarjetas, el quiz, el repaso, el hiragana y el katakana, y las primeras clases. La escribí porque la necesitaba yo: estudio japonés en una academia y la app que quería no existía en español.</p>
   </div>
 </section>
 
 <section id="descargar" class="end">
   <span class="swm c" aria-hidden="true">始</span>
   <div class="wrap narrow rev-in">
-    <h2 data-t="s7h"></h2>
-    <p class="lead" data-t="s7p"></p>
-    <p class="slogan rev-in" data-t="slogan"></p>
+    <h2 data-t="s7h">Empieza por tu lección.</h2>
+    <p class="lead" data-t="s7p">Le dices en qué lección vas y empieza ahí. No hay que fingir que sabes lo de antes.</p>
+    <p class="slogan rev-in" data-t="slogan">Estudiemos juntos</p>
     <div class="cta">
       <a class="btn btn-1" href="https://apps.apple.com/app/id6789333985">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.05 12.53c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.71-3.19-1.73-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.18-1.54 2.67-.39 6.62 1.11 8.79.73 1.06 1.6 2.25 2.74 2.21 1.1-.04 1.52-.71 2.85-.71 1.33 0 1.71.71 2.87.69 1.19-.02 1.94-1.08 2.66-2.15.84-1.23 1.19-2.42 1.21-2.48-.03-.01-2.31-.89-2.33-3.53zM14.9 5.6c.61-.74 1.02-1.77.91-2.8-.88.04-1.94.59-2.57 1.32-.56.65-1.05 1.7-.92 2.7.98.08 1.98-.5 2.58-1.22z"/></svg>
@@ -428,7 +451,8 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 
 <footer>
   <div class="wrap narrow">
-    <p data-t="foot"></p>
+    <p data-t="foot"><strong>Nihongo Sensei: Minna</strong> — ayuda de estudio independiente. No está afiliada, avalada ni conectada con la editorial de ningún libro de texto. Sigue el orden de lecciones del curso; no contiene el libro.</p>
+    <p data-t="marca">Minna no Nihongo es una marca de 3A Corporation. Nihongo Sensei no está afiliada.</p>
     <p><a href="/privacy.html" data-t="fp">Privacidad</a> · <a href="/terms.html" data-t="ft">Términos</a> · <a href="/support.html" data-t="fs">Soporte</a></p>
   </div>
 </footer>
@@ -443,10 +467,10 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
   var T = {
     es:{
       tag:'35 lecciones completas · Sin anuncios · <b>Funciona sin conexión</b>',
-      h1:'Aprende japonés. Descárgala gratis.',
+      h1:'Minna no Nihongo, lección a lección.',
       h1sub:'Aprende japonés con Nihongo Sensei',
       lead:'La app que sigue el orden de tus clases: el vocabulario de <em>esa</em> lección, no el que elige un algoritmo. 35 lecciones: todo el primer libro y el comienzo del segundo. Y las respuestas se escriben.',
-      cta1:'Descargar',
+      cta1:'Pruébala gratis',
       ambas:'Para iPhone y para Android:',
 
       s2eye:'Cuando fallas',
@@ -518,14 +542,20 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       shot_escuchar:'Estudia con la pantalla apagada.',
       shot_kana:'Kana, hasta que dejes de dudar.',
       foot:'<strong>Nihongo Sensei: Minna</strong> — ayuda de estudio independiente. No está afiliada, avalada ni conectada con la editorial de ningún libro de texto. Sigue el orden de lecciones del curso; no contiene el libro.',
-      fp:'Privacidad', ft:'Términos', fs:'Soporte'
+      fp:'Privacidad', ft:'Términos', fs:'Soporte',
+      marca:'Minna no Nihongo es una marca de 3A Corporation. Nihongo Sensei no está afiliada.',
+      mnEye:'El libro', mnH:'¿Qué es Minna no Nihongo?',
+      mnP1:'Minna no Nihongo («japonés para todos») es el manual de japonés con el que estudian muchas academias y escuelas de idiomas. Empieza desde cero y avanza en lecciones cortas: cada una presenta su vocabulario, uno o dos puntos de gramática y frases para usarlos.',
+      mnP2:'El nivel principiante son dos libros y 50 lecciones: del 1 al 25, el primero, y del 26 al 50, el segundo. Al acabarlos se llega más o menos al nivel N4 del JLPT, el examen de japonés más conocido. Después vienen los libros de nivel intermedio.',
+      mnP3:'Nihongo Sensei sigue ese orden lección a lección: el vocabulario de cada lección con su audio, su gramática explicada con nuestros ejemplos y ejercicios donde escribes la respuesta. Hoy llega a la lección 35; las de la 36 a la 50 están en camino.',
+      mnLink:'Vocabulario y gramática de cada lección'
     },
     en:{
       tag:'All 35 lessons · No ads · <b>Works offline</b>',
-      h1:'Learn Japanese. Download it free.',
+      h1:'Minna no Nihongo, lesson by lesson.',
       h1sub:'Learn Japanese with Nihongo Sensei',
       lead:'The app that follows the order of your classes: the vocabulary from <em>that</em> lesson, not what an algorithm picked. 35 lessons: all of the first book and the start of the second. And you type the answers.',
-      cta1:'Download',
+      cta1:'Try it free',
       ambas:'For iPhone and for Android:',
 
       s2eye:'When you get it wrong',
@@ -593,7 +623,13 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       shot_escuchar:'Study with the screen off.',
       shot_kana:'Kana, until you stop hesitating.',
       foot:'<strong>Nihongo Sensei: Minna</strong> — an independent study aid. Not affiliated with, endorsed by or connected to the publisher of any textbook. It follows the standard lesson order; it does not contain the book.',
-      fp:'Privacy', ft:'Terms', fs:'Support'
+      fp:'Privacy', ft:'Terms', fs:'Support',
+      marca:'Minna no Nihongo is a trademark of 3A Corporation. Nihongo Sensei is not affiliated with it.',
+      mnEye:'The book', mnH:'What is Minna no Nihongo?',
+      mnP1:'Minna no Nihongo (“Japanese for everyone”) is the Japanese textbook used by many language schools around the world. It starts from zero and moves in short lessons: each one brings its vocabulary, one or two grammar points and sentences to use them.',
+      mnP2:'The beginner level is two books and 50 lessons: 1 to 25 in the first, 26 to 50 in the second. Finishing them takes you roughly to level N4 of the JLPT, the best-known Japanese exam. The intermediate books come after.',
+      mnP3:'Nihongo Sensei follows that order lesson by lesson: each lesson’s vocabulary with audio, its grammar explained with our own examples, and exercises where you type the answer. Today it reaches lesson 35; lessons 36 to 50 are on the way.',
+      mnLink:'Vocabulary and grammar for every lesson'
     }
   };
 
@@ -619,7 +655,7 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
   function pintaCapturas(){
     var tt = T[lang] || T.es, ap = aparienciaActual(), L = (lang === 'en' ? 'en' : 'es');
     document.querySelectorAll('.shots-row img[data-shot]').forEach(function(im){
-      var src = 'img/cap/' + ap + '-' + L + '-' + im.dataset.shot + '.webp';
+      var src = '/img/cap/' + ap + '-' + L + '-' + im.dataset.shot + '.webp';
       if(im.getAttribute('src') !== src) im.setAttribute('src', src);
       im.setAttribute('alt', tt[im.dataset.tAlt] || '');
     });
@@ -629,7 +665,7 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
   window.NS_SKIN_IMGS = function(ap){
     var L = (lang === 'en' ? 'en' : 'es');
     return [].map.call(document.querySelectorAll('.shots-row img[data-shot]'), function(im){
-      return { el: im, src: 'img/cap/' + ap + '-' + L + '-' + im.dataset.shot + '.webp' };
+      return { el: im, src: '/img/cap/' + ap + '-' + L + '-' + im.dataset.shot + '.webp' };
     });
   };
   /* (3-oct) LA PILDORA EN PIEZAS. El texto llega como «a · b · <b>c</b>»: se parte por « · »,
@@ -672,6 +708,6 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
   });
 })();
 </script>
-<script src="js/site.js"></script>
+<script src="/js/site.js"></script>
 </body>
 </html>
