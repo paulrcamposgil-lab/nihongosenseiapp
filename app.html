@@ -49,7 +49,8 @@
   }
   function marca(evento) {
     try {
-      var cuerpo = JSON.stringify({ e: evento, o: c });
+      var r = ''; try { if (document.referrer) r = new URL(document.referrer).hostname; } catch (x) {}
+      var cuerpo = JSON.stringify({ e: evento, o: c, p: '/app', r: r });
       if (navigator.sendBeacon && navigator.sendBeacon(METRICAS, cuerpo)) return;
       fetch(METRICAS, { method: 'POST', body: cuerpo, keepalive: true, mode: 'no-cors' });
     } catch (e) {}

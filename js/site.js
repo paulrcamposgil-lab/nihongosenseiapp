@@ -220,16 +220,11 @@
     }
   }catch(e){}
 
-  var METRICAS = 'https://nihongo-sensei-metricas.nihongosenseiapp.deno.net/m';
-  // meta-es / meta-en (15-oct): las campañas de Meta entran por /app; desde un ordenador, /app
-  // las deja aquí con su utm_source, y la visita se cuenta en su canal.
-  var CANALES = ['instagram', 'reddit', 'discord', 'clase', 'web', 'meta-es', 'meta-en'];
-  var canal = 'directo';
+  // (21-oct) EL CONTADOR SE FUE A js/m.js, que va en TODAS las páginas (las lecciones no cargan este fichero y no
+  // contaban nada). Aquí queda lo que no es contar: el referrer de Play y el botón que elige tienda.
   try{
     var q = new URLSearchParams(location.search);
     var src = q.get('utm_source');
-    if(src && CANALES.indexOf(src) !== -1) canal = src;
-
     // Android: reenviar el utm como referrer para que Play Console atribuya la instalación.
     if(src){
       var camp = q.get('utm_campaign') || src;
@@ -242,23 +237,4 @@
     }
   }catch(e){}
 
-  /* El beacon: sobrevive a que la página se vaya a la tienda (por eso sendBeacon y no
-     fetch), manda text/plain -petición simple, sin preflight- y nunca bloquea la
-     navegación. Si el navegador no lo soporta o falla, no pasa nada: un clic sin contar
-     es mejor que un clic que se retrasa. */
-  function marca(evento){
-    try{
-      var cuerpo = JSON.stringify({ e: evento, o: canal });
-      if(navigator.sendBeacon){ navigator.sendBeacon(METRICAS, cuerpo); return; }
-      fetch(METRICAS, { method:'POST', body:cuerpo, keepalive:true, mode:'no-cors' });
-    }catch(e){}
-  }
-
-  marca('visit');
-  document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a){
-    a.addEventListener('click', function(){ marca('ios'); });
-  });
-  document.querySelectorAll('a[href*="play.google.com"]').forEach(function(a){
-    a.addEventListener('click', function(){ marca('android'); });
-  });
 })();
