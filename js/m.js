@@ -31,15 +31,19 @@
   function vete() {
     if (ido) return;
     ido = true;
-    manda({ e: 'dur', s: Math.round((Date.now() - t0) / 1000) });
+    manda({ e: 'dur', s: Math.round((Date.now() - t0) / 1000), n: dentro ? 0 : 1 });
   }
   document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') vete(); });
   addEventListener('pagehide', vete);
 
+  // (21-oct, panel) «ven 2+ páginas» sin guardar nada: la PRIMERA página de una visita avisa, una vez, cuando
+  // se pulsa un enlace a otra página de la web
+  var sigue = false;
   document.addEventListener('click', function (ev) {
     var a = ev.target && ev.target.closest && ev.target.closest('a[href]');
     if (!a) return;
     if (/apps\.apple\.com/.test(a.href)) manda({ e: 'ios' });
     else if (/play\.google\.com/.test(a.href)) manda({ e: 'android' });
+    else if (!dentro && !sigue && a.host === location.host && a.pathname !== location.pathname) { sigue = true; manda({ e: 'sigue' }); }
   }, true);
 })();
