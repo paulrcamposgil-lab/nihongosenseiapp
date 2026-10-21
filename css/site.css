@@ -165,6 +165,9 @@ header{
 .tools{display:flex;align-items:center;gap:14px}
 
 .lang{display:flex;border:1px solid var(--b);border-radius:999px;overflow:hidden}
+/* (21-oct) «Lecciones» / «Lessons» al lado de ES | EN, en todas las páginas */
+.nav-lec{font-size:.78rem;font-weight:700;color:var(--t1);text-decoration:none;padding:.38em .8em;border:1px solid var(--b);border-radius:999px;white-space:nowrap}
+.nav-lec:hover{border-color:var(--pl);color:var(--pl)}
 .lang button{
   font-family:inherit;font-size:.72rem;font-weight:700;letter-spacing:.06em;
   padding:.42em .78em;border:none;cursor:pointer;background:transparent;color:var(--t3);
@@ -193,6 +196,12 @@ header{
 .s-yg{--sw-bg:#0B0F0D;--sw-p:#B8B5AA}
 /* 2.0 · A 375 PX LA FILA DE ESTILOS SE SALIA 10 PX por la derecha (ocho botones de 24 px y el
    selector de idioma no caben). En pantallas estrechas, botones algo menores y huecos mas cortos. */
+/* (21-oct) con «Lecciones» la fila no cabe en un móvil: los estilos bajan a una segunda línea */
+@media(max-width:520px){
+  .hrow{height:auto;min-height:60px;padding:8px 0;flex-wrap:wrap;row-gap:8px}
+  .tools{flex-wrap:wrap;justify-content:flex-end;row-gap:8px}
+  .skins{flex-basis:100%;justify-content:flex-end}
+}
 @media(max-width:420px){
   .tools{gap:10px}
   .skins{gap:4px}

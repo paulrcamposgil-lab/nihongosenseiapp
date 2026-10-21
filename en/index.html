@@ -1,4 +1,3 @@
-<!-- GENERADO por tools/web_seo.py desde index.html: no se edita a mano. -->
 <!doctype html>
 <html lang="en" data-idioma="en" data-url-es="/" data-url-en="/en/">
 <head>
@@ -27,8 +26,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
-<script>/* anti-parpadeo: estampa la apariencia (y el idioma) antes de pintar */
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"></noscript>
+<script>
 try{var s=localStorage.getItem("ns-skin");if(s)document.documentElement.setAttribute("data-appearance",s);
 var l=localStorage.getItem("ns-lang");if(l&&!document.documentElement.getAttribute("data-idioma"))document.documentElement.setAttribute("lang",l);}catch(e){}</script>
 <link rel="stylesheet" href="/css/site.css">
@@ -39,9 +38,15 @@ var l=localStorage.getItem("ns-lang");if(l&&!document.documentElement.getAttribu
  "description":"An app to study Japanese following Minna no Nihongo lesson by lesson.",
  "installUrl":["https://apps.apple.com/app/id6789333985","https://play.google.com/store/apps/details?id=com.nihongonosensei.app"]}
 </script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Nihongo Sensei","url":"https://nihongosenseiapp.com/",
+ "logo":"https://nihongosenseiapp.com/img/icon-384.png",
+ "sameAs":["https://apps.apple.com/app/id6789333985","https://play.google.com/store/apps/details?id=com.nihongonosensei.app"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"Nihongo Sensei","url":"https://nihongosenseiapp.com/","inLanguage":["es","en"]}
+</script>
 <style>
-
-/* ---------- hero ---------- */
 .hero{position:relative;padding:clamp(52px,9vw,104px) 0 clamp(38px,6vw,66px);overflow:hidden}
 .hero .wm{
   position:absolute;right:-.16em;top:-.08em;font-family:'Shippori Mincho B1',serif;
@@ -56,14 +61,10 @@ var l=localStorage.getItem("ns-lang");if(l&&!document.documentElement.getAttribu
   transition:background-color .5s ease,border-color .5s ease
 }
 .tag b{color:var(--pl);font-weight:700}
-/* (3-oct) LA PILDORA SALTA ENTERA POR LOS SEPARADORES: cada pieza no se parte (.tg-i) y el «·»
-   es una pieza aparte (.tg-s). Si una linea empieza o acaba en «·», se esconde (tagPiezas). */
 .tag{flex-wrap:wrap;row-gap:.2em;max-width:100%}
 .tag .tg-i{white-space:nowrap}
-.tag .tg-s.fuera{visibility:hidden}   /* invisible y en su sitio: quitarlo dejaria subir la pieza siguiente sin «·» */
-
+.tag .tg-s.fuera{visibility:hidden}   
 .cta{display:flex;flex-wrap:wrap;gap:11px;margin-top:1.9em}
-/* X · la fila de las dos tiendas, debajo del botón grande y sin competir con él. */
 .cta-mini{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:.95em 0 0;font-size:.85rem;color:var(--t2)}
 .cta-mini a{display:inline-flex;align-items:center;gap:.4em;color:var(--t1);text-decoration:none;
   border-bottom:1px solid var(--b);padding-bottom:1px}
@@ -75,15 +76,24 @@ var l=localStorage.getItem("ns-lang");if(l&&!document.documentElement.getAttribu
   border:1px solid transparent;cursor:pointer;font-family:inherit;
   transition:transform .16s ease,box-shadow .16s ease,opacity .16s ease
 }
+.btn-2{background:transparent;color:var(--t1);border:1px solid var(--b)}
+.btn-2:hover{border-color:var(--pl)}
+#lecciones{padding:clamp(18px,4vw,40px) 0 clamp(26px,5vw,52px)}
+#lecciones h2{margin:0 0 .3em}
+.lecp{color:var(--t2);margin:0 0 1.1em}
+.rejilla{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:8px}
+.rejilla a,.rejilla span{display:flex;align-items:center;justify-content:center;height:48px;border-radius:12px;border:1px solid var(--b);
+  background:var(--card);font-family:'Shippori Mincho B1',serif;font-size:1.15rem;color:var(--t1);text-decoration:none;
+  transition:border-color .2s ease,transform .18s ease}
+.rejilla a:hover{border-color:var(--pl);transform:translateY(-1px)}
+.rejilla span{opacity:.4;cursor:default}
+.rejilla-ley{font-size:.8rem;color:var(--t3);margin:.8em 0 0}
 .btn-1{background:var(--pl);color:var(--bg);box-shadow:0 6px 22px color-mix(in srgb,var(--pl) 30%,transparent)}
 .btn:hover{transform:translateY(-2px)}
 .glyph{width:18px;height:18px;fill:currentColor;flex-shrink:0;margin-top:-1px}
 .btn:focus-visible{outline:2px solid var(--pl);outline-offset:3px}
-
 section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transition:border-color .5s ease;position:relative;overflow:hidden}
 .wrap{position:relative;z-index:1}
-/* Cada sección lleva el kanji de lo que dice. No es adorno: 書 escribir,
-   則 regla, 聴 escuchar, 鍛 forjar, 色 color, 無 nada, 始 empezar. */
 .swm{
   position:absolute;top:50%;transform:translateY(-50%);
   font-family:'Shippori Mincho B1','Hiragino Mincho ProN',serif;
@@ -98,13 +108,8 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 @media(max-width:829px){.swm{opacity:.035}}
 .two{display:grid;grid-template-columns:1fr;gap:clamp(28px,5vw,54px);align-items:center}
 @media(min-width:830px){.two{grid-template-columns:1fr 1fr}.two.rev>div:first-child{order:2}}
-/* BUG del móvil: los hijos de un grid llevan min-width:auto y no encogen por
-   debajo de su contenido; el input de la demo (ya quitada) arrastraba la columna
-   y desbordaba a 390px. min-width:0 les deja encoger. */
 .two>*{min-width:0}
 .rules,.nums,.rooms,.skinbig,.cycle{min-width:0;max-width:100%}
-
-/* ---------- mis reglas ---------- */
 .rules{list-style:none;margin:0;padding:0;background:var(--card);border:1px solid var(--b);border-radius:18px;overflow:hidden;transition:background-color .5s ease,border-color .5s ease}
 .rules li{display:grid;grid-template-columns:1fr 78px;gap:14px;align-items:center;padding:.85em 1.1em}
 .rules li+li{border-top:1px solid var(--b)}
@@ -112,15 +117,11 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 .rules .rn small{display:block;font-size:.76rem;color:var(--t3);margin-top:.1em}
 .bar{height:7px;border-radius:99px;background:var(--card2);overflow:hidden}
 .bar i{display:block;height:100%;border-radius:99px}
-
-/* ---------- cifras ---------- */
 .nums{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:18px;overflow:hidden;transition:background-color .5s ease,border-color .5s ease}
 @media(min-width:720px){.nums{grid-template-columns:repeat(4,1fr)}}
 .num{background:var(--card);padding:clamp(18px,3vw,28px);transition:background-color .5s ease}
 .num b{display:block;font-family:'Shippori Mincho B1',serif;font-size:clamp(1.9rem,4.4vw,2.6rem);font-weight:500;color:var(--t1);line-height:1.05;font-variant-numeric:tabular-nums}
 .num span{display:block;font-size:.81rem;color:var(--t3);margin-top:.32em}
-
-/* ---------- ciclo ---------- */
 .cycle{list-style:none;margin:0;padding:0}
 .cycle li{display:grid;grid-template-columns:66px 1fr;gap:15px;align-items:start;padding:.8em 0}
 .cycle li+li{border-top:1px dashed var(--b)}
@@ -128,17 +129,14 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 .cycle .w{font-size:1rem;color:var(--t1)}
 .cycle .w small{display:block;font-size:.82rem;color:var(--t3);margin-top:.12em;font-weight:400}
 .cycle li.beep .w{color:var(--pl);font-weight:700}
-
 .without{display:flex;flex-wrap:wrap;gap:9px;margin-top:.3em}
 .chip{font-size:.85rem;font-weight:500;color:var(--t2);border:1px solid var(--b);border-radius:999px;padding:.42em 1em;transition:border-color .5s ease}
 .chip b{color:var(--t1);font-weight:700}
-
 .rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:13px}
 .room{background:var(--card);border:1px solid var(--b);border-radius:16px;padding:19px;transition:background-color .5s ease,border-color .5s ease,transform .18s ease}
 .room:hover{transform:translateY(-3px)}
 .room .k{font-family:'Shippori Mincho B1',serif;font-size:1.45rem;color:var(--pl);line-height:1;margin-bottom:.42em;display:block;transition:color .5s ease}
 .room p{margin:0;font-size:.87rem}
-
 .skinbig{display:grid;grid-template-columns:repeat(auto-fit,minmax(146px,1fr));gap:11px;margin-top:1.5em}
 .sb{cursor:pointer;text-align:left;font-family:inherit;border:1px solid var(--b);border-radius:16px;padding:15px;background:var(--sw-bg);color:var(--sw-t);transition:transform .18s ease,box-shadow .18s ease}
 .sb:hover{transform:translateY(-3px);box-shadow:var(--sh-lg)}
@@ -154,7 +152,6 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 .b-fl{--sw-bg:#EEF3F8;--sw-p:#33608F;--sw-t:#16233A}
 .b-ad{--sw-bg:#1B0D06;--sw-p:#E8814F;--sw-t:#FFF3EA}
 .b-al{--sw-bg:#FBF4EC;--sw-p:#C4552B;--sw-t:#2B1A10}
-
 .end{text-align:center}
 .end .cta{justify-content:center}
 .end .lead{margin-left:auto;margin-right:auto}
@@ -170,8 +167,6 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 .shots-row::-webkit-scrollbar{display:none}
 .shots-row figure{margin:0;flex:0 0 190px;scroll-snap-align:center}
 .shots-row img{width:100%;height:auto;border-radius:18px;display:block;border:1px solid var(--b);box-shadow:var(--sh)}
-/* 2.0 · EN ESCRITORIO, LAS DIEZ ENTERAS: dos filas de cinco dentro del ancho de la pagina (la tira
-   deslizable salia cortada por la derecha y no se veia que se podia deslizar). En movil sigue la tira. */
 @media(min-width:760px){
   .shots-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;overflow:visible;scroll-snap-type:none}
   .shots-row figure{flex:none;min-width:0}
@@ -183,7 +178,6 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 .pj img{width:100%;max-width:150px;height:auto;display:block;margin:0 auto 8px}
 .pj b{display:block;color:var(--t1);font-size:1.05rem}
 .pj span{display:block;color:var(--t2);font-size:.88rem;margin-top:.2em}
-
 .shots-row figcaption{font-size:.8rem;color:var(--t3);margin-top:10px;line-height:1.4;text-wrap:pretty}
 </style>
 </head>
@@ -195,6 +189,7 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       <span class="name">Nihongo Sensei</span>
     </a>
     <div class="tools">
+      <a class="nav-lec" href="/en/minna-no-nihongo/" data-href-en="/en/minna-no-nihongo/" data-href-es="/minna-no-nihongo/" data-txt-es="Lecciones" data-txt-en="Lessons">Lessons</a>
       <div class="lang" role="group" aria-label="Language">
         <button data-lang="es" aria-pressed="true">ES</button>
         <button data-lang="en" aria-pressed="false">EN</button>
@@ -222,11 +217,8 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
     <p class="lead rev-in" data-t="lead">The app that follows the order of your classes: the vocabulary from <em>that</em> lesson, not what an algorithm picked. 35 lessons: all of the first book and the start of the second. And you type the answers.</p>
     <div class="cta rev-in">
       <a class="btn btn-1" id="ctaDescarga" href="https://apps.apple.com/app/id6789333985" data-t="cta1">Try it free</a>
+      <a class="btn btn-2" href="/en/minna-no-nihongo/" data-href-en="/en/minna-no-nihongo/" data-href-es="/minna-no-nihongo/" data-t="ctaLec">Browse lessons</a>
     </div>
-    <!-- X.3 y X.4 (15-sep-2026) · las dos tiendas, SIN bajar. El botón grande lleva a
-         la que toca, pero un visitante de Android que llegó aquí creyendo que esto es
-         «solo para iPhone» necesita verlo escrito y ver su tienda, no deducirlo. Los
-         badges del pie seguían estando a una página entera de scroll. -->
     <p class="cta-mini rev-in">
       <span data-t="ambas">For iPhone and for Android:</span>
       <a href="https://apps.apple.com/app/id6789333985"><svg class="glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.05 12.53c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.71-3.19-1.73-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.18-1.54 2.67-.39 6.62 1.11 8.79.73 1.06 1.6 2.25 2.74 2.21 1.1-.04 1.52-.71 2.85-.71 1.33 0 1.71.71 2.87.69 1.19-.02 1.94-1.08 2.66-2.15.84-1.23 1.19-2.42 1.21-2.48-.03-.01-2.31-.89-2.33-3.53zM14.9 5.6c.61-.74 1.02-1.77.91-2.8-.88.04-1.94.59-2.57 1.32-.56.65-1.05 1.7-.92 2.7.98.08 1.98-.5 2.58-1.22z"/></svg>App Store</a>
@@ -239,6 +231,14 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
     </div>
   </div>
 </div>
+
+<section id="lecciones">
+  <div class="wrap">
+    <h2 class="rev-in" data-t="lecH">Pick your lesson</h2>
+    <p class="lecp rev-in" data-t="lecP">The vocabulary with audio and the grammar of every Minna no Nihongo lesson.</p>
+    <ul class="rejilla"><li><a href="/en/minna-no-nihongo/lesson-01/" data-href-en="/en/minna-no-nihongo/lesson-01/" data-href-es="/minna-no-nihongo/leccion-01/" aria-label="Lesson 1">1</a></li><li><a href="/en/minna-no-nihongo/lesson-02/" data-href-en="/en/minna-no-nihongo/lesson-02/" data-href-es="/minna-no-nihongo/leccion-02/" aria-label="Lesson 2">2</a></li><li><a href="/en/minna-no-nihongo/lesson-03/" data-href-en="/en/minna-no-nihongo/lesson-03/" data-href-es="/minna-no-nihongo/leccion-03/" aria-label="Lesson 3">3</a></li><li><a href="/en/minna-no-nihongo/lesson-04/" data-href-en="/en/minna-no-nihongo/lesson-04/" data-href-es="/minna-no-nihongo/leccion-04/" aria-label="Lesson 4">4</a></li><li><a href="/en/minna-no-nihongo/lesson-05/" data-href-en="/en/minna-no-nihongo/lesson-05/" data-href-es="/minna-no-nihongo/leccion-05/" aria-label="Lesson 5">5</a></li><li><a href="/en/minna-no-nihongo/lesson-06/" data-href-en="/en/minna-no-nihongo/lesson-06/" data-href-es="/minna-no-nihongo/leccion-06/" aria-label="Lesson 6">6</a></li><li><a href="/en/minna-no-nihongo/lesson-07/" data-href-en="/en/minna-no-nihongo/lesson-07/" data-href-es="/minna-no-nihongo/leccion-07/" aria-label="Lesson 7">7</a></li><li><a href="/en/minna-no-nihongo/lesson-08/" data-href-en="/en/minna-no-nihongo/lesson-08/" data-href-es="/minna-no-nihongo/leccion-08/" aria-label="Lesson 8">8</a></li><li><a href="/en/minna-no-nihongo/lesson-09/" data-href-en="/en/minna-no-nihongo/lesson-09/" data-href-es="/minna-no-nihongo/leccion-09/" aria-label="Lesson 9">9</a></li><li><a href="/en/minna-no-nihongo/lesson-10/" data-href-en="/en/minna-no-nihongo/lesson-10/" data-href-es="/minna-no-nihongo/leccion-10/" aria-label="Lesson 10">10</a></li><li><a href="/en/minna-no-nihongo/lesson-11/" data-href-en="/en/minna-no-nihongo/lesson-11/" data-href-es="/minna-no-nihongo/leccion-11/" aria-label="Lesson 11">11</a></li><li><a href="/en/minna-no-nihongo/lesson-12/" data-href-en="/en/minna-no-nihongo/lesson-12/" data-href-es="/minna-no-nihongo/leccion-12/" aria-label="Lesson 12">12</a></li><li><a href="/en/minna-no-nihongo/lesson-13/" data-href-en="/en/minna-no-nihongo/lesson-13/" data-href-es="/minna-no-nihongo/leccion-13/" aria-label="Lesson 13">13</a></li><li><a href="/en/minna-no-nihongo/lesson-14/" data-href-en="/en/minna-no-nihongo/lesson-14/" data-href-es="/minna-no-nihongo/leccion-14/" aria-label="Lesson 14">14</a></li><li><a href="/en/minna-no-nihongo/lesson-15/" data-href-en="/en/minna-no-nihongo/lesson-15/" data-href-es="/minna-no-nihongo/leccion-15/" aria-label="Lesson 15">15</a></li><li><a href="/en/minna-no-nihongo/lesson-16/" data-href-en="/en/minna-no-nihongo/lesson-16/" data-href-es="/minna-no-nihongo/leccion-16/" aria-label="Lesson 16">16</a></li><li><a href="/en/minna-no-nihongo/lesson-17/" data-href-en="/en/minna-no-nihongo/lesson-17/" data-href-es="/minna-no-nihongo/leccion-17/" aria-label="Lesson 17">17</a></li><li><a href="/en/minna-no-nihongo/lesson-18/" data-href-en="/en/minna-no-nihongo/lesson-18/" data-href-es="/minna-no-nihongo/leccion-18/" aria-label="Lesson 18">18</a></li><li><a href="/en/minna-no-nihongo/lesson-19/" data-href-en="/en/minna-no-nihongo/lesson-19/" data-href-es="/minna-no-nihongo/leccion-19/" aria-label="Lesson 19">19</a></li><li><a href="/en/minna-no-nihongo/lesson-20/" data-href-en="/en/minna-no-nihongo/lesson-20/" data-href-es="/minna-no-nihongo/leccion-20/" aria-label="Lesson 20">20</a></li><li><a href="/en/minna-no-nihongo/lesson-21/" data-href-en="/en/minna-no-nihongo/lesson-21/" data-href-es="/minna-no-nihongo/leccion-21/" aria-label="Lesson 21">21</a></li><li><a href="/en/minna-no-nihongo/lesson-22/" data-href-en="/en/minna-no-nihongo/lesson-22/" data-href-es="/minna-no-nihongo/leccion-22/" aria-label="Lesson 22">22</a></li><li><a href="/en/minna-no-nihongo/lesson-23/" data-href-en="/en/minna-no-nihongo/lesson-23/" data-href-es="/minna-no-nihongo/leccion-23/" aria-label="Lesson 23">23</a></li><li><a href="/en/minna-no-nihongo/lesson-24/" data-href-en="/en/minna-no-nihongo/lesson-24/" data-href-es="/minna-no-nihongo/leccion-24/" aria-label="Lesson 24">24</a></li><li><a href="/en/minna-no-nihongo/lesson-25/" data-href-en="/en/minna-no-nihongo/lesson-25/" data-href-es="/minna-no-nihongo/leccion-25/" aria-label="Lesson 25">25</a></li><li><a href="/en/minna-no-nihongo/lesson-26/" data-href-en="/en/minna-no-nihongo/lesson-26/" data-href-es="/minna-no-nihongo/leccion-26/" aria-label="Lesson 26">26</a></li><li><a href="/en/minna-no-nihongo/lesson-27/" data-href-en="/en/minna-no-nihongo/lesson-27/" data-href-es="/minna-no-nihongo/leccion-27/" aria-label="Lesson 27">27</a></li><li><a href="/en/minna-no-nihongo/lesson-28/" data-href-en="/en/minna-no-nihongo/lesson-28/" data-href-es="/minna-no-nihongo/leccion-28/" aria-label="Lesson 28">28</a></li><li><a href="/en/minna-no-nihongo/lesson-29/" data-href-en="/en/minna-no-nihongo/lesson-29/" data-href-es="/minna-no-nihongo/leccion-29/" aria-label="Lesson 29">29</a></li><li><a href="/en/minna-no-nihongo/lesson-30/" data-href-en="/en/minna-no-nihongo/lesson-30/" data-href-es="/minna-no-nihongo/leccion-30/" aria-label="Lesson 30">30</a></li><li><a href="/en/minna-no-nihongo/lesson-31/" data-href-en="/en/minna-no-nihongo/lesson-31/" data-href-es="/minna-no-nihongo/leccion-31/" aria-label="Lesson 31">31</a></li><li><a href="/en/minna-no-nihongo/lesson-32/" data-href-en="/en/minna-no-nihongo/lesson-32/" data-href-es="/minna-no-nihongo/leccion-32/" aria-label="Lesson 32">32</a></li><li><a href="/en/minna-no-nihongo/lesson-33/" data-href-en="/en/minna-no-nihongo/lesson-33/" data-href-es="/minna-no-nihongo/leccion-33/" aria-label="Lesson 33">33</a></li><li><a href="/en/minna-no-nihongo/lesson-34/" data-href-en="/en/minna-no-nihongo/lesson-34/" data-href-es="/minna-no-nihongo/leccion-34/" aria-label="Lesson 34">34</a></li><li><a href="/en/minna-no-nihongo/lesson-35/" data-href-en="/en/minna-no-nihongo/lesson-35/" data-href-es="/minna-no-nihongo/leccion-35/" aria-label="Lesson 35">35</a></li><li><span aria-label="Lesson 36 · coming soon" title="coming soon">36</span></li><li><span aria-label="Lesson 37 · coming soon" title="coming soon">37</span></li><li><span aria-label="Lesson 38 · coming soon" title="coming soon">38</span></li><li><span aria-label="Lesson 39 · coming soon" title="coming soon">39</span></li><li><span aria-label="Lesson 40 · coming soon" title="coming soon">40</span></li><li><span aria-label="Lesson 41 · coming soon" title="coming soon">41</span></li><li><span aria-label="Lesson 42 · coming soon" title="coming soon">42</span></li><li><span aria-label="Lesson 43 · coming soon" title="coming soon">43</span></li><li><span aria-label="Lesson 44 · coming soon" title="coming soon">44</span></li><li><span aria-label="Lesson 45 · coming soon" title="coming soon">45</span></li><li><span aria-label="Lesson 46 · coming soon" title="coming soon">46</span></li><li><span aria-label="Lesson 47 · coming soon" title="coming soon">47</span></li><li><span aria-label="Lesson 48 · coming soon" title="coming soon">48</span></li><li><span aria-label="Lesson 49 · coming soon" title="coming soon">49</span></li><li><span aria-label="Lesson 50 · coming soon" title="coming soon">50</span></li></ul><p class="rejilla-ley" data-txt-es="Lecciones 36–50: próximamente" data-txt-en="Lessons 36–50: coming soon">Lessons 36–50: coming soon</p>
+  </div>
+</section>
 
 <section class="shots">
   <div class="wrap">
@@ -258,7 +258,6 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
   </div>
 </section>
 
-<!-- 2.0 · LAS CLASES CON HISTORIA (texto de Claude, tal cual) -->
 <section id="clases">
   <span class="swm r top" aria-hidden="true">授</span>
   <div class="wrap narrow rev-in">
@@ -268,7 +267,6 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
   </div>
 </section>
 
-<!-- (20-oct, Paul) ¿QUÉ ES MINNA NO NIHONGO? Texto nuestro, para quien llega buscando el libro. -->
 <section id="minna">
   <span class="swm l top" aria-hidden="true">本</span>
   <div class="wrap narrow rev-in">
@@ -277,11 +275,10 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
     <p style="margin-top:1.2em" data-t="mnP1">Minna no Nihongo (“Japanese for everyone”) is the Japanese textbook used by many language schools around the world. It starts from zero and moves in short lessons: each one brings its vocabulary, one or two grammar points and sentences to use them.</p>
     <p data-t="mnP2">The beginner level is two books and 50 lessons: 1 to 25 in the first, 26 to 50 in the second. Finishing them takes you roughly to level N4 of the JLPT, the best-known Japanese exam. The intermediate books come after.</p>
     <p data-t="mnP3">Nihongo Sensei follows that order lesson by lesson: each lesson’s vocabulary with audio, its grammar explained with our own examples, and exercises where you type the answer. Today it reaches lesson 35; lessons 36 to 50 are on the way.</p>
-    <p style="margin-top:1.2em"><a class="btn btn-1" href="/en/minna-no-nihongo/" data-href-en="/en/minna-no-nihongo/" data-t="mnLink">Vocabulary and grammar for every lesson</a></p>
+    <p style="margin-top:1.2em"><a class="btn btn-1" href="/en/minna-no-nihongo/" data-href-en="/en/minna-no-nihongo/" data-href-es="/minna-no-nihongo/" data-t="mnLink">Vocabulary and grammar for every lesson</a></p>
   </div>
 </section>
 
-<!-- 2.0.1 · LOS PERSONAJES, inventados: Nico, Noa, Hachi y Goma (Paul, 28-sep: «nada de familia real») -->
 <section id="personajes">
   <div class="wrap rev-in">
     <span class="eyebrow" data-t="pjEye">The story</span>
@@ -403,10 +400,6 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
   </div>
 </section>
 
-<!-- QUE CUESTA. La seccion faltaba entera, y su ausencia es justo lo que las
-     resenas del lider de la categoria le reprochan: no dicen «caro», dicen «se
-     honesto sobre si es de pago». Va ANTES de «lo que no lleva» porque quien llega
-     buscando el precio no deberia tener que bajar hasta el final. -->
 <section>
   <div class="wrap narrow rev-in">
     <span class="eyebrow" data-t="precioEye">What it costs</span>
@@ -436,7 +429,7 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 <section id="descargar" class="end">
   <span class="swm c" aria-hidden="true">始</span>
   <div class="wrap narrow rev-in">
-    <h2 data-t="s7h">Start at your lesson.</h2>
+    <h2 data-t="s7h">In the app, start where you are.</h2>
     <p class="lead" data-t="s7p">You tell it which lesson you’re on and it starts there. No pretending you know what came before.</p>
     <p class="slogan rev-in" data-t="slogan">Let's study together</p>
     <div class="cta">
@@ -462,9 +455,6 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 (function(){
   "use strict";
   var root = document.documentElement;
-
-
-  /* ================= idioma ================= */
   var T = {
     es:{
       tag:'35 lecciones completas · Sin anuncios · <b>Funciona sin conexión</b>',
@@ -472,8 +462,10 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       h1sub:'Aprende japonés con Nihongo Sensei',
       lead:'La app que sigue el orden de tus clases: el vocabulario de <em>esa</em> lección, no el que elige un algoritmo. 35 lecciones: todo el primer libro y el comienzo del segundo. Y las respuestas se escriben.',
       cta1:'Pruébala gratis',
+      ctaLec:'Ver las lecciones',
+      lecH:'Elige tu lección',
+      lecP:'El vocabulario con audio y la gramática de cada lección de Minna no Nihongo.',
       ambas:'Para iPhone y para Android:',
-
       s2eye:'Cuando fallas',
       s2h:'No dice «incorrecto». Dice qué regla usaste.',
       s2p1:'Una cruz roja te deja donde estabas. Saber que trataste un verbo del grupo I como si fuera del II te deja con una regla — y con las demás palabras que la siguen.',
@@ -482,22 +474,18 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       r2:'Grupo II · quitar ます<small>casi</small>',
       r3:'き → いて, con su excepción<small>en progreso</small>',
       r4:'ぎ → いで, con dakuten<small>te cuesta</small>',
-
       nn1:'1.438', n1:'palabras, con audio', n2:'kanji', n3:'lecciones, de la 1 a la 35', n4:'cuentas, anuncios y trackers',
-
       s3eye:'Escuchar',
       s3h:'Con el móvil en el bolsillo.',
       s3p1:'Suena la palabra, se abre un hueco para que pienses, y llega la respuesta. Cuarenta minutos andando sin sacar el teléfono.',
       s3p2:'Japonés en dos voces y dos velocidades. Las traducciones, en español y en inglés. Todo grabado de antemano y dentro de la app: <strong>ni un byte de red mientras estudias</strong>.',
       c1:'suena la pregunta', c2:'tu turno — piensa', c3:'aquí va', c4w:'Nadar', c4:'suena la respuesta', c5:'siguiente palabra',
-
       s8eye:'Por dentro', s8h:'Cinco pestañas, y ya.',
       tb1h:'Hoy', tb1p:'Lo que toca repasar hoy. Nada más, y por eso se hace.',
       tb2h:'Curso', tb2p:'35 lecciones con su vocabulario, su gramática y sus frases.',
       tb3h:'Entrenos', tb3p:'Vocabulario, kanji, kana y Escuchar, con los filtros que quieras.',
       tb4h:'Biblioteca', tb4p:'Kana y kanji para consultar. Aquí no se examina a nadie.',
       tb5h:'Dojo', tb5p:'Las ocho salas donde se entrena de verdad.',
-
       s4eye:'El dojo', s4h:'Ocho salas de entrenamiento.',
       rm0h:'Aprender', rm0p:'Clases guiadas con historia, lección a lección, y al acabar, una práctica solo de lo de hoy.',
       rm7h:'Kanji', rm7p:'290 kanji para leerlos y escribirlos, con repaso espaciado.',
@@ -507,25 +495,18 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       rm4h:'Kana', rm4p:'Hiragana y katakana enteros, y los pares que todos confunden.',
       rm5h:'Listening', rm5p:'Oyes una palabra y escribes lo que has oído.',
       rm6h:'Números', rm6p:'Con las lecturas que cambian: 300, 600, 800, 3000, 8000.',
-
       s5eye:'Apariencia', s5h:'La app se viste como tú.',
       s5p1:'Cinco estilos para la app; el último, Yūgen: noche, niebla y faroles. Y no es una demostración: <strong>estos botones pintan esta página con los colores exactos de la app.</strong>',
       s5p2:'Pruébalos. Lo que ves es lo que vas a tener.',
-      sk1:'Sakura · oscuro', sk2:'Hanami · claro', sk3:'Kaiju · solo noche', sk4:'Fuyu · noche', sk5:'Fuyu · nieve', sk6:'Aki · noche', sk7:'Aki · atardecer', sk8:'Yūgen · solo noche', /* sk6/sk7 (aki) y sk8 (yugen) al final por no renumerar; en pantalla van en su sitio */
-
+      sk1:'Sakura · oscuro', sk2:'Hanami · claro', sk3:'Kaiju · solo noche', sk4:'Fuyu · noche', sk5:'Fuyu · nieve', sk6:'Aki · noche', sk7:'Aki · atardecer', sk8:'Yūgen · solo noche', 
       s6eye:'Lo que no lleva', s6h:'Nada de lo de siempre.',
       w1:'<b>Sin</b> cuenta', w2:'<b>Sin</b> registro', w3:'<b>Sin</b> anuncios',
       w4:'<b>Sin</b> seguimiento', w5:'<b>Sin</b> rachas que te culpan', w6:'<b>Sin</b> conexión',
-      // QUE ES GRATIS, QUE SE PAGA Y CUANTO CUESTA. Faltaba, y su ausencia es
-      // exactamente lo que las resenas del lider de la categoria le reprochan: no
-      // dicen «caro», dicen «se honesto sobre si es de pago». El precio se escribe
-      // aqui porque es la web, no la app — en la app lo pone la tienda.
       precioEye:'Qué cuesta', precioH:'El curso, gratis. Lo nuestro, de pago.',
       precioP:'Gratis: el vocabulario de las 35 lecciones con su audio, las tarjetas, el quiz, el repaso, el hiragana y el katakana, y las primeras clases. Lo que se paga es lo que hemos construido nosotros: el dojo, donde entrenas hasta que te sale solo, y las clases guiadas de la 4 en adelante. Las primeras clases son tuyas para siempre.',
       precioC:'El dojo completo, con todas las clases, cuesta 19,99 € al año, con 7 días gratis para probarlo. Sin cuenta y sin renovación sorpresa: lo gestiona tu tienda.',
       s6p:'Gratis: el vocabulario de las 35 lecciones con su audio, las tarjetas, el quiz, el repaso, el hiragana y el katakana, y las primeras clases. La escribí porque la necesitaba yo: estudio japonés en una academia y la app que quería no existía en español.',
-
-      s7h:'Empieza por tu lección.',
+      s7h:'En la app, empieza donde vas.',
       s7p:'Le dices en qué lección vas y empieza ahí. No hay que fingir que sabes lo de antes.',
       slogan:'Estudiemos juntos',
       shots_eyebrow:'ASÍ SE VE',
@@ -557,8 +538,10 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       h1sub:'Learn Japanese with Nihongo Sensei',
       lead:'The app that follows the order of your classes: the vocabulary from <em>that</em> lesson, not what an algorithm picked. 35 lessons: all of the first book and the start of the second. And you type the answers.',
       cta1:'Try it free',
+      ctaLec:'Browse lessons',
+      lecH:'Pick your lesson',
+      lecP:'The vocabulary with audio and the grammar of every Minna no Nihongo lesson.',
       ambas:'For iPhone and for Android:',
-
       s2eye:'When you get it wrong',
       s2h:'It doesn’t say “incorrect”. It names the rule you used.',
       s2p1:'A red cross leaves you exactly where you were. Knowing you treated a Group I verb as if it were Group II leaves you with a rule — and with the other words that follow it.',
@@ -567,22 +550,18 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       r2:'Group II · drop ます<small>nearly there</small>',
       r3:'き → いて, and its exception<small>in progress</small>',
       r4:'ぎ → いで, with dakuten<small>this one costs you</small>',
-
       nn1:'1,438', n1:'words, all with audio', n2:'kanji', n3:'lessons, 1 to 35', n4:'accounts, ads and trackers',
-
       s3eye:'Listen',
       s3h:'With the phone in your pocket.',
       s3p1:'The word plays, a gap opens for you to think, and the answer arrives. Forty minutes walking without taking the phone out.',
       s3p2:'Japanese in two voices and two speeds. Translations in Spanish and English. All of it recorded in advance and bundled inside: <strong>not one byte of network while you study</strong>.',
       c1:'the question plays', c2:'your turn — think', c3:'here it comes', c4w:'To swim', c4:'the answer plays', c5:'next word',
-
       s8eye:'Inside', s8h:'Five tabs, that’s all.',
       tb1h:'Today', tb1p:'What’s due today. Nothing else — which is why it gets done.',
       tb2h:'Course', tb2p:'35 lessons with their vocabulary, grammar and sentences.',
       tb3h:'Drills', tb3p:'Vocabulary, kanji, kana and Listen, filtered however you like.',
       tb4h:'Library', tb4p:'Kana and kanji to look things up. Nobody gets tested here.',
       tb5h:'Dojo', tb5p:'The eight rooms where the real training happens.',
-
       s4eye:'The dojo', s4h:'Eight training rooms.',
       rm0h:'Learn', rm0p:'Guided classes with a story, lesson by lesson, and a practice on just that lesson at the end.',
       rm7h:'Kanji', rm7p:'290 kanji to read and write, with spaced repetition.',
@@ -592,12 +571,10 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       rm4h:'Kana', rm4p:'All of hiragana and katakana, and the pairs everyone confuses.',
       rm5h:'Listening', rm5p:'You hear a word and write what you heard.',
       rm6h:'Numbers', rm6p:'Including the readings that change: 300, 600, 800, 3000, 8000.',
-
       s5eye:'Appearance', s5h:'The app dresses like you.',
       s5p1:'Five looks for the app; the newest, Yūgen: night, mist and lanterns. And this isn’t a mock-up: <strong>these buttons repaint this page with the app’s exact colours.</strong>',
       s5p2:'Try them. What you see is what you get.',
       sk1:'Sakura · dark', sk2:'Hanami · light', sk3:'Kaiju · dark only', sk4:'Fuyu · night', sk5:'Fuyu · snow', sk6:'Aki · night', sk7:'Aki · dusk', sk8:'Yūgen · dark only',
-
       s6eye:'What it doesn’t have', s6h:'None of the usual.',
       w1:'<b>No</b> account', w2:'<b>No</b> sign-up', w3:'<b>No</b> ads',
       w4:'<b>No</b> tracking', w5:'<b>No</b> guilt-trip streaks', w6:'<b>No</b> connection needed',
@@ -605,8 +582,7 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       precioP:'Free: the vocabulary of all 35 lessons with audio, flashcards, quizzes, reviews, hiragana and katakana, and the first classes. What you pay for is what we built: the dojo, where you train until it comes out by itself, and the guided classes from 4 on. The first classes are yours to keep.',
       precioC:'The full dojo, with all the classes, is €19.99 a year, with a 7-day free trial. No account and no surprise renewal: your store handles it.',
       s6p:'Free: the vocabulary of all 35 lessons with audio, flashcards, quizzes, reviews, hiragana and katakana, and the first classes. I wrote it because I needed it: I study Japanese in a class, and the app I wanted didn’t exist.',
-
-      s7h:'Start at your lesson.',
+      s7h:'In the app, start where you are.',
       s7p:'You tell it which lesson you’re on and it starts there. No pretending you know what came before.',
       slogan:"Let's study together",
       shots_eyebrow:'WHAT IT LOOKS LIKE',
@@ -633,18 +609,8 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       mnLink:'Vocabulary and grammar for every lesson'
     }
   };
-
   var lang = 'es';
-
-  /* ================= idioma · el motor vive en site.js ================= */
-  /* site.js (compartido con las hijas) aplica el idioma. Aquí solo se le
-     entregan las cadenas de la portada y un gancho para repintar las
-     capturas cuando se cambia de idioma. */
   window.NS_STRINGS = T;
-  /* 2.0 · «ASÍ SE VE» EN EL COLOR DEL ESTILO ELEGIDO. Las diez capturas estan recoloreadas para las
-     ocho apariencias (color por color, con los dibujos intactos) y el nombre del fichero se COMPONE
-     —apariencia, idioma, numero—: la apariencia siguiente no necesita codigo, solo sus ficheros.
-     Solo se piden las diez que se ven; cambian al cambiar de estilo o de idioma. */
   var LOOKS = ['sakura-dark','sakura-light','aki-dark','aki-light','fuyu-dark','fuyu-light','kaiju','yugen'];
   function aparienciaActual(){
     var a = root.getAttribute('data-appearance');
@@ -662,16 +628,12 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
     });
   }
   window.NS_AFTER_SKIN = function(){ pintaCapturas(); };
-  // para el cambio suave (js/site.js): que capturas pediria el estilo nuevo, para precargarlas antes
   window.NS_SKIN_IMGS = function(ap){
     var L = (lang === 'en' ? 'en' : 'es');
     return [].map.call(document.querySelectorAll('.shots-row img[data-shot]'), function(im){
       return { el: im, src: '/img/cap/' + ap + '-' + L + '-' + im.dataset.shot + '.webp' };
     });
   };
-  /* (3-oct) LA PILDORA EN PIEZAS. El texto llega como «a · b · <b>c</b>»: se parte por « · »,
-     cada trozo va en un span que no se parte y cada «·» en el suyo. Despues de maquetar, un «·»
-     que no esta en la misma linea que sus dos vecinos queda en un borde: se esconde. */
   function tagPiezas(){
     var t = document.querySelector('.tag[data-t=tag]');
     if(!t) return;
@@ -688,20 +650,16 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
   }
   window.tagPiezas = tagPiezas;
   window.addEventListener('resize', tagPiezas);
-  if(document.fonts && document.fonts.ready) document.fonts.ready.then(tagPiezas);   // la letra cambia los anchos
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(tagPiezas);
   tagPiezas();
-
   window.NS_AFTER_LANG = function(L){
     lang = L;
     pintaCapturas();
     tagPiezas();
   };
-
-  /* ================= entrada ================= */
   var io = window.IntersectionObserver ? new IntersectionObserver(function(es){
     es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('seen'); io.unobserve(en.target); } });
   }, {rootMargin:'0px 0px -8% 0px'}) : null;
-
   document.querySelectorAll('.rev-in').forEach(function(el, n){
     if(!io){ el.classList.add('seen'); return; }
     el.style.transitionDelay = Math.min(n, 3) * 70 + 'ms';

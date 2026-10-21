@@ -132,6 +132,11 @@
       if(!a.dataset.hrefEs) a.dataset.hrefEs = a.getAttribute('href');
       a.setAttribute('href', L === 'en' ? a.dataset.hrefEn : a.dataset.hrefEs);
     });
+    // (21-oct) y los textos marcados con data-txt-en («Lecciones» de la cabecera, también en las hijas)
+    document.querySelectorAll('[data-txt-en]').forEach(function(el){
+      if(!el.dataset.txtEs) el.dataset.txtEs = el.textContent;
+      el.textContent = L === 'en' ? el.dataset.txtEn : el.dataset.txtEs;
+    });
     var url = root.getAttribute('data-url-' + L);
     if(url && location.protocol !== 'file:' && location.pathname !== url){
       try{ history.replaceState(null, '', url + location.search + location.hash); }catch(e){}
