@@ -73,16 +73,29 @@ h3{margin:1.6em 0 .6em;font-size:1.15rem}
 .lang a[aria-current]{color:var(--pl)}
 .bil{display:grid;gap:2.4em}
 .bil ul{padding-left:1.1em}
+.ej .quien{display:block;font-size:.74rem;font-weight:700;color:var(--pl);letter-spacing:.04em}
+.nota{background:var(--card2);border-radius:12px;padding:.75em 1em;font-size:.92rem}
+.tabla-w{overflow-x:auto;margin:0 0 1.1em}
+.tabla{border-collapse:collapse;font-size:.88rem;background:var(--card);border:1px solid var(--b);min-width:100%}
+.tabla th,.tabla td{padding:.45em .7em;border:1px solid var(--b);text-align:left;color:var(--t1)}
+.tabla th{font-size:.76rem;color:var(--t3);font-weight:700}
 @media(max-width:520px){.voc th.s,.voc td.s{font-size:.88rem}.voc th,.voc td{padding:.55em .55em}}
 </style>
+<style>.logo-name { font-size:1.3rem; font-weight:700; color:var(--t1); line-height:1.2; letter-spacing:-0.015em; }
+.ed-minna .logo-ed{display:block;font-family:"New York",ui-serif,Georgia,serif;font-size:.62rem;font-weight:700;letter-spacing:.32em;line-height:1.2;margin-top:1px;color:#B02D3A}
+@media (prefers-color-scheme: dark){:root:not([data-appearance]):not([data-theme="light"]) .ed-minna .logo-ed{color:#E58E97}}
+:root[data-theme="dark"]:not([data-appearance]) .ed-minna .logo-ed, :root[data-appearance$="-dark"] .ed-minna .logo-ed, :root[data-appearance="kaiju"] .ed-minna .logo-ed, :root[data-appearance="yugen"] .ed-minna .logo-ed{color:#E58E97}
+.ed-genki .logo-ed{display:block;font-family:"New York",ui-serif,Georgia,serif;font-size:.62rem;font-weight:700;letter-spacing:.32em;line-height:1.2;margin-top:1px;color:#1C2C54}
+@media (prefers-color-scheme: dark){:root:not([data-appearance]):not([data-theme="light"]) .ed-genki .logo-ed{color:#8FA3D9}}
+:root[data-theme="dark"]:not([data-appearance]) .ed-genki .logo-ed, :root[data-appearance$="-dark"] .ed-genki .logo-ed, :root[data-appearance="kaiju"] .ed-genki .logo-ed, :root[data-appearance="yugen"] .ed-genki .logo-ed{color:#8FA3D9}
+.mark .logo-name{text-align:left}.mark .ic-ed{width:28px;height:28px;border-radius:7px;display:block;flex-shrink:0}</style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://nihongosenseiapp.com/en/"}, {"@type": "ListItem", "position": 2, "name": "Minna no Nihongo", "item": "https://nihongosenseiapp.com/en/minna-no-nihongo/"}]}</script>
 </head>
 <body>
 <header>
   <div class="wrap hrow">
     <a class="mark" href="/en/" aria-label="Nihongo Sensei">
-      <span class="tree" aria-hidden="true"><i class="ic-s"></i><i class="ic-a"></i><i class="ic-f"></i><i class="ic-k"></i><i class="ic-y"></i></span>
-      <span class="name">Nihongo Sensei</span>
+      <span class="tree" aria-hidden="true"><i class="ic-s"></i><i class="ic-a"></i><i class="ic-f"></i><i class="ic-k"></i><i class="ic-y"></i></span><div class="logo-name ed-minna">Nihongo Sensei<span class="logo-ed">MINNA</span></div>
     </a>
     <div class="tools"><a class="nav-lec" href="/en/minna-no-nihongo/">Lessons</a><nav class="lang" aria-label="Language">
       <a href="/minna-no-nihongo/" hreflang="es" onclick="try{localStorage.setItem('ns-lang','es')}catch(e){}">ES</a>
@@ -99,9 +112,9 @@ h3{margin:1.6em 0 .6em;font-size:1.15rem}
 </div></main>
 <footer>
   <div class="wrap narrow">
-    <p>Minna no Nihongo is a trademark of 3A Corporation. Nihongo Sensei is not affiliated with it.</p>
-    <p>Nihongo Sensei is an independent study aid that follows the book’s lesson order; it does not contain the book.</p>
-    <p><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/support.html">Support</a></p>
+    <p>Nihongo Sensei is an independent app. It is not affiliated with 3A Corporation or the publishers of Minna no Nihongo, and it does not reproduce content from the book: the exercises, examples and explanations are original work.</p>
+    <p>Minna no Nihongo is a trademark of 3A Corporation, and GENKI is published by The Japan Times Publishing. Nihongo Sensei is not affiliated with either publisher.</p>
+    <p><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms (Minna)</a> · <a href="/terms-genki.html">Terms (Genki)</a> · <a href="/support.html">Support</a></p>
   </div>
 </footer>
 <script>document.addEventListener('click',function(e){var b=e.target.closest('.oir');if(!b)return;try{new Audio(b.dataset.src).play()}catch(x){}});</script>

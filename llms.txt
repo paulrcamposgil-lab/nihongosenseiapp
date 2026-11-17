@@ -1,24 +1,26 @@
 # Nihongo Sensei
 
-> Web de Nihongo Sensei: Minna, una app para iPhone y Android para estudiar japonés siguiendo el orden de lecciones de Minna no Nihongo.
-> Website of Nihongo Sensei: Minna, an iPhone and Android app to study Japanese following the lesson order of Minna no Nihongo.
+> Web de las dos apps de Nihongo Sensei para estudiar japonés con tu libro de clase, lección a lección: Nihongo Sensei: Minna (Minna no Nihongo) y Nihongo Sensei: Genki (Genki I), para iPhone y Android.
+> Website of the two Nihongo Sensei apps to study Japanese with your textbook, lesson by lesson: Nihongo Sensei: Minna (Minna no Nihongo) and Nihongo Sensei: Genki (Genki I), for iPhone and Android.
 
-ES · La web tiene una página por lección (1–50, 50 lecciones) con su vocabulario (lectura en kana y rōmaji, audio y una frase de ejemplo por palabra) y su gramática, en español y en inglés. La app añade ejercicios en los que escribes la respuesta y te corrige.
+ES · La web tiene una página por lección de Minna no Nihongo (1–50, 50 lecciones) y de Genki I (0–12, 13 lecciones), con su vocabulario (lectura en kana y rōmaji, audio y una frase de ejemplo por palabra) y su gramática, en español y en inglés. Genki II (lecciones 13–23): Llega en la primera quincena de diciembre. Las apps añaden ejercicios en los que escribes la respuesta y te corrigen.
 
-EN · The site has one page per lesson (1–50, 50 lessons) with its vocabulary (reading in kana and rōmaji, audio and an example sentence for each word) and its grammar, in Spanish and in English. The app adds exercises where you type the answer and it checks it.
+EN · The site has one page per lesson of Minna no Nihongo (1–50, 50 lessons) and of Genki I (0–12, 13 lessons), with its vocabulary (reading in kana and rōmaji, audio and an example sentence for each word) and its grammar, in Spanish and in English. Genki II (lessons 13–23): Coming in early December. The apps add exercises where you type the answer and they check it.
 
 ## Lecciones · Lessons
 
-- [Índice de lecciones (español)](https://nihongosenseiapp.com/minna-no-nihongo/)
-- [Lesson index (English)](https://nihongosenseiapp.com/en/minna-no-nihongo/)
+- [Minna no Nihongo: índice de lecciones (español)](https://nihongosenseiapp.com/minna-no-nihongo/)
+- [Minna no Nihongo: lesson index (English)](https://nihongosenseiapp.com/en/minna-no-nihongo/)
+- [Genki: índice de lecciones (español)](https://nihongosenseiapp.com/genki/)
+- [Genki: lesson index (English)](https://nihongosenseiapp.com/en/genki/)
 
-## La app · The app
+## Las apps · The apps
 
 - [Portada (español)](https://nihongosenseiapp.com/)
 - [Home (English)](https://nihongosenseiapp.com/en/)
-- [App Store](https://apps.apple.com/app/id6789333985)
-- [Google Play](https://play.google.com/store/apps/details?id=com.nihongonosensei.app)
+- [App Store · Minna](https://apps.apple.com/app/id6789333985)
+- [Google Play · Minna](https://play.google.com/store/apps/details?id=com.nihongonosensei.app)
 - [Soporte · Support](https://nihongosenseiapp.com/support.html)
 
-Minna no Nihongo es una marca de 3A Corporation. Nihongo Sensei es una ayuda de estudio independiente, no afiliada, y no contiene el libro.
-Minna no Nihongo is a trademark of 3A Corporation. Nihongo Sensei is an independent study aid, not affiliated, and does not contain the book.
+Minna no Nihongo es una marca de 3A Corporation y GENKI, una publicación de The Japan Times Publishing. Nihongo Sensei es una ayuda de estudio independiente, no afiliada a ninguna de las dos editoriales, y no contiene los libros.
+Minna no Nihongo is a trademark of 3A Corporation, and GENKI is published by The Japan Times Publishing. Nihongo Sensei is an independent study aid, not affiliated with either publisher, and does not contain the books.
