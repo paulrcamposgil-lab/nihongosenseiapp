@@ -20,6 +20,7 @@ EN · The site has one page per lesson of Minna no Nihongo (1–50, 50 lessons) 
 - [Home (English)](https://nihongosenseiapp.com/en/)
 - [App Store · Minna](https://apps.apple.com/app/id6789333985)
 - [Google Play · Minna](https://play.google.com/store/apps/details?id=com.nihongonosensei.app)
+- [App Store · Genki](https://apps.apple.com/app/id6833520626)
 - [Soporte · Support](https://nihongosenseiapp.com/support.html)
 
 Minna no Nihongo es una marca de 3A Corporation y GENKI, una publicación de The Japan Times Publishing. Nihongo Sensei es una ayuda de estudio independiente, no afiliada a ninguna de las dos editoriales, y no contiene los libros.
