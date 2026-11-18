@@ -1,11 +1,11 @@
 {
   "avisos": [
     {
-      "id": "black-friday-2026",
+      "id": "bf26_a",
       "app": "minna",
       "para": "sin_dojo",
       "desde": "2026-11-18T00:00+01:00",
-      "hasta": "2026-11-30T23:59+01:00",
+      "hasta": "2026-11-27T23:59+01:00",
       "estilo": "oferta",
       "titulo": {
         "es": "Black Friday · 50% OFF",
@@ -14,6 +14,48 @@
       "texto": {
         "es": "Dojo de práctica: +5.000 ejercicios, ganchos de aprendizaje y clases con historia. Un solo pago, para siempre: {precio_vida}. Hasta el lunes 30.",
         "en": "Practice Dojo: 5,000+ exercises, learning hooks and story-based lessons. Pay once, forever: {precio_vida}. Until Monday 30th."
+      },
+      "boton": {
+        "es": "Lo quiero",
+        "en": "I want it"
+      },
+      "accion": "comprar_vida"
+    },
+    {
+      "id": "bf26_b",
+      "app": "minna",
+      "para": "sin_dojo",
+      "desde": "2026-11-28T00:00+01:00",
+      "hasta": "2026-11-29T23:59+01:00",
+      "estilo": "oferta",
+      "titulo": {
+        "es": "Quedan solo 3 días · 50% OFF",
+        "en": "Only 3 days left · 50% OFF"
+      },
+      "texto": {
+        "es": "Dojo de práctica: +5.000 ejercicios, ganchos de aprendizaje y clases con historia. Un solo pago, para siempre: {precio_vida}. Termina el lunes 30.",
+        "en": "Practice Dojo: 5,000+ exercises, learning hooks and story-based lessons. Pay once, forever: {precio_vida}. Ends Monday 30th."
+      },
+      "boton": {
+        "es": "Lo quiero",
+        "en": "I want it"
+      },
+      "accion": "comprar_vida"
+    },
+    {
+      "id": "bf26_c",
+      "app": "minna",
+      "para": "sin_dojo",
+      "desde": "2026-11-30T00:00+01:00",
+      "hasta": "2026-11-30T23:59+01:00",
+      "estilo": "oferta",
+      "titulo": {
+        "es": "Último día · 50% OFF",
+        "en": "Last day · 50% OFF"
+      },
+      "texto": {
+        "es": "Hoy es el último día para tener el Dojo de práctica para siempre por {precio_vida}. Mañana vuelve a su precio.",
+        "en": "Today is the last day to get the Practice Dojo forever for {precio_vida}. Tomorrow it goes back to full price."
       },
       "boton": {
         "es": "Lo quiero",
