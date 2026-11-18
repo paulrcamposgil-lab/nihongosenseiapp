@@ -1,0 +1,25 @@
+{
+  "avisos": [
+    {
+      "id": "black-friday-2026",
+      "app": "minna",
+      "para": "sin_dojo",
+      "desde": "2026-11-18T00:00+01:00",
+      "hasta": "2026-11-30T23:59+01:00",
+      "estilo": "oferta",
+      "titulo": {
+        "es": "Black Friday · 50% OFF",
+        "en": "Black Friday · 50% OFF"
+      },
+      "texto": {
+        "es": "Dojo de práctica: +5.000 ejercicios, ganchos de aprendizaje y clases con historia. Un solo pago, para siempre: {precio_vida}. Hasta el lunes 30.",
+        "en": "Practice Dojo: 5,000+ exercises, learning hooks and story-based lessons. Pay once, forever: {precio_vida}. Until Monday 30th."
+      },
+      "boton": {
+        "es": "Lo quiero",
+        "en": "I want it"
+      },
+      "accion": "comprar_vida"
+    }
+  ]
+}
