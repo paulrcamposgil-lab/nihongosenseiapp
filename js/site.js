@@ -237,4 +237,21 @@
     }
   }catch(e){}
 
+  /* (20-nov) App Store: la campaña va en pt (provider token de la cuenta) + ct (la campaña) + mt=8, que es lo que
+     arma un Campaign Link de Apple. Sin el pt, Apple no la registra: con PT vacío el enlace se queda limpio, como en
+     app.html. El pt sale de App Store Connect › App Analytics › Acquisition › Campaign Links. */
+  var PT = '';
+  try{
+    var q2 = new URLSearchParams(location.search);
+    var ct = q2.get('utm_campaign') || q2.get('utm_source');
+    if(PT && ct){
+      document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(a){
+        var u = new URL(a.href, location.href);
+        if(u.searchParams.has('see-all')) return;   // los enlaces a las reseñas no son descargas
+        u.searchParams.set('pt', PT); u.searchParams.set('ct', ct.slice(0, 40)); u.searchParams.set('mt', '8');
+        a.href = u.toString();
+      });
+    }
+  }catch(e){}
+
 })();

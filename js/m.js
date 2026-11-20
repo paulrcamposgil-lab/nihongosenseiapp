@@ -5,11 +5,15 @@
    suma contadores; nada identifica a nadie. */
 (function () {
   var M = 'https://nihongo-sensei-metricas.nihongosenseiapp.deno.net/m';
-  var CANALES = ['instagram', 'reddit', 'discord', 'clase', 'web', 'meta-es', 'meta-en'];
+  var CANALES = ['instagram', 'reddit', 'discord', 'clase', 'web', 'meta-es', 'meta-en', 'bf_es_mx', 'bf_en'];
+  // (20-nov) las campañas de pago con su fila propia: si utm_campaign está en la lista, cuenta como campaña
+  // (bf_es_mx, bf_en: Black Friday en Instagram) y no se mezcla con el instagram orgánico.
+  var CAMPANAS = ['bf_es_mx', 'bf_en'];
   var canal = 'directo', ref = '', tz = '';
   try {
-    var s = new URLSearchParams(location.search).get('utm_source');
-    if (s && CANALES.indexOf(s) !== -1) canal = s;
+    var q = new URLSearchParams(location.search), s = q.get('utm_source'), c = q.get('utm_campaign');
+    if (c && CAMPANAS.indexOf(c) !== -1) canal = c;
+    else if (s && CANALES.indexOf(s) !== -1) canal = s;
   } catch (e) {}
   try { if (document.referrer) ref = new URL(document.referrer).hostname; } catch (e) {}
   try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
