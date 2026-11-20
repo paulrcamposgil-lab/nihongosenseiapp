@@ -192,20 +192,21 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
 .pj span{display:block;color:var(--t2);font-size:.88rem;margin-top:.2em}
 .shots-row figcaption{font-size:.8rem;color:var(--t3);margin-top:10px;line-height:1.4;text-wrap:pretty}
 .bf{background:#111;color:#fff;border-bottom:1px solid #000}
-.bf-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.5em 1em;padding:.7em 0;text-align:center}
-.bf-t{margin:0;font-size:.92rem;line-height:1.4}
-.bf-t b{color:#FFD24A;letter-spacing:.02em}
-.bf-t strong{font-size:1.06em;white-space:nowrap}
+.bf-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.4em 1em;padding:.55em 0;text-align:center}
+#bf .bf-t{margin:0;color:#fff;font-size:1.02rem;font-weight:600;line-height:1.45;opacity:1}
+#bf .bf-t b{color:#FFD24A;font-weight:800;letter-spacing:.02em}
+#bf .bf-t strong{display:inline-block;color:#fff;background:#D6114F;font-weight:800;padding:.08em .5em;
+      border-radius:999px;white-space:nowrap;margin:0 .1em}
 .bf-b{display:flex;gap:.5em;flex-wrap:wrap;justify-content:center}
-.bf-a{display:inline-flex;align-items:center;min-height:36px;padding:.35em 1em;border-radius:999px;background:#fff;color:#111;
-      font-size:.84rem;font-weight:700;text-decoration:none;white-space:nowrap}
-.bf-a:hover,.bf-a:focus-visible{background:#FFD24A}
+#bf .bf-a{display:inline-flex;align-items:center;min-height:34px;padding:.25em 1em;border-radius:999px;background:#fff;color:#111;
+      font-size:.9rem;font-weight:700;text-decoration:none;white-space:nowrap;border:0}
+#bf .bf-a:hover,#bf .bf-a:focus-visible{background:#FFD24A;color:#111}
 </style>
 </head>
 <body>
 <div class="bf" id="bf" role="region" aria-label="Black Friday">
   <div class="wrap bf-in">
-    <p class="bf-t" data-t="bfT"><b>Black Friday</b> · Dojo de práctica para siempre <strong>−50 %</strong>, un solo pago · hasta el lunes 30</p>
+    <p class="bf-t" data-t="bfT"><b>Black Friday:</b> <strong>−50 %</strong> en el Dojo de práctica para siempre. Hasta el lunes 30.</p>
     <div class="bf-b"><a class="bf-a" href="https://apps.apple.com/app/id6789333985">App Store</a><a class="bf-a" href="https://play.google.com/store/apps/details?id=com.nihongonosensei.app">Google Play</a></div>
   </div>
 </div>
@@ -492,7 +493,7 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
   var root = document.documentElement;
   var T = {
     es:{
-      bfT:'<b>Black Friday</b> · Dojo de práctica para siempre <strong>−50 %</strong>, un solo pago · hasta el lunes 30',
+      bfT:'<b>Black Friday:</b> <strong>−50 %</strong> en el Dojo de práctica para siempre. Hasta el lunes 30.',
       tag:'50 lecciones completas · Sin anuncios · <b>Funciona sin conexión</b>',
       h1:'Minna no Nihongo, lección a lección.',
       h1sub:'Aprende japonés con Nihongo Sensei',
@@ -569,7 +570,7 @@ section{padding:clamp(54px,8.5vw,100px) 0;border-top:1px solid var(--b);transiti
       mnLink:'Vocabulario y gramática de cada lección'
     },
     en:{
-      bfT:'<b>Black Friday</b> · Lifetime practice Dojo, <strong>50% off</strong>, one payment · until Monday 30th',
+      bfT:'<b>Black Friday:</b> <strong>50% off</strong> the lifetime practice Dojo. Until Monday 30th.',
       tag:'All 50 lessons · No ads · <b>Works offline</b>',
       h1:'Minna no Nihongo, lesson by lesson.',
       h1sub:'Learn Japanese with Nihongo Sensei',
